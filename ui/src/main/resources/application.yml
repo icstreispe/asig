@@ -1,0 +1,7 @@
+server:
+  port: 8881
+
+spring:
+  cloud:
+    gateway:
+      enabled: false      #needed to run correctly in idea
