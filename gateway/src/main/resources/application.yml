@@ -1,0 +1,23 @@
+server:
+  port: 8888
+
+spring:
+  application:
+    name: gateway
+  cloud:
+    gateway:
+      routes:
+        - id: ui
+          uri: http://localhost:8881/
+          predicates:
+            - Path=/ui/**
+          filters:
+            - RewritePath=/ui/(?<segment>.*), /$\{segment}
+        - id: db
+            uri: http://localhost:8882/
+            predicates:
+              - Path=/db/**
+            filters:
+              - RewritePath=/db/(?<segment>.*), /$\{segment}
+
+
