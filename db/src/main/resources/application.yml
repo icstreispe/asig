@@ -1,0 +1,14 @@
+server:
+  port: 8882
+
+spring:
+  cloud:
+    gateway:
+      enabled: false      #needed to run correctly in idea
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      maximum-pool-size: 10
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: quark13
