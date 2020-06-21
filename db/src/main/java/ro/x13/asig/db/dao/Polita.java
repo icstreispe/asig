@@ -22,7 +22,7 @@ public class Polita {
 
         @Id
         @GeneratedValue(strategy=GenerationType.AUTO)
-        private Long idpolita;
+        private Long idPolita;
 
         private String serie;
         private Integer nr;
