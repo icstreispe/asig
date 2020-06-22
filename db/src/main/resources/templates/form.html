@@ -1,0 +1,14 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<div th:fragment="title">
+    &copy; 2020 The Good Thymes Virtual Grocery
+</div>
+
+<select th:fragment="combo"  id="dropOperator">
+    <option th:each="s : ${stareMatricList}" th:value="${s.value}" th:text="${s.text}"></option>
+</select>
+
+</html>
+
+th:field="${polite.stareMatric}"
