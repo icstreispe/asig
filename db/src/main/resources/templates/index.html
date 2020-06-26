@@ -6,8 +6,15 @@
 </head>
 
 <body>
-    <div th:insert="~{form::title}"></div>
-    <div th:insert="~{form::combo}"></div>
+    <table>
+        <tr th:insert="~{form::title}"></tr>
+        <tr th:insert="~{form::structuraTypeCombo}"></tr>
+        <tr th:insert="~{form::taraCombo}"></tr>
+    </table>
+
+
+    &copy; 2020 X13 &amp; co
+
 </body>
 
 </html>

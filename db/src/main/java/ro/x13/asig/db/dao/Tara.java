@@ -9,19 +9,22 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name="tip_structura")
+@Table(name="n_tara")
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class StructuraType {
+public class Tara {
 
         @Id
         @GeneratedValue(strategy=GenerationType.AUTO)
         private Long id;
 
         private String name;
+        private String nameEn;
+        private Long population;
+        private Long area;
+
         private Date startDate;
         private Date endDate;
-
 }

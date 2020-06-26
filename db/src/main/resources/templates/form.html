@@ -1,13 +1,29 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 
-<div th:fragment="title">
-    &copy; 2020 The Good Thymes Virtual Grocery
-</div>
+<tr th:fragment="title">
+    <td colspan="2" th:text="#{adresa}"></td>
+</tr>
 
-<select th:fragment="combo"  id="dropOperator">
-    <option th:each="s : ${stareMatricList}" th:value="${s.value}" th:text="${s.text}"></option>
-</select>
+<tr th:fragment="structuraTypeCombo">
+    <td th:text="#{structuraType}"></td>
+    <td>
+        <select   id="structTypeId">
+            <option th:each="s : ${structuraTypeList}" th:value="${s.value}" th:text="${s.text}"></option>
+        </select>
+    </td>
+</tr>
+
+
+<tr th:fragment="taraCombo">
+    <td th:text="#{home.tara}"></td>
+    <td>
+        <select  id="taraId">
+            <option th:each="s : ${taraList}" th:value="${s.value}" th:text="${s.text}"></option>
+        </select>
+    </td>
+</tr>
+
 
 </html>
 
