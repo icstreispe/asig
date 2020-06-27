@@ -14,14 +14,8 @@ import java.util.Date;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class StructuraType {
-
-        @Id
-        @GeneratedValue(strategy=GenerationType.AUTO)
-        private Long id;
+public class StructuraType extends CatalogDomain {
 
         private String name;
-        private Date startDate;
-        private Date endDate;
 
 }
