@@ -1,4 +1,4 @@
-package ro.x13.asig.db.service;
+package ro.x13.asig.db.service.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

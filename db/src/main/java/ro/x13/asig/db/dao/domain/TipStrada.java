@@ -1,22 +1,20 @@
-package ro.x13.asig.db.dao;
+package ro.x13.asig.db.dao.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
-import java.util.Date;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
 @Entity
-@Table(name="n_judet")
+@Table(name="nt_strada")
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Judet extends CatalogDomain {
-
+public class TipStrada extends CatalogDomain {
 
         private String name;
-        private String cod;
 }

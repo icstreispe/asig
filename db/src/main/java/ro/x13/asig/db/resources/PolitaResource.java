@@ -3,7 +3,7 @@ package ro.x13.asig.db.resources;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import ro.x13.asig.db.service.PolitaModel;
+import ro.x13.asig.db.service.model.PolitaModel;
 import ro.x13.asig.db.service.PolitaService;
 
 @RestController

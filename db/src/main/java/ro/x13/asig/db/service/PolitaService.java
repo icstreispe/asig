@@ -3,6 +3,7 @@ package ro.x13.asig.db.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ro.x13.asig.db.dao.PolitaRepository;
+import ro.x13.asig.db.service.model.PolitaModel;
 
 import java.util.Optional;
 

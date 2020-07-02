@@ -6,12 +6,13 @@
 </head>
 
 <body>
-    <table>
-        <tr th:insert="~{form::title}"></tr>
-        <tr th:insert="~{form::structuraTypeCombo}"></tr>
-        <tr th:insert="~{form::taraCombo}"></tr>
-    </table>
 
+
+<div th:replace="adresaForm::form(${adresa})"></div>
+
+<!--div th:replace="~{adresaDynamic::adresa}"></div-->
+
+<div th:replace="adresa::table(${adresa.adresaList})"></div>
 
     &copy; 2020 X13 &amp; co
 

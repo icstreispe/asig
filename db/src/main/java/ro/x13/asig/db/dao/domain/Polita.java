@@ -1,4 +1,4 @@
-package ro.x13.asig.db.dao;
+package ro.x13.asig.db.dao.domain;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

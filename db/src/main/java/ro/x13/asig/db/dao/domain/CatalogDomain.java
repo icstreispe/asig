@@ -1,4 +1,4 @@
-package ro.x13.asig.db.dao;
+package ro.x13.asig.db.dao.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -18,10 +18,11 @@ import java.util.Date;
 public class CatalogDomain {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.AUTO)      //TODO automatic generator
     private Long id;
 
 
     private Date startDate;
+    private Date updateDate;    //TODO initializarea
     private Date endDate;
 }

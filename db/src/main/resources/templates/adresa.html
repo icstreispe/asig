@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+
+<table th:fragment="table(list)" border="1">
+    <tr>
+        <th>.</th>
+        <th>Tip strada</th>
+        <th>Strada</th>
+        <th>Numar</th>
+        <th>Bloc</th>
+        <th>Scara</th>
+        <th>Etaj</th>
+        <th>Apartament</th>
+        <th>Localitate</th>
+        <th>Sublocalitate</th>
+        <th>Judet</th>
+        <th>Cod postal</th>
+        <th>Tara</th>
+    </tr>
+    <tr th:each="row : ${list}">
+        <td><a th:href="@{|/adresa/${row.id}|}">Edit</a></td>
+        <td th:text="${row.tipStrada}" ></td>
+        <td th:text="${row.strada}" ></td>
+        <td th:text="${row.numar}" ></td>
+        <td th:text="${row.bloc}" ></td>
+        <td th:text="${row.scara}" ></td>
+        <td th:text="${row.etaj}" ></td>
+        <td th:text="${row.apartament}" ></td>
+        <td th:text="${row.localitate}" ></td>
+        <td th:text="${row.sublocalitate}" ></td>
+        <td th:text="${row.judet}" ></td>
+        <td th:text="${row.codPostal}" ></td>
+        <td th:text="${row.tara}" ></td>
+    </tr>
+</table>
+
+
+
+
+</html>

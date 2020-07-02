@@ -1,6 +1,7 @@
 package ro.x13.asig.db.dao;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import ro.x13.asig.db.dao.domain.Polita;
 
 import java.util.Optional;
 
