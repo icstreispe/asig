@@ -1,7 +1,7 @@
 package ro.x13.asig.db.service;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import ro.x13.asig.db.service.model.TextValueModel;
+import ro.x13.asig.db.view.model.TextValueModel;
 
 import java.util.List;
 

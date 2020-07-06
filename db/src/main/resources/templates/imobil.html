@@ -3,16 +3,16 @@
 <head>
     <title>Getting Started: Serving Web Content</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link type="text/css" rel="stylesheet"  th:href="@{/css/all.css}" >
 </head>
 
 <body>
 
 
-<div th:replace="adresaForm::form(${adresa})"></div>
+<div th:replace="imobilForm::form(${imobil})"></div>
 
-<!--div th:replace="~{adresaDynamic::adresa}"></div-->
 
-<div th:replace="adresa::table(${adresa.adresaList})"></div>
+<div th:replace="imobilList::table(${imobil.imobilList})"></div>
 
     &copy; 2020 X13 &amp; co
 

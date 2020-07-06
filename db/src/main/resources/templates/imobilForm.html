@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+
+<div th:fragment="form(imobil)" >
+    <form  action="#" th:action="@{/imobil}" th:object="${imobil}" method="post" >
+
+        <input type="hidden" th:field="*{id}">
+
+        <table class="blueTable">
+            <thead>
+            <tr>
+                <th colspan="2" th:text="#{imobilForm}"></th>
+            </tr>
+            </thead>
+
+            <tr><td>Tip constructie: </td><td><select  th:field="*{constructie}">
+                <option th:each="s : ${imobil.constructieList}" th:value="${s.value}" th:text="${s.text}"></option>
+            </select></td></tr>
+            <tr><td>Mediu: </td><td><select  th:field="*{mediu}">
+                <option th:each="s : ${imobil.mediuList}" th:value="${s.value}" th:text="${s.text}"></option>
+            </select></td></tr>
+            <tr><td th:text="#{imobil.structuraType}"></td><td><select  th:field="*{structuraType}">
+                <option th:each="s : ${imobil.structuraTypeList}" th:value="${s.value}" th:text="${s.text}"></option>
+            </select></td></tr>
+            <tr><td>Nr camere: </td><td><input type="text" th:field="*{nrCamere}"></td></tr>
+            <tr><td>Suprafata: </td><td><input type="text" th:field="*{suprafata}"></td></tr>
+            <tr><td>An constructie: </td><td><input type="text" th:field="*{anConstructie}"></td></tr>
+            <tr><td>Nr etaje: </td><td><input type="text" th:field="*{nrEtaje}"></td></tr>
+            <tr><td>Nr cladiri: </td><td><input type="text" th:field="*{nrCladiri}"></td></tr>
+            <tr><td>Vecinatate: </td><td><input type="text" th:field="*{vecinatate}"></td></tr>
+            <tr><td>Mentiuni: </td><td><input type="text" th:field="*{mentiuni}"></td></tr>
+
+            <tr><td><input type="submit" value="Salveaza"/></td><td><input type="reset" value="Reset"></td></tr>
+        </table>
+
+
+    </form>
+</div>
+
+</html>

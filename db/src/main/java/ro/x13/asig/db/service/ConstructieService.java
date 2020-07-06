@@ -3,27 +3,29 @@ package ro.x13.asig.db.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
-import ro.x13.asig.db.dao.TipStradaRepository;
-import ro.x13.asig.db.dao.domain.TipStrada;
+import ro.x13.asig.db.dao.ConstructieRepository;
+import ro.x13.asig.db.dao.JudetRepository;
+import ro.x13.asig.db.dao.domain.ConstructieType;
+import ro.x13.asig.db.dao.domain.Judet;
 import ro.x13.asig.db.view.model.TextValueModel;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class TipStradaService extends CatalogService<TipStrada> {
+public class ConstructieService extends CatalogService <ConstructieType>{
 
     @Autowired
-    private TipStradaRepository tipStradaRepository;
+    private ConstructieRepository constructieRepository;
 
     @Override
-    public JpaRepository<TipStrada, Long> getRepo() {
-        return tipStradaRepository;
+    public JpaRepository<ConstructieType, Long> getRepo() {
+        return constructieRepository;
     }
 
     @Override
     public List<TextValueModel> listCombo() {
-        List<TextValueModel> list = tipStradaRepository.findAllByOrderByNameAsc().stream()
+        List<TextValueModel> list = constructieRepository.findAllByOrderByNameAsc().stream()
                 .map(s -> TextValueModel.builder()
                         .text(s.getName())
                         .value("" + s.getId())
@@ -32,7 +34,5 @@ public class TipStradaService extends CatalogService<TipStrada> {
         list.add(0, TextValueModel.builder().text("-").value("").build());
         return list;
     }
-
-
 
 }
