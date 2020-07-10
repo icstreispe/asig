@@ -1,4 +1,4 @@
-package ro.x13.asig.db.service.model;
+package ro.x13.asig.db.view.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -31,7 +31,6 @@ public class AdresaModel {
 
     private List adresaList;
     private List judetList;
-    private List List;
     private List tipStradaList;
     private List taraList;
 

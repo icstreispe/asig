@@ -18,12 +18,14 @@ public class StructuraTypeService extends CatalogService<StructuraType> {
 
     @Override
     public List<TextValueModel> listCombo() {
-        return structuraTypeRepository.findAll().stream()
+        List list = structuraTypeRepository.findAll().stream()
                 .map(s -> TextValueModel.builder()
                         .text(s.getName())
                         .value("" + s.getId())
                         .build())
                 .collect(Collectors.toList());
+        list.add(0, TextValueModel.builder().text("-").value("").build());
+        return list;
     }
 
     @Override

@@ -1,4 +1,4 @@
-package ro.x13.asig.db.resources;
+package ro.x13.asig.db.view;
 
 
 import org.springframework.http.ResponseEntity;
