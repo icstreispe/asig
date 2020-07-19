@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+
+<div th:fragment="form(persoana)" >
+    <form  action="#" th:action="@{/persoana}" th:object="${persoana}" method="post" >
+
+        <input type="hidden" th:field="*{id}">
+
+        <table class="blueTable">
+            <thead>
+            <tr>
+                <th colspan="2" th:text="#{persoanaForm.title}"></th>
+            </tr>
+            </thead>
+
+            <tr><td>Cnp </td><td><input type="text" th:field="*{cnp}"></td></tr>
+            <tr><td>Nume </td><td><input type="text" th:field="*{nume}"></td></tr>
+            <tr><td>Prenume </td><td><input type="text" th:field="*{prenume}"></td></tr>
+            <tr><td>Serie CI </td><td><input type="text" th:field="*{ciSerie}"></td></tr>
+            <tr><td>Numar CI </td><td><input type="text" th:field="*{ciNumar}"></td></tr>
+
+
+            <tr><td>Telefon </td><td><input type="text" th:field="*{telefon}"></td></tr>
+            <tr><td>Fax </td><td><input type="text" th:field="*{fax}"></td></tr>
+            <tr><td>Email </td><td><input type="text" th:field="*{email}"></td></tr>
+
+            <tr><td>An permis </td><td><input type="text" th:field="*{anPermis}"></td></tr>
+            <tr><td>Numar copii </td><td><input type="text" th:field="*{nrCopii}"></td></tr>
+
+            <tr><td>Bugetar </td><td><input type="checkbox" th:field="*{bugetar}"></td></tr>
+            <tr><td>Expus politic</td><td><input type="checkbox" th:field="*{politic}"></td></tr>
+
+            <tr><td>Cetatenie </td><td><select  th:field="*{cetatenie}">
+                <option th:each="s : ${persoana.cetatenieList}" th:value="${s.value}" th:text="${s.text}"></option>
+            </select></td></tr>
+
+            <tr><td>Nationalitate </td><td><select  th:field="*{nationalitate}">
+                <option th:each="s : ${persoana.nationalitateList}" th:value="${s.value}" th:text="${s.text}"></option>
+            </select></td></tr>
+
+            <tr>
+                <td><input type="submit" value="Salveaza"/></td>
+                <td><input type="reset" value="Reset"></td>
+            </tr>
+        </table>
+
+    </form>
+</div>
+
+</html>

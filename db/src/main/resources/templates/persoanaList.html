@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+
+<table th:fragment="table(list)" class="blueTable">
+    <thead>
+        <tr><th th:text="#{persoanaList.title}" colspan="15"></th></tr>
+    </thead>
+
+    <tr>
+        <th>.</th>
+        <th th:text="#{persoanaList.cnp}"></th>
+        <th th:text="#{persoanaList.nume}"></th>
+        <th th:text="#{persoanaList.prenume}"></th>
+        <th th:text="#{persoanaList.ciSerie}"></th>
+        <th th:text="#{persoanaList.ciNumar}"></th>
+        <th th:text="#{persoanaList.telefon}"></th>
+        <th th:text="#{persoanaList.fax}"></th>
+        <th th:text="#{persoanaList.email}"></th>
+        <th th:text="#{persoanaList.anPermis}"></th>
+        <th th:text="#{persoanaList.nrCopii}"></th>
+        <th th:text="#{persoanaList.bugetar}"></th>
+        <th th:text="#{persoanaList.politic}"></th>
+
+        <th th:text="#{persoanaList.cetatenie}"></th>
+        <th th:text="#{persoanaList.nationalitate}"></th>
+    </tr>
+    <tr th:each="row : ${list}">
+        <td ><a th:href="@{|/persoana/${row.id}|}">Edit</a></td>
+        <td th:text="${row.cnp}" ></td>
+        <td th:text="${row.nume}" ></td>
+        <td th:text="${row.prenume}" ></td>
+
+        <td th:text="${row.ciSerie}" ></td>
+        <td th:text="${row.ciNumar}" ></td>
+
+
+        <td th:text="${row.telefon}" ></td>
+        <td th:text="${row.fax}" ></td>
+        <td th:text="${row.email}" ></td>
+
+        <td th:text="${row.anPermis}" ></td>
+        <td th:text="${row.nrCopii}" ></td>
+
+        <td ><input type="checkbox" onclick="return false;" th:checked="${row.bugetar}"></td>
+        <td ><input type="checkbox" onclick="return false;" th:checked="${row.politic}"></td>
+
+        <td th:text="${row.cetatenie}" ></td>
+        <td th:text="${row.nationalitate}" ></td>
+
+    </tr>
+
+</table>
+
+</html>
