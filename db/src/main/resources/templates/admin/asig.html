@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Getting Started: Serving Web Content</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link type="text/css" rel="stylesheet"  th:href="@{/css/all.css}" >
+</head>
+
+<body>
+
+
+<div th:replace="admin/asigForm::form(${asig})"></div>
+
+
+<div th:replace="admin/asigList::table(${asig.asigList})"></div>
+
+    &copy; 2020 X13 &amp; co
+
+</body>
+
+</html>

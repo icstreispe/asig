@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+
+<table th:fragment="table(list)" class="blueTable">
+    <thead>
+        <tr><th th:text="#{asigList.title}" colspan="5"></th></tr>
+    </thead>
+
+    <tr>
+        <th>.</th>
+        <th th:text="#{asigList.cui}"></th>
+        <th th:text="#{asigList.nume}"></th>
+        <th th:text="#{asigList.telefon}"></th>
+        <th th:text="#{asigList.fax}"></th>
+    </tr>
+    <tr th:each="row : ${list}">
+        <td><a th:href="@{|/asig/${row.id}|}">Edit</a></td>
+        <td th:text="${row.cui}" ></td>
+        <td th:text="${row.nume}" ></td>
+
+        <td th:text="${row.telefon}" ></td>
+        <td th:text="${row.fax}" ></td>
+
+    </tr>
+
+</table>
+
+</html>
