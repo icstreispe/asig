@@ -22,8 +22,6 @@ import java.util.stream.StreamSupport;
 public class AsigResource {
 
     @Autowired
-    private TaraService taraService;
-    @Autowired
     private AsigService asigService;
 
 
@@ -41,7 +39,7 @@ public class AsigResource {
 
     @GetMapping(value="/asig/{id}")
     public String edit(Model model, @PathVariable("id") Long id) {
-        Asig asig = asigService.load(id);
+        Asig asig = asigService.get(id);
         AsigModel asigModel = toModel(asig);
         asigModel.setAsigList(getList());
 
@@ -73,7 +71,7 @@ public class AsigResource {
         return Asig.builder()
                 .id(asigModel.getId())
                 .cui(asigModel.getCui())
-                .nume(asigModel.getNume())
+                .name(asigModel.getNume())
 
                 .fax(asigModel.getFax())
                 .telefon(asigModel.getTelefon())
@@ -85,7 +83,7 @@ public class AsigResource {
     private Map toView(Asig asig) {
         Map m = new HashMap();
         m.put("id", asig.getId());
-        m.put("nume", asig.getNume());
+        m.put("nume", asig.getName());
         m.put("cui", asig.getCui());
 
         m.put("telefon", asig.getTelefon());
@@ -97,7 +95,7 @@ public class AsigResource {
         return AsigModel.builder()
                 .id(asig.getId())
                 .cui(asig.getCui())
-                .nume(asig.getNume())
+                .nume(asig.getName())
 
                 .telefon(asig.getTelefon())
                 .fax(asig.getFax())

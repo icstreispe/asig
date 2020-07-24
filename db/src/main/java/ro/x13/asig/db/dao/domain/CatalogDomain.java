@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,13 +14,14 @@ import java.util.Date;
 
 @Data   //getter & setter
 @NoArgsConstructor
-@AllArgsConstructor
 @MappedSuperclass
-public class CatalogDomain extends BaseDomain {
+@SuperBuilder
+public abstract class CatalogDomain extends BaseDomain {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)      //TODO automatic generator
+    @GeneratedValue(strategy= GenerationType.SEQUENCE, generator="generic")      //TODO automatic generator
     private Long id;
 
+    private String name;
 
 }

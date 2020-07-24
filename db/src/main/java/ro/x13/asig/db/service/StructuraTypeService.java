@@ -1,14 +1,10 @@
 package ro.x13.asig.db.service;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
+import ro.x13.asig.db.dao.catalog.CatalogRepository;
 import ro.x13.asig.db.dao.domain.StructuraType;
-import ro.x13.asig.db.dao.StructuraTypeRepository;
-import ro.x13.asig.db.view.model.TextValueModel;
-
-import java.util.List;
-import java.util.stream.Collectors;
+import ro.x13.asig.db.dao.catalog.StructuraTypeRepository;
 
 @Service
 @RequiredArgsConstructor
@@ -16,20 +12,9 @@ public class StructuraTypeService extends CatalogService<StructuraType> {
 
     private final StructuraTypeRepository structuraTypeRepository;
 
-    @Override
-    public List<TextValueModel> listCombo() {
-        List list = structuraTypeRepository.findAll().stream()
-                .map(s -> TextValueModel.builder()
-                        .text(s.getName())
-                        .value("" + s.getId())
-                        .build())
-                .collect(Collectors.toList());
-        list.add(0, TextValueModel.builder().text("-").value("").build());
-        return list;
-    }
 
     @Override
-    public JpaRepository<StructuraType, Long> getRepo() {
+    public CatalogRepository<StructuraType> getRepo() {
         return structuraTypeRepository;
     }
 }

@@ -4,26 +4,25 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity (name="n_asig")
 @Data
-@Builder
+@SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Asig extends BaseDomain {
+@SequenceGenerator(name = "generic", sequenceName = "n_asig_seq", allocationSize = 1)   //TODO mai merge cand sunt mai multe entities fiec cu seq ei?
+public class Asig extends CatalogDomain{
 
-        @Id
-        @GeneratedValue(strategy = GenerationType.AUTO, generator = "n_asig_gen")
-        @SequenceGenerator(name = "n_asig_gen", sequenceName = "n_asig_seq", allocationSize = 1)
-        private Long id;
+//        @Id
+        //@GeneratedValue(strategy = GenerationType.AUTO, generator = "n_asig_gen")
+//        private Long id;
 
-        private String nume;
+
         private String cui;
         private String telefon;
         private String fax;
-
-
 }
