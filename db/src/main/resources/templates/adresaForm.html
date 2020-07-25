@@ -4,13 +4,16 @@
 
 
 <div th:fragment="form(adresa)" >
-    <form  action="#" th:action="@{/adresa}" th:object="${adresa}" method="post">
+    <form  th:action="@{/adresa}" th:object="${adresa}" method="post">
 
         <input type="hidden" th:field="*{id}">
 
-        <table>
-
-
+        <table class="blueTable">
+            <thead>
+            <tr>
+                <th colspan="2" th:text="#{adresaForm}"></th>
+            </tr>
+            </thead>
             <tr><td>Tip strada: </td><td><select  th:field="*{tipStrada}">
                 <option th:each="s : ${adresa.tipStradaList}" th:value="${s.value}" th:text="${s.text}"></option>
             </select>
@@ -30,15 +33,16 @@
             </select>
             </td></tr>
 
-            <tr><td>Cod postal: </td><td><input type="text" th:field="*{codPostal}"></td></tr>
-            <tr><td>Tara: </td><td><div th:replace="~{form::combo(field='tara',list=${adresa.taraList})}"></div></td></tr>
+            <tr><td>Cod postal: </td><td><input type="text" th:field="*{codPostal}" /></td></tr>
+            <tr><td>Tara: </td><td><select  th:field="*{tara}">
+                <option th:each="s : ${adresa.taraList}" th:value="${s.value}" th:text="${s.text}"></option>
+            </select></td></tr>
 
+            <tr>
+                <td><input type="submit" value="Salveaza"/></td>
+                <td><input type="reset" value="Reset"></td>
+            </tr>
         </table>
-
-        <p>
-            <input type="submit" value="Salveaza"/>
-            <input type="reset" value="Reset">
-        </p>
 
     </form>
 </div>

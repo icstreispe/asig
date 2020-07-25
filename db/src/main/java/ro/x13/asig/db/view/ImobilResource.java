@@ -30,7 +30,7 @@ public class ImobilResource {
 
 
     @GetMapping(value="/imobil")
-    public String newImobil(ImobilModel imobilModel, Model model) {
+    public String add(ImobilModel imobilModel, Model model) {
         imobilModel.setImobilList(getList());
 
         getCombos(imobilModel, model);
@@ -39,17 +39,10 @@ public class ImobilResource {
         return "imobil";
     }
 
-    private void getCombos(ImobilModel imobilModel, Model model) {
-        imobilModel.setConstructieList(constructieService.listCombo());
-        imobilModel.setMediuList(mediuService.listCombo());
-        imobilModel.setStructuraTypeList(structuraTypeService.listCombo());
-        model.addAttribute("tipStructuraList", imobilModel.getStructuraTypeList());
-        model.addAttribute("mediuList", imobilModel.getMediuList());
-        model.addAttribute("constructieList", imobilModel.getConstructieList());
-    }
+
 
     @GetMapping(value="/imobil/{id}")
-    public String editImobil(Model model, @PathVariable("id") Long id) {
+    public String edit(Model model, @PathVariable("id") Long id) {
         Imobil imobil = imobilService.load(id);
         ImobilModel imobilModel = toModel(imobil);
         imobilModel.setImobilList(getList());
@@ -62,10 +55,20 @@ public class ImobilResource {
 
 
     @PostMapping(value="/imobil")
-    public String saveImobil(ImobilModel imobilModel) {
+    public String save(ImobilModel imobilModel) {
         Imobil imobil = buildImobil(imobilModel);
         imobilService.save(imobil);
         return "redirect:/imobil";
+    }
+
+
+    private void getCombos(ImobilModel imobilModel, Model model) {
+        imobilModel.setConstructieList(constructieService.listCombo());
+        imobilModel.setMediuList(mediuService.listCombo());
+        imobilModel.setStructuraTypeList(structuraTypeService.listCombo());
+        model.addAttribute("tipStructuraList", imobilModel.getStructuraTypeList());
+        model.addAttribute("mediuList", imobilModel.getMediuList());
+        model.addAttribute("constructieList", imobilModel.getConstructieList());
     }
 
     private List<Map> getList() {

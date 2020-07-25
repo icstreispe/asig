@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -15,10 +16,10 @@ import java.util.Map;
 @Entity
 @Table(name = "p_adresa")
 @Data
-@Builder
+@SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Adresa extends CatalogDomain {
+public class Adresa extends BaseDomain {
 
 
     @Id

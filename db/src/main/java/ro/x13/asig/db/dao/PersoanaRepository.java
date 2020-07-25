@@ -8,6 +8,6 @@ import java.util.List;
 
 public interface PersoanaRepository extends CrudRepository<Persoana, Long> {
 
-    List<Persoana> findAllByOrderByCnpAsc();
+    List<Persoana> findAllByOrderByIdDesc();
 }
 

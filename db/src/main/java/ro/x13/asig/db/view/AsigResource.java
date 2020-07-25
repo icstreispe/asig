@@ -70,8 +70,10 @@ public class AsigResource {
     private Asig buildAsig(AsigModel asigModel) {
         return Asig.builder()
                 .id(asigModel.getId())
-                .cui(asigModel.getCui())
+                .cif(asigModel.getCif())
                 .name(asigModel.getNume())
+                .adresa(asigModel.getAdresa())
+                .regCom(asigModel.getRegCom())
 
                 .fax(asigModel.getFax())
                 .telefon(asigModel.getTelefon())
@@ -84,8 +86,9 @@ public class AsigResource {
         Map m = new HashMap();
         m.put("id", asig.getId());
         m.put("nume", asig.getName());
-        m.put("cui", asig.getCui());
-
+        m.put("cif", asig.getCif());
+        m.put("adresa", asig.getAdresa());
+        m.put("regCom", asig.getRegCom());
         m.put("telefon", asig.getTelefon());
         m.put("fax", asig.getFax());
         return m;
@@ -94,7 +97,9 @@ public class AsigResource {
     private AsigModel toModel(Asig asig) {
         return AsigModel.builder()
                 .id(asig.getId())
-                .cui(asig.getCui())
+                .cif(asig.getCif())
+                .regCom(asig.getRegCom())
+                .adresa(asig.getAdresa())
                 .nume(asig.getName())
 
                 .telefon(asig.getTelefon())

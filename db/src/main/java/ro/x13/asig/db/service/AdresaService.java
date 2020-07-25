@@ -12,22 +12,22 @@ import java.util.List;
 public class AdresaService {
 
     @Autowired
-    private AdresaRepository adresaRepository;
+    private AdresaRepository repository;
 
 
     @Transactional
     public void save(Adresa adresa) {
-        adresaRepository.save(adresa);
+        repository.save(adresa);
     }
 
 
     public List<Adresa> list() {
-        return adresaRepository.findAllByOrderById();
+        return repository.findAllByOrderById();
     }
 
 
     public Adresa load(Long id) {
-        return adresaRepository.findById(id).get();
+        return repository.findById(id).get();
     }
 
 

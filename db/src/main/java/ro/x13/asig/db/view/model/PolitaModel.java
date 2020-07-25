@@ -5,7 +5,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 @Data
 @Builder
@@ -13,8 +15,16 @@ import java.util.Date;
 @AllArgsConstructor
 public class PolitaModel {
 
+    private Long id;
     private String serie;
     private Integer nr;
+    private BigDecimal sumaAsig;
+    private Long socAsig;
+    private Long tipPlata;
     private Date startValid;
     private Date endValid;
+    private Date emisLa;
+
+    private List socAsigList;
+    private List politaList;
 }

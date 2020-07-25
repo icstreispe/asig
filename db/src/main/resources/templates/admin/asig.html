@@ -9,10 +9,14 @@
 <body>
 
 
-<div th:replace="admin/asigForm::form(${asig})"></div>
+<!--div th:replace="admin/asigFilter::table(${asig.asigList})"></div-->
 
 
 <div th:replace="admin/asigList::table(${asig.asigList})"></div>
+
+
+<div th:replace="admin/asigForm::form(${asig})"></div>
+
 
     &copy; 2020 X13 &amp; co
 

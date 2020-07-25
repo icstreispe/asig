@@ -17,7 +17,9 @@ public class AsigModel {
 
 
     private String nume;
-    private String cui;
+    private String cif;
+    private String adresa;
+    private String regCom;
     private String telefon;
     private String fax;
 
@@ -29,7 +31,9 @@ public class AsigModel {
         telefon = a.telefon;
         fax = a.fax;
 
-        cui = a.cui;
+        cif = a.cif;
+        adresa = a.adresa;
+        regCom = a.regCom;
 
     }
 }

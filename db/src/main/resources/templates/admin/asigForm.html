@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 
-<span th:fragment="form(asig)" >
+<span id="formAsig" th:fragment="form(asig)" >
     <form  action="#" th:action="@{/asig}" th:object="${asig}" method="post" >
 
         <input type="hidden" th:field="*{id}">
@@ -14,8 +14,10 @@
             </tr>
             </thead>
 
-            <tr><td>Cui </td><td><input type="text" th:field="*{cui}"></td></tr>
+            <tr><td>CIF </td><td><input type="text" th:field="*{cif}"></td></tr>
             <tr><td>Nume </td><td><input type="text" th:field="*{nume}"></td></tr>
+            <tr><td>Adresa </td><td><input type="text" th:field="*{adresa}"></td></tr>
+            <tr><td>Registrul comertului </td><td><input type="text" th:field="*{regCom}"></td></tr>
 
             <tr><td>Telefon </td><td><input type="text" th:field="*{telefon}"></td></tr>
             <tr><td>Fax </td><td><input type="text" th:field="*{fax}"></td></tr>

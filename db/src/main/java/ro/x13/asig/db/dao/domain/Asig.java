@@ -22,7 +22,9 @@ public class Asig extends CatalogDomain{
 //        private Long id;
 
 
-        private String cui;
+        private String adresa;                  //TODO spart si salvat in adresa?
+        private String regCom;
+        private String cif;
         private String telefon;
         private String fax;
 }

@@ -22,7 +22,7 @@ public class PersoanaService {
 
 
     public List<Persoana> list() {
-        return persoanaRepository.findAllByOrderByCnpAsc();
+        return persoanaRepository.findAllByOrderByIdDesc();
     }
 
 

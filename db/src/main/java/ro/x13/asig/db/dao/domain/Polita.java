@@ -1,9 +1,6 @@
 package ro.x13.asig.db.dao.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -22,14 +19,23 @@ public class Polita {
 
         @Id
         @GeneratedValue(strategy=GenerationType.AUTO)
-        private Long idPolita;
+        private Long id;
 
         private String serie;
         private Integer nr;
+
+        private Long tipPlata;  //TODO
+
+        @ManyToOne
+        @JoinColumn(name = "soc_asig", nullable = true)
+        private Asig socAsig;
+
+        private BigDecimal sumaAsig;
+
         private Date startValid;
         private Date endValid;
         private Date emisLa;
-        private Long tipPlata;  //TODO
+
 
 
 }

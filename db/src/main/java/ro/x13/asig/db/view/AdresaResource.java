@@ -1,5 +1,7 @@
 package ro.x13.asig.db.view;
 
+import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,6 +12,7 @@ import ro.x13.asig.db.dao.domain.Adresa;
 import ro.x13.asig.db.dao.domain.Judet;
 import ro.x13.asig.db.dao.domain.Tara;
 import ro.x13.asig.db.dao.domain.TipStrada;
+import ro.x13.asig.db.filter.Loggable;
 import ro.x13.asig.db.service.*;
 import ro.x13.asig.db.view.model.AdresaModel;
 
@@ -20,6 +23,7 @@ import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 @Controller
+@Slf4j
 public class AdresaResource {
 
     @Autowired
@@ -33,19 +37,34 @@ public class AdresaResource {
 
 
     @GetMapping(value="/adresa")
-    public String newAdresa(AdresaModel adresaModel, Model model) {
+    @Loggable
+    public String add(AdresaModel adresaModel, Model model) {
         adresaModel.setAdresaList(getList());
-        adresaModel.setJudetList(judetService.listCombo());
-        adresaModel.setTaraList(taraService.listCombo());
-        adresaModel.setTipStradaList(tipStradaService.listCombo());
-
-
-        model.addAttribute("taraList", adresaModel.getTaraList());
-        model.addAttribute("tipStradaList", adresaModel.getTipStradaList());
+        getCombos(model, adresaModel);
         model.addAttribute("adresa", adresaModel);
         return "adresa";
     }
 
+    @Loggable
+    @GetMapping(value="/adresa/{id}")
+    public String edit(Model model, @PathVariable("id") Long id) {
+        Adresa adresa = adresaService.load(id);
+        AdresaModel adresaModel = toModel(adresa);
+        adresaModel.setAdresaList(getList());
+        getCombos(model, adresaModel);
+        model.addAttribute("adresa", adresaModel);
+        return "adresa";
+    }
+
+    @Loggable
+    @PostMapping(value="/adresa")
+    public String save(AdresaModel adresaModel) {
+        Adresa adresa = buildAdresa(adresaModel);
+        adresaService.save(adresa);
+        return "redirect:/adresa";
+    }
+
+    @Loggable
     private List<Map> getList() {
         List<Adresa> list = adresaService.list();
         return StreamSupport.stream(list.spliterator(), false)
@@ -53,29 +72,18 @@ public class AdresaResource {
                 .collect(Collectors.toList());
     }
 
-    @GetMapping(value="/adresa/{id}")
-    public String editAdresa(Model model, @PathVariable("id") Long id) {
-        Adresa adresa = adresaService.load(id);
-        AdresaModel adresaModel = toModel(adresa);
-        adresaModel.setAdresaList(getList());
+    @Loggable
+    private void getCombos(Model model, AdresaModel adresaModel) {
         adresaModel.setJudetList(judetService.listCombo());
         adresaModel.setTaraList(taraService.listCombo());
         adresaModel.setTipStradaList(tipStradaService.listCombo());
 
         model.addAttribute("taraList", adresaModel.getTaraList());
         model.addAttribute("tipStradaList", adresaModel.getTipStradaList());
-        model.addAttribute("adresa", adresaModel);
-        return "adresa";
+        model.addAttribute("judetList", adresaModel.getJudetList());
     }
 
-
-    @PostMapping(value="/adresa")
-    public String saveAdresa(AdresaModel adresaModel) {
-        Adresa adresa = buildAdresa(adresaModel);
-        adresaService.save(adresa);
-        return "redirect:/adresa";
-    }
-
+    @Loggable
     private Adresa buildAdresa(AdresaModel adresaModel) {
         Tara tara = taraService.get(adresaModel.getTara());
         Judet judet = judetService.get(adresaModel.getJudet());
@@ -97,6 +105,7 @@ public class AdresaResource {
                 .build();
     }
 
+    @Loggable
     private Map toView(Adresa adresa) {
         Map m = new HashMap();
         m.put("id", adresa.getId());
@@ -115,6 +124,7 @@ public class AdresaResource {
         return m;
     }
 
+    @Loggable
     private AdresaModel toModel(Adresa adresa) {
         return AdresaModel.builder()
                 .id(adresa.getId())
