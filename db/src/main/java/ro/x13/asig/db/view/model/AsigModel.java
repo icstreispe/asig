@@ -23,6 +23,11 @@ public class AsigModel {
     private String telefon;
     private String fax;
 
+    private Long tip;
+    private Long juridic;
+
+    private List juridicList;
+    private List tipList;
     private List asigList;
 
     public void copy(AsigModel a){
@@ -34,6 +39,9 @@ public class AsigModel {
         cif = a.cif;
         adresa = a.adresa;
         regCom = a.regCom;
+
+        tip = a.tip;
+        juridic = a.juridic;
 
     }
 }

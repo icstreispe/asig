@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+    <head>
+        <title>Getting Started: Serving Web Content</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link type="text/css" rel="stylesheet"  th:href="@{/css/all.css}" >
+    </head>
+    <body>
+    <header layout:fragment="header">
+        <h1>Default header</h1>
+    </header>
+    <section layout:fragment="navigation">
+        <p>______________________________________________</p>
+    </section>
+    <section layout:fragment="content">
+        <p>Your page content goes here</p>
+    </section>
+    <footer layout:fragment="footer">
+        <p>&copy; X13 & co </p>
+    </footer>
+    </body>
+</html>

@@ -42,7 +42,16 @@ public class AdresaResource {
         adresaModel.setAdresaList(getList());
         getCombos(model, adresaModel);
         model.addAttribute("adresa", adresaModel);
-        return "adresa";
+        return "adresaForm";
+    }
+
+    @Loggable
+    @GetMapping(value="/adresa/list")
+    public String list(Model model) {
+        AdresaModel adresaModel = new AdresaModel();
+        adresaModel.setAdresaList(getList());
+        model.addAttribute("adresa", adresaModel);
+        return "adresaList";
     }
 
     @Loggable
@@ -53,7 +62,7 @@ public class AdresaResource {
         adresaModel.setAdresaList(getList());
         getCombos(model, adresaModel);
         model.addAttribute("adresa", adresaModel);
-        return "adresa";
+        return "adresaForm";
     }
 
     @Loggable
@@ -61,7 +70,7 @@ public class AdresaResource {
     public String save(AdresaModel adresaModel) {
         Adresa adresa = buildAdresa(adresaModel);
         adresaService.save(adresa);
-        return "redirect:/adresa";
+        return "redirect:/adresa/list";
     }
 
     @Loggable

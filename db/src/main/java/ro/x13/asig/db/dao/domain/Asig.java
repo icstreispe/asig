@@ -27,4 +27,12 @@ public class Asig extends CatalogDomain{
         private String cif;
         private String telefon;
         private String fax;
+
+        @ManyToOne
+        @JoinColumn(name = "juridic", nullable = true)
+        private Juridic juridic;
+
+        @ManyToOne
+        @JoinColumn(name = "tip", nullable = true)
+        private SocietateType tip;
 }

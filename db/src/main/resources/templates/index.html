@@ -1,5 +1,8 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link type="text/css" rel="stylesheet"  th:href="@{/css/all.css}" >
+</head>
 
 
 <table class="blueTable">
@@ -11,10 +14,20 @@
         <td><a th:href="@{|/persoana/|}">Persoane</a></td>
     </tr>
     <tr >
-        <td><a th:href="@{|/adresa/|}">Adrese</a></td>
+        <td><a th:href="@{|/adresa/list|}">Adrese</a></td>
     </tr>
     <tr >
         <td><a th:href="@{|/imobil/|}">Imobile</a></td>
+    </tr>
+</table>
+
+<table class="blueTable">
+    <thead>
+    <tr><th th:text="#{menuList.title}" colspan="13"></th></tr>
+    </thead>
+
+    <tr >
+        <td><a th:href="@{|/asig/list|}">Societati de asigurare</a></td>
     </tr>
 </table>
 

@@ -1,9 +1,15 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout.html}">
 
+<section layout:fragment="navigation">
+    <input type="button" th:onclick="window.location.href='/adresa/list'" th:value="#{action.back}" >
+</section>
 
+<section layout:fragment="content">
 
-<div th:fragment="form(adresa)" >
+<div>
     <form  th:action="@{/adresa}" th:object="${adresa}" method="post">
 
         <input type="hidden" th:field="*{id}">
@@ -46,5 +52,8 @@
 
     </form>
 </div>
+
+</section>
+
 
 </html>

@@ -1,8 +1,17 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout.html}">
+
+<section layout:fragment="navigation">
+    <input type="button" th:onclick="window.location.href='/'" th:value="#{action.back}" />
+    <input type="button" th:onclick="window.location.href='/adresa'" th:value="#{action.add}" />
+</section>
 
 
-<table th:fragment="table(list)" class="blueTable">
+<section layout:fragment="content">
+
+<table class="blueTable">
     <thead>
         <tr><th th:text="#{adresaList.title}" colspan="13"></th></tr>
     </thead>
@@ -21,7 +30,7 @@
         <th>Cod postal</th>
         <th>Tara</th>
     </tr>
-    <tr th:each="row : ${list}">
+    <tr th:each="row : ${adresa.adresaList}">
         <td><a th:href="@{|/adresa/${row.id}|}">Edit</a></td>
         <td th:text="${row.tipStrada}" ></td>
         <td th:text="${row.strada}" ></td>
@@ -39,6 +48,6 @@
 </table>
 
 
-
+</section>
 
 </html>
