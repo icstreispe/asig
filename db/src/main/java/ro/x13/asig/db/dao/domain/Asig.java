@@ -9,12 +9,13 @@ import lombok.experimental.SuperBuilder;
 import javax.persistence.*;
 import java.util.Date;
 
-@Entity (name="n_asig")
+
 @Data
 @SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
-@SequenceGenerator(name = "generic", sequenceName = "n_asig_seq", allocationSize = 1)   //TODO mai merge cand sunt mai multe entities fiec cu seq ei?
+@Entity (name="o_asig")
+@SequenceGenerator(name = "generic", sequenceName = "o_asig_seq", allocationSize = 1)   //TODO mai merge cand sunt mai multe entities fiec cu seq ei?
 public class Asig extends CatalogDomain{
 
 //        @Id
