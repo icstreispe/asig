@@ -28,7 +28,7 @@ public class Polita {
 
         @ManyToOne
         @JoinColumn(name = "soc_asig", nullable = true)
-        private Societate socSocietate;
+        private Societate societate;
 
         private BigDecimal sumaAsig;
 

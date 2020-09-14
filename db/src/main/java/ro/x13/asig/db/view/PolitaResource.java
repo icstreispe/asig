@@ -81,7 +81,7 @@ public class PolitaResource {
         Societate societate = asigService.get(politaModel.getSocAsig());
         return Polita.builder()
                 .id(politaModel.getId())
-                .socSocietate(societate)
+                .societate(societate)
                 .serie(politaModel.getSerie())
                 .nr(politaModel.getNr())
                 .sumaAsig(politaModel.getSumaAsig())
@@ -95,7 +95,7 @@ public class PolitaResource {
     private Map toView(Polita polita) {
         Map m = new HashMap();
         m.put("id", polita.getId());
-        m.put("socAsig", polita.getSocSocietate() == null ? null : polita.getSocSocietate().getName());
+        m.put("socAsig", polita.getSocietate() == null ? null : polita.getSocietate().getName());
         m.put("tipPlata", polita.getTipPlata());
         m.put("sumaAsig", polita.getSumaAsig());
         m.put("serie", polita.getSerie());
@@ -110,7 +110,7 @@ public class PolitaResource {
     private PolitaModel toModel(Polita polita) {
         return PolitaModel.builder()
                 .id(polita.getId())
-                .socAsig(polita.getSocSocietate() == null ? null : polita.getSocSocietate().getId())
+                .socAsig(polita.getSocietate() == null ? null : polita.getSocietate().getId())
                 .sumaAsig(polita.getSumaAsig())
                 .emisLa(polita.getEmisLa())
                 .endValid(polita.getEndValid())
