@@ -4,12 +4,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import ro.x13.asig.db.dao.domain.Asig;
+import ro.x13.asig.db.dao.domain.Societate;
 import ro.x13.asig.db.dao.domain.Polita;
-import ro.x13.asig.db.dao.domain.Polita;
-import ro.x13.asig.db.service.AdresaService;
-import ro.x13.asig.db.service.AsigService;
-import ro.x13.asig.db.view.model.PolitaModel;
+import ro.x13.asig.db.service.SocietateService;
 import ro.x13.asig.db.view.model.PolitaModel;
 import ro.x13.asig.db.service.PolitaService;
 
@@ -25,7 +22,7 @@ import java.util.stream.StreamSupport;
 public class PolitaResource {
 
     private final PolitaService politaService;
-    private final AsigService asigService;
+    private final SocietateService asigService;
 
     @GetMapping(value = "/polita/{serie}/{nr}")
     public ResponseEntity<PolitaModel> getProductByCode(@PathVariable("serie") String serie, @PathVariable("nr") Integer nr) {
@@ -81,10 +78,10 @@ public class PolitaResource {
     }
 
     private Polita buildPolita(PolitaModel politaModel) {
-        Asig asig = asigService.get(politaModel.getSocAsig());
+        Societate societate = asigService.get(politaModel.getSocAsig());
         return Polita.builder()
                 .id(politaModel.getId())
-                .socAsig(asig)
+                .socSocietate(societate)
                 .serie(politaModel.getSerie())
                 .nr(politaModel.getNr())
                 .sumaAsig(politaModel.getSumaAsig())
@@ -98,7 +95,7 @@ public class PolitaResource {
     private Map toView(Polita polita) {
         Map m = new HashMap();
         m.put("id", polita.getId());
-        m.put("socAsig", polita.getSocAsig() == null ? null : polita.getSocAsig().getName());
+        m.put("socAsig", polita.getSocSocietate() == null ? null : polita.getSocSocietate().getName());
         m.put("tipPlata", polita.getTipPlata());
         m.put("sumaAsig", polita.getSumaAsig());
         m.put("serie", polita.getSerie());
@@ -113,7 +110,7 @@ public class PolitaResource {
     private PolitaModel toModel(Polita polita) {
         return PolitaModel.builder()
                 .id(polita.getId())
-                .socAsig(polita.getSocAsig() == null ? null : polita.getSocAsig().getId())
+                .socAsig(polita.getSocSocietate() == null ? null : polita.getSocSocietate().getId())
                 .sumaAsig(polita.getSumaAsig())
                 .emisLa(polita.getEmisLa())
                 .endValid(polita.getEndValid())

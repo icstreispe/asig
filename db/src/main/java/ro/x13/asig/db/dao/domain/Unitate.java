@@ -27,7 +27,7 @@ public class Unitate extends CatalogDomain {
 
     @ManyToOne
     @JoinColumn(name = "idasig", nullable = true)
-    private Asig asig;
+    private Societate societate;
 
     private String adresa;                  //TODO spart si salvat in adresa?
     private String telefon;

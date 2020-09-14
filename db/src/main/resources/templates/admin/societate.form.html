@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout.html}">
+
+<section layout:fragment="navigation">
+    <input type="button" th:onclick="window.location.href='/societate/list'" th:value="#{action.back}" >
+</section>
+
+
+<section layout:fragment="content">
+
+    <form  action="#" th:action="@{/societate}" th:object="${societate}" method="post" >
+
+        <input type="hidden" th:field="*{id}">
+
+        <table class="blueTable">
+            <thead>
+            <tr>
+                <th colspan="2" th:text="#{societate.form.title}"></th>
+            </tr>
+            </thead>
+
+            <tr><td th:text="#{societate.cif}"></td><td><input type="text" th:field="*{cif}"></td></tr>
+            <tr><td th:text="#{societate.nume}"></td><td><input type="text" th:field="*{nume}"></td></tr>
+            <tr><td th:text="#{societate.tip}"></td><td><select  th:field="*{tip}">
+                <option th:each="s : ${societate.tipList}" th:value="${s.value}" th:text="${s.text}"></option>
+            </select></td></tr>
+
+            <tr><td th:text="#{societate.juridic}"></td><td><select  th:field="*{juridic}">
+                <option th:each="s : ${societate.juridicList}" th:value="${s.value}" th:text="${s.text}"></option>
+            </select></td></tr>
+
+            <tr><td th:text="#{societate.adresa}"></td><td><input type="text" th:field="*{adresa}"></td></tr>
+            <tr><td th:text="#{societate.regCom}"></td><td><input type="text" th:field="*{regCom}"></td></tr>
+
+            <tr><td th:text="#{societate.telefon}"></td><td><input type="text" th:field="*{telefon}"></td></tr>
+            <tr><td th:text="#{societate.fax}"></td><td><input type="text" th:field="*{fax}"></td></tr>
+
+            <tr>
+                <td><input type="submit" value="Salveaza"/></td>
+                <td><input type="reset" value="Reset"></td>
+            </tr>
+        </table>
+
+    </form>
+
+
+</section>
+
+</html>

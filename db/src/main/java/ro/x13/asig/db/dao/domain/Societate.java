@@ -14,9 +14,9 @@ import java.util.Date;
 @SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity (name="o_asig")
-@SequenceGenerator(name = "generic", sequenceName = "o_asig_seq", allocationSize = 1)   //TODO mai merge cand sunt mai multe entities fiec cu seq ei?
-public class Asig extends CatalogDomain{
+@Entity (name="o_societate")
+@SequenceGenerator(name = "generic", sequenceName = "o_societate_seq", allocationSize = 1)   //TODO mai merge cand sunt mai multe entities fiec cu seq ei?
+public class Societate extends CatalogDomain{
 
 //        @Id
         //@GeneratedValue(strategy = GenerationType.AUTO, generator = "n_asig_gen")

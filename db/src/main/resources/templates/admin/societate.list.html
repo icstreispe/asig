@@ -1,0 +1,82 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout.html}">
+
+<section layout:fragment="navigation">
+    <input type="button" th:onclick="window.location.href='/'" th:value="#{action.back}" />
+    <input type="button" th:onclick="window.location.href='/societate'" th:value="#{action.add}" />
+</section>
+
+<section layout:fragment="content">
+
+    <form  action="#" th:action="@{/societate/list}" th:object="${societate}" method="post" >
+
+        <input type="hidden" th:field="*{id}">
+
+        <table class="blueTable">
+            <thead>
+            <tr>
+                <th colspan="2" th:text="#{societate.form.title}"></th>
+            </tr>
+            </thead>
+
+            <tr><td th:text="#{societate.cif}"></td><td><input type="text" th:field="*{cif}"></td></tr>
+            <tr><td th:text="#{societate.nume}"></td><td><input type="text" th:field="*{nume}"></td></tr>
+            <tr><td th:text="#{societate.tip}"></td><td><select  th:field="*{tip}">
+                <option th:each="s : ${societate.tipList}" th:value="${s.value}" th:text="${s.text}"></option>
+            </select></td></tr>
+
+            <tr><td th:text="#{societate.juridic}"></td><td><select  th:field="*{juridic}">
+                <option th:each="s : ${societate.juridicList}" th:value="${s.value}" th:text="${s.text}"></option>
+            </select></td></tr>
+
+            <tr><td th:text="#{societate.adresa}"></td><td><input type="text" th:field="*{adresa}"></td></tr>
+            <tr><td th:text="#{societate.regCom}"></td><td><input type="text" th:field="*{regCom}"></td></tr>
+
+            <tr><td th:text="#{societate.telefon}"></td><td><input type="text" th:field="*{telefon}"></td></tr>
+            <tr><td th:text="#{societate.fax}"></td><td><input type="text" th:field="*{fax}"></td></tr>
+
+            <tr>
+                <td><input type="submit" value="Vizualizare"/></td>
+                <td></td>
+            </tr>
+        </table>
+
+    </form>
+
+
+<table class="blueTable">
+    <thead>
+        <tr><th th:text="#{societate.list.title}" colspan="9"></th></tr>
+    </thead>
+
+    <tr>
+        <th>.</th>
+        <th th:text="#{societate.cif}"></th>
+        <th th:text="#{societate.nume}"></th>
+        <th th:text="#{societate.tip}"></th>
+        <th th:text="#{societate.juridic}"></th>
+        <th th:text="#{societate.adresa}"></th>
+        <th th:text="#{societate.regCom}"></th>
+        <th th:text="#{societate.telefon}"></th>
+        <th th:text="#{societate.fax}"></th>
+    </tr>
+    <tr th:each="row : ${societate.societateList}">
+        <td><a th:href="@{|/societate/${row.id}#formAsig|}" th:text="#{action.edit}"></a></td>
+        <td th:text="${row.cif}" ></td>
+        <td th:text="${row.nume}" ></td>
+        <td th:text="${row.tip}" ></td>
+        <td th:text="${row.juridic}" ></td>
+        <td th:text="${row.adresa}" ></td>
+        <td th:text="${row.regCom}" ></td>
+
+        <td th:text="${row.telefon}" ></td>
+        <td th:text="${row.fax}" ></td>
+    </tr>
+
+</table>
+
+</section>
+
+</html>

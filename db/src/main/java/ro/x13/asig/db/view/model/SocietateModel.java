@@ -11,7 +11,7 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class AsigModel {
+public class SocietateModel {
 
     private Long id;
 
@@ -28,9 +28,9 @@ public class AsigModel {
 
     private List juridicList;
     private List tipList;
-    private List asigList;
+    private List societateList;
 
-    public void copy(AsigModel a){
+    public void copy(SocietateModel a){
         id = a.id;
         nume = a.nume;
         telefon = a.telefon;
