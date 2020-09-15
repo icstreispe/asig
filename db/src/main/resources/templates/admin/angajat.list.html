@@ -1,0 +1,81 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout.html}">
+
+<section layout:fragment="navigation">
+    <input type="button" th:onclick="window.location.href='/'" th:value="#{action.back}" />
+    <input type="button" th:onclick="window.location.href='/angajat'" th:value="#{action.add}" />
+</section>
+
+<section layout:fragment="content">
+
+    <form  action="#" th:action="@{/angajat/list}" th:object="${angajat}" method="post" >
+
+        <input type="hidden" th:field="*{id}">
+
+        <table class="blueTable">
+            <thead>
+            <tr>
+                <th colspan="2" th:text="#{angajat.form.title}"></th>
+            </tr>
+            </thead>
+
+            <tr><td th:text="#{angajat.cnp}"></td><td><input type="text" th:field="*{cnp}"></td></tr>
+            <tr><td th:text="#{angajat.cod}"></td><td><input type="text" th:field="*{cod}"></td></tr>
+            <tr><td th:text="#{angajat.nume}"></td><td><input type="text" th:field="*{nume}"></td></tr>
+            <tr><td th:text="#{angajat.societate}"></td><td><select  th:field="*{societate}">
+                <option th:each="s : ${angajat.societateList}" th:value="${s.value}" th:text="${s.text}"></option>
+            </select></td></tr>
+
+
+            <tr><td th:text="#{angajat.ciSerie}"></td><td><input type="text" th:field="*{ciSerie}"></td></tr>
+            <tr><td th:text="#{angajat.ciNumar}"></td><td><input type="text" th:field="*{ciNumar}"></td></tr>
+
+            <tr><td th:text="#{angajat.telefon}"></td><td><input type="text" th:field="*{telefon}"></td></tr>
+            <tr><td th:text="#{angajat.email}"></td><td><input type="text" th:field="*{email}"></td></tr>
+
+            <tr>
+                <td><input type="submit" value="Vizualizare"/></td>
+                <td></td>
+            </tr>
+        </table>
+
+    </form>
+
+
+<table class="blueTable">
+    <thead>
+        <tr><th th:text="#{angajat.list.title}" colspan="10"></th></tr>
+    </thead>
+
+    <tr>
+        <th>.</th>
+        <th th:text="#{angajat.cod}"></th>
+        <th th:text="#{angajat.cnp}"></th>
+        <th th:text="#{angajat.nume}"></th>
+        <th th:text="#{angajat.prenume}"></th>
+        <th th:text="#{angajat.ciSerie}"></th>
+        <th th:text="#{angajat.ciNumar}"></th>
+        <th th:text="#{angajat.societate}"></th>
+        <th th:text="#{angajat.telefon}"></th>
+        <th th:text="#{angajat.email}"></th>
+    </tr>
+    <tr th:each="row : ${angajat.list}">
+        <td><a th:href="@{|/angajat/${row.id}|}" th:text="#{action.edit}"></a></td>
+        <td th:text="${row.cod}" ></td>
+        <td th:text="${row.cnp}" ></td>
+        <td th:text="${row.nume}" ></td>
+        <td th:text="${row.prenume}" ></td>
+        <td th:text="${row.ciSerie}" ></td>
+        <td th:text="${row.ciNumar}" ></td>
+        <td th:text="${row.societate}" ></td>
+        <td th:text="${row.telefon}" ></td>
+        <td th:text="${row.email}" ></td>
+    </tr>
+
+</table>
+
+</section>
+
+</html>

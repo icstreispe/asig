@@ -5,10 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.SequenceGenerator;
+import javax.persistence.*;
 
 @Data
 @SuperBuilder
@@ -16,32 +13,29 @@ import javax.persistence.SequenceGenerator;
 @AllArgsConstructor
 @Entity (name="o_angajat")
 @SequenceGenerator(name = "generic", sequenceName = "o_angajat_seq", allocationSize = 1)
-public class Angajat extends CatalogDomain{
+public class Angajat extends BaseDomain{
 
-//        @Id
-        //@GeneratedValue(strategy = GenerationType.AUTO, generator = "n_asig_gen")
-//        private Long id;
-
+        @Id
+        @GeneratedValue(strategy = GenerationType.AUTO, generator = "auto_gen")
+        @SequenceGenerator(name = "auto_gen", sequenceName = "o_angajat_seq", allocationSize = 1)    //TODO automatic generator
+        private Long id;
 
         private String cnp;                  //TODO spart si salvat in adresa?
 
         private String cod;             //cod asig
-        private String name;
+        private String nume;
         private String prenume;
 
         private String ciSerie; //TODO straini?
         private String ciNumar; //TODO straini?
 
+        @ManyToOne
+        @JoinColumn(name = "idsocietate", nullable = true)
+        private Societate societate;
 
             //tip integer,
 
         private String telefon;
         private String email;
-
-
-
-
-
-
 
 }
