@@ -68,7 +68,7 @@ public class AngajatResource {
 
     @PostMapping(value = "/list")
     public String filter(Model model, AngajatModel angajatModel) {
-        Angajat angajat = buildAngajat(angajatModel);
+        Angajat angajat = buildDomain(angajatModel);
         List<Angajat> list = angajatService.findAll(angajat);
         List<Map> angajatListMap = getList(list);
         angajatModel.setList(angajatListMap);
@@ -82,7 +82,7 @@ public class AngajatResource {
     @Loggable
     @PostMapping(value="")
     public String save(AngajatModel angajatModel) {
-        Angajat angajat = buildAngajat(angajatModel);
+        Angajat angajat = buildDomain(angajatModel);
         angajatService.save(angajat);
         return "redirect:/angajat/list";
     }
@@ -101,7 +101,7 @@ public class AngajatResource {
     }
 
     @Loggable
-    private Angajat buildAngajat(AngajatModel angajatModel) {
+    private Angajat buildDomain(AngajatModel angajatModel) {
         Societate societate = societateService.get(angajatModel.getSocietate());
         return Angajat.builder()
                 .id(angajatModel.getId())

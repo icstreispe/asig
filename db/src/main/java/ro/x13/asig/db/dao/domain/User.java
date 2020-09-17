@@ -5,10 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.SequenceGenerator;
+import javax.persistence.*;
 
 @Data
 @SuperBuilder
@@ -16,14 +13,12 @@ import javax.persistence.SequenceGenerator;
 @AllArgsConstructor
 @Entity(name = "o_user")
 @SequenceGenerator(name = "generic", sequenceName = "o_user_seq", allocationSize = 1)
-public class User extends CatalogDomain {
+public class User extends BaseDomain {
 
-//        @Id
-    //@GeneratedValue(strategy = GenerationType.AUTO, generator = "n_asig_gen")
-//        private Long id;
-
-
-    private String name;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "user_gen")
+    @SequenceGenerator(name = "user_gen", sequenceName = "o_user_seq", allocationSize = 1)
+    private Long id;
 
     @ManyToOne
     @JoinColumn(name = "idang", nullable = true)

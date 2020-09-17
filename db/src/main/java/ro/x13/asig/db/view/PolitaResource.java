@@ -59,7 +59,7 @@ public class PolitaResource {
 
     @PostMapping(value="/polita")
     public String save(PolitaModel politaModel) {
-        Polita polita = buildPolita(politaModel);
+        Polita polita = buildDomain(politaModel);
         politaService.save(polita);
         return "redirect:/polita";
     }
@@ -77,7 +77,7 @@ public class PolitaResource {
                 .collect(Collectors.toList());
     }
 
-    private Polita buildPolita(PolitaModel politaModel) {
+    private Polita buildDomain(PolitaModel politaModel) {
         Societate societate = asigService.get(politaModel.getSocAsig());
         return Polita.builder()
                 .id(politaModel.getId())

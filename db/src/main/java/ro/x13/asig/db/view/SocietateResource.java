@@ -61,7 +61,7 @@ public class SocietateResource {
 
     @PostMapping(value = "/list")
     public String filter(Model model, SocietateModel societateModel) {
-        Societate societate = buildAsig(societateModel);
+        Societate societate = buildDomain(societateModel);
         List<Societate> societateList = societateService.findAll(societate);
         List<Map> societateListMap = getList(societateList);
         societateModel.setSocietateList(societateListMap);
@@ -86,7 +86,7 @@ public class SocietateResource {
 
     @PostMapping(value = "")
     public String save(SocietateModel societateModel) {
-        Societate societate = buildAsig(societateModel);
+        Societate societate = buildDomain(societateModel);
         societateService.save(societate);
         return "redirect:/societate/list";
     }
@@ -104,7 +104,7 @@ public class SocietateResource {
                 .collect(Collectors.toList());
     }
 
-    private Societate buildAsig(SocietateModel societateModel) {
+    private Societate buildDomain(SocietateModel societateModel) {
         SocietateType tip = societateTypeService.get(societateModel.getTip());
         Juridic juridic = juridicService.get(societateModel.getJuridic());
         return Societate.builder()

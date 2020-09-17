@@ -56,7 +56,7 @@ public class ImobilResource {
 
     @PostMapping(value="/imobil")
     public String save(ImobilModel imobilModel) {
-        Imobil imobil = buildImobil(imobilModel);
+        Imobil imobil = buildDomain(imobilModel);
         imobilService.save(imobil);
         return "redirect:/imobil";
     }
@@ -78,7 +78,7 @@ public class ImobilResource {
                 .collect(Collectors.toList());
     }
 
-    private Imobil buildImobil(ImobilModel imobilModel) {
+    private Imobil buildDomain(ImobilModel imobilModel) {
         ConstructieType constructieType = constructieService.get(imobilModel.getConstructie());
         MediuType mediu = mediuService.get(imobilModel.getMediu());
         StructuraType structuraType = structuraTypeService.get(imobilModel.getStructuraType());

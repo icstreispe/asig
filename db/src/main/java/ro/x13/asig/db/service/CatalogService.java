@@ -6,7 +6,6 @@ import ro.x13.asig.db.view.model.TextValueModel;
 
 import javax.transaction.Transactional;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public abstract class CatalogService<T extends CatalogDomain> {
 
@@ -33,14 +32,10 @@ public abstract class CatalogService<T extends CatalogDomain> {
 
     //public abstract List<TextValueModel> listCombo();
     public List<TextValueModel> listCombo() {
-        List<TextValueModel> list = getRepo().findAllByOrderByNameAsc().stream()
-                .map(s -> TextValueModel.builder()
-                        .text(s.getName())
-                        .value("" + s.getId())
-                        .build())
-                .collect(Collectors.toList());
-        list.add(0, TextValueModel.builder().text("-").value("").build());
-        return list;
+        List<T> domainList = getRepo().findAllByOrderByNameAsc();
+        return ServiceUtil.getTextValueModelList(domainList);
     }
+
+
 
 }

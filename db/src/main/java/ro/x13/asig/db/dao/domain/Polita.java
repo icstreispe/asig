@@ -27,7 +27,7 @@ public class Polita {
         private Long tipPlata;  //TODO
 
         @ManyToOne
-        @JoinColumn(name = "soc_asig", nullable = true)
+        @JoinColumn(name = "idsoc", nullable = true)
         private Societate societate;
 
         private BigDecimal sumaAsig;

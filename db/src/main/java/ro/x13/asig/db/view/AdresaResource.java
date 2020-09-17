@@ -68,7 +68,7 @@ public class AdresaResource {
     @Loggable
     @PostMapping(value="/adresa")
     public String save(AdresaModel adresaModel) {
-        Adresa adresa = buildAdresa(adresaModel);
+        Adresa adresa = buildDomain(adresaModel);
         adresaService.save(adresa);
         return "redirect:/adresa/list";
     }
@@ -93,7 +93,7 @@ public class AdresaResource {
     }
 
     @Loggable
-    private Adresa buildAdresa(AdresaModel adresaModel) {
+    private Adresa buildDomain(AdresaModel adresaModel) {
         Tara tara = taraService.get(adresaModel.getTara());
         Judet judet = judetService.get(adresaModel.getJudet());
         TipStrada tipStrada = tipStradaService.get(adresaModel.getTipStrada());

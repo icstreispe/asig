@@ -30,12 +30,20 @@ public class Angajat extends BaseDomain{
         private String ciNumar; //TODO straini?
 
         @ManyToOne
-        @JoinColumn(name = "idsocietate", nullable = true)
+        @JoinColumn(name = "idsoc", nullable = true)
         private Societate societate;
 
             //tip integer,
 
         private String telefon;
         private String email;
+
+
+        /**
+         * utility function to get tge full name for presentation
+         */
+        public String getLabel() {
+                return getNume() + " " + getPrenume();       //TODO for now
+        }
 
 }

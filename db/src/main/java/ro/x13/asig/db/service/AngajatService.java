@@ -5,10 +5,8 @@ import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Service;
 import ro.x13.asig.db.dao.AngajatRepository;
-import ro.x13.asig.db.dao.UserRepository;
 import ro.x13.asig.db.dao.domain.Angajat;
-import ro.x13.asig.db.dao.domain.Societate;
-import ro.x13.asig.db.dao.domain.User;
+import ro.x13.asig.db.view.model.TextValueModel;
 
 import javax.transaction.Transactional;
 import java.util.List;
@@ -45,5 +43,13 @@ public class AngajatService {
                 .withMatcher("nume", startsWith());
         Example<Angajat> filter = Example.of(a, matcher);
         return repository.findAll(filter);
+    }
+
+    public List<TextValueModel> listCombo() {
+        List<Angajat> angajatList = repository.findAllByOrderByCnpAsc();
+        return ServiceUtil.getTextValueModelList(angajatList, a -> TextValueModel.builder()
+                .text(a.getLabel())
+                .value("" + a.getId())
+                .build());
     }
 }

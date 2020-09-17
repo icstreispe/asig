@@ -59,7 +59,7 @@ public class PersoanaResource {
 
     @PostMapping(value="/persoana")
     public String save(PersoanaModel persoanaModel) {
-        Persoana persoana = buildPersoana(persoanaModel);
+        Persoana persoana = buildDomain(persoanaModel);
         persoanaService.save(persoana);
         return "redirect:/persoana";
     }
@@ -79,7 +79,7 @@ public class PersoanaResource {
                 .collect(Collectors.toList());
     }
 
-    private Persoana buildPersoana(PersoanaModel persoanaModel) {
+    private Persoana buildDomain(PersoanaModel persoanaModel) {
         Tara nationalitate = taraService.get(persoanaModel.getNationalitate());
         Tara cetatenie = taraService.get(persoanaModel.getCetatenie());
         return Persoana.builder()

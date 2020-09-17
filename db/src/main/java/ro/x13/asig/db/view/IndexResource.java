@@ -11,8 +11,18 @@ public class IndexResource {
 
     @GetMapping(value = "/")
     public String index(Model model) {
-
         return "index";
+    }
+
+    @GetMapping(value = "/angular")
+    public String angular(Model model) {
+
+        return "/angular";
+    }
+
+    @GetMapping(value = "/content")
+    public String content(Model model) {
+        return "/content";
     }
 
 
