@@ -8,9 +8,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import ro.x13.asig.db.dao.domain.Angajat;
+import ro.x13.asig.db.dao.domain.BaseDomain;
 import ro.x13.asig.db.dao.domain.Societate;
 import ro.x13.asig.db.filter.Loggable;
 import ro.x13.asig.db.service.AngajatService;
+import ro.x13.asig.db.service.ServiceUtil;
 import ro.x13.asig.db.service.SocietateService;
 import ro.x13.asig.db.view.model.AngajatModel;
 
@@ -59,7 +61,7 @@ public class AngajatResource {
     public String list(Model model) {
         AngajatModel angajatModel = new AngajatModel();
         List<Angajat> list = angajatService.list();
-        angajatModel.setList(getList(list));
+        angajatModel.setList(ServiceUtil.getList(list, this::toView));
         getCombos(model, angajatModel);
 
         model.addAttribute("angajat", angajatModel);
@@ -70,7 +72,7 @@ public class AngajatResource {
     public String filter(Model model, AngajatModel angajatModel) {
         Angajat angajat = buildDomain(angajatModel);
         List<Angajat> list = angajatService.findAll(angajat);
-        List<Map> angajatListMap = getList(list);
+        List<Map> angajatListMap = ServiceUtil.getList(list, this::toView);
         angajatModel.setList(angajatListMap);
         getCombos(model, angajatModel);
 
@@ -87,12 +89,6 @@ public class AngajatResource {
         return "redirect:/angajat/list";
     }
 
-    //TODO de generalizat, apare peste tot
-    private List<Map> getList(List<Angajat> list) {
-        return StreamSupport.stream(list.spliterator(), false)
-                .map(a -> toView(a))       // pt list(lista()): Asig::toMap
-                .collect(Collectors.toList());
-    }
 
     @Loggable
     private void getCombos(Model model, AngajatModel angajatModel) {
@@ -118,7 +114,8 @@ public class AngajatResource {
     }
 
     @Loggable
-    private Map toView(Angajat angajat) {
+    private Map toView(BaseDomain domain) {
+        Angajat angajat = (Angajat) domain;
         Map m = new HashMap();
         m.put("id", angajat.getId());
         m.put("cnp", angajat.getCnp());

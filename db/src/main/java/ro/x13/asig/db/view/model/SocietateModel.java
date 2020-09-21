@@ -28,7 +28,8 @@ public class SocietateModel {
 
     private List juridicList;
     private List tipList;
-    private List societateList;
+
+    private List list;
 
     public void copy(SocietateModel a){
         id = a.id;

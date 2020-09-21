@@ -51,7 +51,7 @@ public class SocietateResource {
     public String list(Model model) {
         SocietateModel societateModel = new SocietateModel();
         List<Societate> list = societateService.list();
-        societateModel.setSocietateList(getList(list));
+        societateModel.setList(getList(list));
 
         getCombos(model, societateModel);
 
@@ -64,7 +64,7 @@ public class SocietateResource {
         Societate societate = buildDomain(societateModel);
         List<Societate> societateList = societateService.findAll(societate);
         List<Map> societateListMap = getList(societateList);
-        societateModel.setSocietateList(societateListMap);
+        societateModel.setList(societateListMap);
         getCombos(model, societateModel);
 
         model.addAttribute("societate", societateModel);

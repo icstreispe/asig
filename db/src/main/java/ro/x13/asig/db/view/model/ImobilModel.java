@@ -28,7 +28,7 @@ public class ImobilModel {
     private String mentiuni;
     private String vecinatate;
 
-    private List imobilList;
+    private List list;
     private List mediuList;
     private List constructieList;
     private List structuraTypeList;

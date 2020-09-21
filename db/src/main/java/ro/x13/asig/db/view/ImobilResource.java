@@ -13,8 +13,6 @@ import ro.x13.asig.db.view.model.ImobilModel;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 
 @Controller
 public class ImobilResource {
@@ -31,7 +29,9 @@ public class ImobilResource {
 
     @GetMapping(value="/imobil")
     public String add(ImobilModel imobilModel, Model model) {
-        imobilModel.setImobilList(getList());
+        List<Imobil> list = imobilService.list();
+        List<Map> listMap = ServiceUtil.getList(list, this::toView);
+        imobilModel.setList(listMap);
 
         getCombos(imobilModel, model);
 
@@ -45,7 +45,9 @@ public class ImobilResource {
     public String edit(Model model, @PathVariable("id") Long id) {
         Imobil imobil = imobilService.load(id);
         ImobilModel imobilModel = toModel(imobil);
-        imobilModel.setImobilList(getList());
+        List<Imobil> list = imobilService.list();
+        List<Map> listMap = ServiceUtil.getList(list, this::toView);
+        imobilModel.setList(listMap);
 
         getCombos(imobilModel, model);
 
@@ -71,12 +73,6 @@ public class ImobilResource {
         model.addAttribute("constructieList", imobilModel.getConstructieList());
     }
 
-    private List<Map> getList() {
-        List<Imobil> list = imobilService.list();
-        return StreamSupport.stream(list.spliterator(), false)
-                .map(a -> toView(a))       // pt list(lista()): Imobil::toMap
-                .collect(Collectors.toList());
-    }
 
     private Imobil buildDomain(ImobilModel imobilModel) {
         ConstructieType constructieType = constructieService.get(imobilModel.getConstructie());
@@ -97,7 +93,8 @@ public class ImobilResource {
                 .build();
     }
 
-    private Map toView(Imobil imobil) {
+    private Map toView(BaseDomain domain) {
+        Imobil imobil = (Imobil) domain;
         Map m = new HashMap();
         m.put("id", imobil.getId());
         m.put("constructie", imobil.getConstructie() == null ? null : imobil.getConstructie().getName());

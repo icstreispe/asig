@@ -1,0 +1,70 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout.html}">
+
+<section layout:fragment="navigation">
+    <input type="button" th:onclick="window.location.href='/'" th:value="#{action.back}" />
+    <input type="button" th:onclick="window.location.href='/unitate'" th:value="#{action.add}" />
+</section>
+
+<section layout:fragment="content">
+
+    <form  action="#" th:action="@{/unitate/list}" th:object="${unitate}" method="post" >
+
+        <input type="hidden" th:field="*{id}">
+
+        <table class="blueTable">
+            <thead>
+            <tr>
+                <th colspan="2" th:text="#{unitate.form.title}"></th>
+            </tr>
+            </thead>
+
+            <tr><td th:text="#{unitate.name}"></td><td><input type="text" th:field="*{name}"></td></tr>
+            <tr><td th:text="#{unitate.adresa}"></td><td><input type="text" th:field="*{adresa}"></td></tr>
+            <tr><td th:text="#{unitate.societate}"></td><td><select  th:field="*{societate}">
+                <option th:each="s : ${unitate.societateList}" th:value="${s.value}" th:text="${s.text}"></option>
+            </select></td></tr>
+
+            <tr><td th:text="#{unitate.telefon}"></td><td><input type="text" th:field="*{telefon}"></td></tr>
+            <tr><td th:text="#{unitate.fax}"></td><td><input type="text" th:field="*{fax}"></td></tr>
+
+            <tr>
+                <td><input type="submit" value="Vizualizare"/></td>
+                <td></td>
+            </tr>
+        </table>
+
+    </form>
+
+
+<table class="blueTable">
+    <thead>
+        <tr><th th:text="#{unitate.list.title}" colspan="9"></th></tr>
+    </thead>
+
+    <tr>
+        <th>.</th>
+        <th th:text="#{unitate.name}"></th>
+        <th th:text="#{unitate.adresa}"></th>
+        <th th:text="#{unitate.societate}"></th>
+        <th th:text="#{unitate.telefon}"></th>
+        <th th:text="#{unitate.fax}"></th>
+    </tr>
+    <tr th:each="row : ${unitate.list}">
+        <td><a th:href="@{|/unitate/${row.id}|}" th:text="#{action.edit}"></a></td>
+
+        <td th:text="${row.name}" ></td>
+        <td th:text="${row.adresa}" ></td>
+        <td th:text="${row.societate}" ></td>
+
+        <td th:text="${row.telefon}" ></td>
+        <td th:text="${row.fax}" ></td>
+    </tr>
+
+</table>
+
+</section>
+
+</html>

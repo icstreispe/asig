@@ -136,9 +136,9 @@ public class UserResource {
     private UserModel toModel(User user) {
         return UserModel.builder()
                 .id(user.getId())
-                .angajat(user.getAngajat().getId()) //TODO fix for null
-                .rol(user.getRol().getId())         //TODO fix for null
-                .unitate(user.getUnitate().getId()) //TODO fix for null
+                .angajat(user.getAngajat() == null ? null : user.getAngajat().getId())
+                .rol(user.getRol() == null ? null : user.getRol().getId())
+                .unitate(user.getUnitate() == null ? null : user.getUnitate().getId())
 
                 .build();
     }
