@@ -1,9 +1,6 @@
 package ro.x13.asig.db.service;
 
-import ro.x13.asig.db.dao.domain.Angajat;
-import ro.x13.asig.db.dao.domain.BaseDomain;
-import ro.x13.asig.db.dao.domain.CatalogDomain;
-import ro.x13.asig.db.dao.domain.Unitate;
+import ro.x13.asig.db.dao.domain.*;
 import ro.x13.asig.db.view.model.TextValueModel;
 
 import java.util.List;
@@ -33,7 +30,7 @@ public class ServiceUtil {
         return list;
     }
 
-    public  static List<Map> getList(List<? extends BaseDomain> list, Function<BaseDomain, Map> mapper) {
+    public  static List<Map> getList(List<? extends Domain> list, Function<Domain, Map> mapper) {
         return StreamSupport.stream(list.spliterator(), false)
                 .map(mapper)       // pt list(lista()): Asig::toMap
                 .collect(Collectors.toList());

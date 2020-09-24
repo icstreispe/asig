@@ -62,7 +62,7 @@
         <th th:text="#{societate.telefon}"></th>
         <th th:text="#{societate.fax}"></th>
     </tr>
-    <tr th:each="row : ${societate.societateList}">
+    <tr th:each="row : ${societate.list}">
         <td><a th:href="@{|/societate/${row.id}#formAsig|}" th:text="#{action.edit}"></a></td>
         <td th:text="${row.cif}" ></td>
         <td th:text="${row.nume}" ></td>

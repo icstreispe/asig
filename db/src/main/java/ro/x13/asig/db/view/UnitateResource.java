@@ -1,12 +1,13 @@
 package ro.x13.asig.db.view;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.*;
-import ro.x13.asig.db.dao.domain.BaseDomain;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import ro.x13.asig.db.dao.domain.Domain;
 import ro.x13.asig.db.dao.domain.Societate;
 import ro.x13.asig.db.dao.domain.Unitate;
 import ro.x13.asig.db.service.ServiceUtil;
@@ -26,22 +27,6 @@ public class UnitateResource {
     private UnitateService unitateService;
     @Autowired
     private SocietateService societateService;
-
-    @InitBinder
-    public void initBinder(WebDataBinder binder) {
-        binder.registerCustomEditor(String.class, new StringTrimmerEditor(true));   //sets the POSTed objects null instead of empty
-    }
-
-
-    @GetMapping(value = "")
-    public String add(UnitateModel unitateModel, Model model) {
-
-        getCombos(model, unitateModel);
-
-        model.addAttribute("unitate", unitateModel);
-        return "admin/unitate.form";
-    }
-
 
     @GetMapping(value = "/list")
     public String list(Model model) {
@@ -65,6 +50,15 @@ public class UnitateResource {
 
         model.addAttribute("unitate", unitateModel);
         return "admin/unitate.list";
+    }
+
+    @GetMapping(value = "")
+    public String add(UnitateModel unitateModel, Model model) {
+
+        getCombos(model, unitateModel);
+
+        model.addAttribute("unitate", unitateModel);
+        return "admin/unitate.form";
     }
 
 
@@ -110,7 +104,7 @@ public class UnitateResource {
         return s == null ? null : (s.equals("") ? null : s);
     }
 
-    private Map toView(BaseDomain domain) {
+    private Map toView(Domain domain) {
         Unitate unitate = (Unitate) domain;
         Map m = new HashMap();
         m.put("id", unitate.getId());

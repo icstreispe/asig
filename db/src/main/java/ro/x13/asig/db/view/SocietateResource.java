@@ -31,11 +31,6 @@ public class SocietateResource {
     @Autowired
     private JuridicService juridicService;
 
-    @InitBinder
-    public void initBinder(WebDataBinder binder) {
-        binder.registerCustomEditor(String.class, new StringTrimmerEditor(true));   //sets the POSTed objects null instead of empty
-    }
-
 
     @GetMapping(value = "")
     public String add(SocietateModel societateModel, Model model) {

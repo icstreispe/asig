@@ -2,13 +2,14 @@ package ro.x13.asig.db.view;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import ro.x13.asig.db.dao.domain.Angajat;
-import ro.x13.asig.db.dao.domain.BaseDomain;
+import ro.x13.asig.db.dao.domain.Domain;
 import ro.x13.asig.db.dao.domain.Societate;
 import ro.x13.asig.db.filter.Loggable;
 import ro.x13.asig.db.service.AngajatService;
@@ -19,8 +20,6 @@ import ro.x13.asig.db.view.model.AngajatModel;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 
 @Controller
 @Slf4j
@@ -31,11 +30,6 @@ public class AngajatResource {
     private AngajatService angajatService;
     @Autowired
     private SocietateService societateService;
-
-    @InitBinder
-    public void initBinder(WebDataBinder binder) {
-        binder.registerCustomEditor(String.class, new StringTrimmerEditor(true));   //sets the POSTed objects null instead of empty
-    }
 
 
     @GetMapping(value="")
@@ -114,7 +108,7 @@ public class AngajatResource {
     }
 
     @Loggable
-    private Map toView(BaseDomain domain) {
+    private Map toView(Domain domain) {
         Angajat angajat = (Angajat) domain;
         Map m = new HashMap();
         m.put("id", angajat.getId());

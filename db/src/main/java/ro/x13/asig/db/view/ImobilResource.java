@@ -93,7 +93,7 @@ public class ImobilResource {
                 .build();
     }
 
-    private Map toView(BaseDomain domain) {
+    private Map toView(Domain domain) {
         Imobil imobil = (Imobil) domain;
         Map m = new HashMap();
         m.put("id", imobil.getId());

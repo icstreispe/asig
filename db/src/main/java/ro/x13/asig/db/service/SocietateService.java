@@ -8,6 +8,8 @@ import ro.x13.asig.db.dao.catalog.AsigRepository;
 import ro.x13.asig.db.dao.catalog.CatalogRepository;
 import ro.x13.asig.db.dao.domain.Societate;
 import ro.x13.asig.db.dao.domain.Juridic;
+import ro.x13.asig.db.dao.domain.SocietateType;
+import ro.x13.asig.db.view.model.TextValueModel;
 
 import java.util.List;
 
@@ -34,6 +36,11 @@ public class SocietateService extends CatalogService<Societate> {
                 .withMatcher("name", startsWith());
         Example<Societate> filter = Example.of(a, matcher);
         return repository.findAll(filter);
+    }
+
+    public List<TextValueModel> listComboSocAsig() {
+        List<Societate> domainList = repository.findByTip(SocietateType.builder().id(1L).build());  //TODO enums?
+        return ServiceUtil.getTextValueModelList(domainList);
     }
 
 

@@ -16,8 +16,10 @@ import java.util.Date;
 @AllArgsConstructor
 @MappedSuperclass
 @SuperBuilder
-public class BaseDomain {
+public class BaseDomain implements Domain {
 
+
+    //TODO how to move standard id here
 
     private Date startDate;
     private Date updateDate;    //TODO initializarea

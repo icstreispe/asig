@@ -3,6 +3,7 @@ package ro.x13.asig.db.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 import ro.x13.asig.db.dao.AngajatRepository;
 import ro.x13.asig.db.dao.domain.Angajat;
@@ -14,17 +15,15 @@ import java.util.List;
 import static org.springframework.data.domain.ExampleMatcher.GenericPropertyMatchers.startsWith;
 
 @Service
-public class AngajatService {
+public class AngajatService extends CrudService<Angajat> {
 
     @Autowired
     private AngajatRepository repository;
 
-
-    @Transactional
-    public void save(Angajat persoana) {
-        repository.save(persoana);
+    @Override
+    public CrudRepository<Angajat, Long> getRepo() {
+        return repository;
     }
-
 
     public List<Angajat> list() {
         return repository.findAllByOrderByCnpAsc();

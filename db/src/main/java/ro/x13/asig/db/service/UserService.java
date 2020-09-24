@@ -1,6 +1,7 @@
 package ro.x13.asig.db.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 import ro.x13.asig.db.dao.UserRepository;
 import ro.x13.asig.db.dao.domain.User;
@@ -9,17 +10,15 @@ import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
-public class UserService {
+public class UserService extends CrudService<User> {
 
     @Autowired
     private UserRepository repository;
 
-
-    @Transactional
-    public void save(User persoana) {
-        repository.save(persoana);
+    @Override
+    public CrudRepository<User, Long> getRepo() {
+        return repository;
     }
-
 
     public List<User> list() {
         return repository.findAllByOrderByIdAsc();

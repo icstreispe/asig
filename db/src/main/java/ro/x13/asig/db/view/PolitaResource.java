@@ -2,27 +2,34 @@ package ro.x13.asig.db.view;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
-import ro.x13.asig.db.dao.domain.Societate;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import ro.x13.asig.db.dao.domain.Domain;
 import ro.x13.asig.db.dao.domain.Polita;
+import ro.x13.asig.db.dao.domain.Societate;
+import ro.x13.asig.db.service.PolitaService;
+import ro.x13.asig.db.service.ServiceUtil;
 import ro.x13.asig.db.service.SocietateService;
 import ro.x13.asig.db.view.model.PolitaModel;
-import ro.x13.asig.db.service.PolitaService;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 
-@RestController
+import static ro.x13.asig.db.service.DateUtil.format;
+
+@Controller
 @RequiredArgsConstructor
 @RequestMapping("/polita")
 public class PolitaResource {
 
     private final PolitaService politaService;
     private final SocietateService asigService;
+
 
     @GetMapping(value = "/polita/{serie}/{nr}")
     public ResponseEntity<PolitaModel> getProductByCode(@PathVariable("serie") String serie, @PathVariable("nr") Integer nr) {
@@ -32,53 +39,77 @@ public class PolitaResource {
     }
 
 
-    @GetMapping(value="/polita")
-    public String add(PolitaModel politaModel, Model model) {
-        politaModel.setPolitaList(getList());
+    @GetMapping(value = "/list")
+    public String list(Model model) {
+        PolitaModel politaModel = new PolitaModel();
+        List<Polita> politaList = politaService.list();
+        List<Map> list = ServiceUtil.getList(politaList, this::toView);
+        politaModel.setList(list);
 
         getCombos(model, politaModel);
 
         model.addAttribute("polita", politaModel);
-        return "polita";
+        return "admin/polita.list";
+    }
+
+    @PostMapping(value = "/list")
+    public String filter(Model model, PolitaModel politaModel) {
+        Polita polita = buildDomain(politaModel);
+        List<Polita> politaList = politaService.findAll(polita);
+        List<Map> list = ServiceUtil.getList(politaList, this::toView);
+        politaModel.setList(list);
+
+        getCombos(model, politaModel);
+
+        model.addAttribute("polita", politaModel);
+        return "admin/polita.list";
+    }
+
+
+    @GetMapping(value="")
+    public String add(PolitaModel politaModel, Model model) {
+        politaModel.setList(getList());
+
+        getCombos(model, politaModel);
+
+        model.addAttribute("polita", politaModel);
+        return "admin/polita.form";
     }
 
 
 
-    @GetMapping(value="/polita/{id}")
+    @GetMapping(value="/{id}")
     public String edit(Model model, @PathVariable("id") Long id) {
         Polita polita = politaService.load(id);
         PolitaModel politaModel = toModel(polita);
-        politaModel.setPolitaList(getList());
 
         getCombos(model, politaModel);
 
         model.addAttribute("polita", politaModel);
-        return "polita";
+        return "admin/polita.form";
     }
 
 
-    @PostMapping(value="/polita")
+    @PostMapping(value="")
     public String save(PolitaModel politaModel) {
         Polita polita = buildDomain(politaModel);
         politaService.save(polita);
-        return "redirect:/polita";
+        return "redirect:/polita/list";
     }
 
     private void getCombos(Model model, PolitaModel politaModel) {
-        politaModel.setSocAsigList(asigService.listCombo());
+        politaModel.setSocietateList(asigService.listComboSocAsig());
 
-        model.addAttribute("socAsigList", politaModel.getSocAsigList());
+        model.addAttribute("societateList", politaModel.getSocietateList());
     }
 
     private List<Map> getList() {
         List<Polita> list = politaService.list();
-        return StreamSupport.stream(list.spliterator(), false)
-                .map(a -> toView(a))       // pt list(lista()): Polita::toMap
-                .collect(Collectors.toList());
+        return ServiceUtil.getList(list, this::toView);
     }
 
     private Polita buildDomain(PolitaModel politaModel) {
-        Societate societate = asigService.get(politaModel.getSocAsig());
+        Societate societate = asigService.get(politaModel.getSocietate());
         return Polita.builder()
                 .id(politaModel.getId())
                 .societate(societate)
@@ -92,17 +123,18 @@ public class PolitaResource {
                 .build();
     }
 
-    private Map toView(Polita polita) {
+    private Map toView(Domain domain) {
+        Polita polita = (Polita) domain;
         Map m = new HashMap();
         m.put("id", polita.getId());
-        m.put("socAsig", polita.getSocietate() == null ? null : polita.getSocietate().getName());
+        m.put("societate", polita.getSocietate() == null ? null : polita.getSocietate().getName());
         m.put("tipPlata", polita.getTipPlata());
         m.put("sumaAsig", polita.getSumaAsig());
         m.put("serie", polita.getSerie());
         m.put("nr", polita.getNr());
-        m.put("emisLa", polita.getEmisLa());
-        m.put("endValid", polita.getEndValid());
-        m.put("startValid", polita.getStartValid());
+        m.put("emisLa", format(polita.getEmisLa()));
+        m.put("endValid", format(polita.getEndValid()));
+        m.put("startValid", format(polita.getStartValid()));
 
         return m;
     }
@@ -110,7 +142,7 @@ public class PolitaResource {
     private PolitaModel toModel(Polita polita) {
         return PolitaModel.builder()
                 .id(polita.getId())
-                .socAsig(polita.getSocietate() == null ? null : polita.getSocietate().getId())
+                .societate(polita.getSocietate() == null ? null : polita.getSocietate().getId())
                 .sumaAsig(polita.getSumaAsig())
                 .emisLa(polita.getEmisLa())
                 .endValid(polita.getEndValid())
@@ -120,6 +152,4 @@ public class PolitaResource {
                 .tipPlata(polita.getTipPlata())
                 .build();
     }
-
-
 }

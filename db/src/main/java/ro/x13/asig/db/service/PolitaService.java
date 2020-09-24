@@ -1,6 +1,8 @@
 package ro.x13.asig.db.service;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Service;
 import ro.x13.asig.db.dao.PolitaRepository;
 import ro.x13.asig.db.dao.domain.Polita;
@@ -9,6 +11,8 @@ import ro.x13.asig.db.view.model.PolitaModel;
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
+
+import static org.springframework.data.domain.ExampleMatcher.GenericPropertyMatchers.exact;
 
 @Service
 @RequiredArgsConstructor
@@ -42,4 +46,11 @@ public class PolitaService {
     }
 
 
+    public List<Polita> findAll(Polita polita) {
+
+        ExampleMatcher matcher = ExampleMatcher.matchingAll()   //custom filtering
+                .withMatcher("id", exact());
+        Example<Polita> filter = Example.of(polita, matcher);
+        return politaRepository.findAll(filter);
+    }
 }

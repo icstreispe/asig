@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout.html}">
+
+<section layout:fragment="navigation">
+    <input type="button" th:onclick="window.location.href='/polita/list'" th:value="#{action.back}" >
+</section>
+
+
+<section layout:fragment="content">
+
+    <form  action="#" th:action="@{/polita}" th:object="${polita}" method="post" >
+
+        <input type="hidden" th:field="*{id}">
+
+        <table class="blueTable">
+            <thead>
+            <tr>
+                <th colspan="2" th:text="#{polita.form.title}"></th>
+            </tr>
+            </thead>
+
+            <tr><td th:text="#{polita.serie}"></td><td><input type="text" th:field="*{serie}"></td></tr>
+            <tr><td th:text="#{polita.nr}"></td><td><input type="text" th:field="*{nr}"></td></tr>
+
+            <tr><td th:text="#{polita.societate}"></td><td><select  th:field="*{societate}">
+                <option th:each="s : ${polita.societateList}" th:value="${s.value}" th:text="${s.text}"></option>
+            </select></td></tr>
+
+            <tr><td th:text="#{polita.sumaAsig}"></td><td><input type="text" th:field="*{sumaAsig}"></td></tr>
+            <tr><td th:text="#{polita.startValid}"></td><td><input type="text" class="date" th:field="*{startValid}"></td></tr>
+            <tr><td th:text="#{polita.endValid}"></td><td><input type="text" class="date" th:field="*{endValid}"></td></tr>
+            <tr><td th:text="#{polita.emisLa}"></td><td><input type="text" class="date" th:field="*{emisLa}"></td></tr>
+
+            <tr>
+                <td><input type="submit" value="Salveaza"/></td>
+                <td><input type="reset" value="Reset"></td>
+            </tr>
+        </table>
+
+    </form>
+
+
+</section>
+
+</html>
