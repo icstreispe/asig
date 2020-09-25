@@ -12,8 +12,8 @@ create table p_adresa (
     etaj  national character varying (100),
     apartament  national character varying (100),
     cod_postal  national character varying (100),
-    tip_strada_id integer,      --TODO
-    
+    tip_strada_id integer,
+
     start_date date default now(),
     update_date date default now(),
     end_date date
