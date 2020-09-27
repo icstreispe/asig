@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -19,8 +18,9 @@ public class PolitaModel {
     private Long id;
     private String serie;
     private Integer nr;
-    private BigDecimal sumaAsig;
     private Long societate;
+    private BigDecimal sumaAsig;
+    private Long moneda;
     private Long tipPlata;
 
     private Date startValid;
@@ -28,6 +28,7 @@ public class PolitaModel {
     private Date emisLa;
 
     private List societateList;
+    private List monedaList;
 
     private List list;
 }

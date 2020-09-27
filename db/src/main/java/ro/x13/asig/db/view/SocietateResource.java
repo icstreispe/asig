@@ -1,24 +1,25 @@
 package ro.x13.asig.db.view;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.*;
-import ro.x13.asig.db.dao.domain.Societate;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import ro.x13.asig.db.dao.domain.Domain;
 import ro.x13.asig.db.dao.domain.Juridic;
+import ro.x13.asig.db.dao.domain.Societate;
 import ro.x13.asig.db.dao.domain.SocietateType;
-import ro.x13.asig.db.service.SocietateService;
 import ro.x13.asig.db.service.JuridicService;
+import ro.x13.asig.db.service.ServiceUtil;
+import ro.x13.asig.db.service.SocietateService;
 import ro.x13.asig.db.service.SocietateTypeService;
 import ro.x13.asig.db.view.model.SocietateModel;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 
 @Controller
 @RequestMapping(value = "/societate")
@@ -32,21 +33,12 @@ public class SocietateResource {
     private JuridicService juridicService;
 
 
-    @GetMapping(value = "")
-    public String add(SocietateModel societateModel, Model model) {
-
-        getCombos(model, societateModel);
-
-        model.addAttribute("societate", societateModel);
-        return "admin/societate.form";
-    }
-
-
     @GetMapping(value = "/list")
     public String list(Model model) {
         SocietateModel societateModel = new SocietateModel();
-        List<Societate> list = societateService.list();
-        societateModel.setList(getList(list));
+        List<Societate> societateList = societateService.list();
+        List<Map> list = ServiceUtil.getList(societateList, this::toView);
+        societateModel.setList(list);
 
         getCombos(model, societateModel);
 
@@ -58,8 +50,9 @@ public class SocietateResource {
     public String filter(Model model, SocietateModel societateModel) {
         Societate societate = buildDomain(societateModel);
         List<Societate> societateList = societateService.findAll(societate);
-        List<Map> societateListMap = getList(societateList);
-        societateModel.setList(societateListMap);
+        List<Map> list = ServiceUtil.getList(societateList, this::toView);
+        societateModel.setList(list);
+
         getCombos(model, societateModel);
 
         model.addAttribute("societate", societateModel);
@@ -71,6 +64,15 @@ public class SocietateResource {
     public String edit(Model model, @PathVariable("id") Long id) {
         Societate societate = societateService.get(id);
         SocietateModel societateModel = toModel(societate);
+
+        getCombos(model, societateModel);
+
+        model.addAttribute("societate", societateModel);
+        return "admin/societate.form";
+    }
+
+    @GetMapping(value = "")
+    public String add(SocietateModel societateModel, Model model) {
 
         getCombos(model, societateModel);
 
@@ -93,11 +95,7 @@ public class SocietateResource {
         model.addAttribute("tipStructuraList", societateModel.getTipList());
     }
 
-    private List<Map> getList(List<Societate> list) {
-        return StreamSupport.stream(list.spliterator(), false)
-                .map(a -> toView(a))       // pt list(lista()): Asig::toMap
-                .collect(Collectors.toList());
-    }
+
 
     private Societate buildDomain(SocietateModel societateModel) {
         SocietateType tip = societateTypeService.get(societateModel.getTip());
@@ -121,7 +119,8 @@ public class SocietateResource {
         return s == null ? null : (s.equals("") ? null : s);
     }
 
-    private Map toView(Societate societate) {
+    private Map toView(Domain domain) {
+        Societate societate = (Societate)  domain;
         Map m = new HashMap();
         m.put("id", societate.getId());
         m.put("nume", societate.getName());

@@ -1,17 +1,15 @@
 package ro.x13.asig.db.dao.domain;
 
-import javax.persistence.*;
-import java.math.BigDecimal;
-import java.util.Date;
-
-
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
-@Entity (name="polite")
+import javax.persistence.*;
+import java.math.BigDecimal;
+import java.util.Date;
+
+@Entity (name="p_polita")
 @Data
 @SuperBuilder
 @NoArgsConstructor
@@ -32,6 +30,10 @@ public class Polita implements Domain {
         private Societate societate;
 
         private BigDecimal sumaAsig;
+
+        @ManyToOne
+        @JoinColumn(name = "moneda", nullable = true)
+        private Moneda moneda;
 
         private Date startValid;
         private Date endValid;

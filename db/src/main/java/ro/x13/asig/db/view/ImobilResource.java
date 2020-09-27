@@ -6,15 +6,18 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import ro.x13.asig.db.dao.domain.*;
 import ro.x13.asig.db.service.*;
 import ro.x13.asig.db.view.model.ImobilModel;
+import ro.x13.asig.db.view.model.SocietateModel;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 @Controller
+@RequestMapping(value = "/imobil")
 public class ImobilResource {
 
     @Autowired
@@ -27,44 +30,66 @@ public class ImobilResource {
     private StructuraTypeService structuraTypeService;
 
 
-    @GetMapping(value="/imobil")
+    @GetMapping(value = "/list")
+    public String list(Model model) {
+        ImobilModel imobilModel = new ImobilModel();
+        List<Imobil> imobilList = imobilService.list();
+        List<Map> list = ServiceUtil.getList(imobilList, this::toView);
+        imobilModel.setList(list);
+
+        getCombos(model, imobilModel);
+
+        model.addAttribute("imobil", imobilModel);
+        return "imobil.list";
+    }
+
+    @PostMapping(value = "/list")
+    public String filter(Model model, ImobilModel imobilModel) {
+        Imobil imobil = buildDomain(imobilModel);
+        List<Imobil> imobilList = imobilService.list(imobil);
+        List<Map> list = ServiceUtil.getList(imobilList, this::toView);
+        imobilModel.setList(list);
+        getCombos(model, imobilModel);
+
+        model.addAttribute("imobil", imobilModel);
+        return "imobi.lList";
+    }
+
+    @GetMapping(value="")
     public String add(ImobilModel imobilModel, Model model) {
         List<Imobil> list = imobilService.list();
         List<Map> listMap = ServiceUtil.getList(list, this::toView);
         imobilModel.setList(listMap);
 
-        getCombos(imobilModel, model);
+        getCombos(model, imobilModel);
 
         model.addAttribute("imobil", imobilModel);
-        return "imobil";
+        return "imobil.form";
     }
 
 
 
-    @GetMapping(value="/imobil/{id}")
+    @GetMapping(value="/{id}")
     public String edit(Model model, @PathVariable("id") Long id) {
         Imobil imobil = imobilService.load(id);
         ImobilModel imobilModel = toModel(imobil);
-        List<Imobil> list = imobilService.list();
-        List<Map> listMap = ServiceUtil.getList(list, this::toView);
-        imobilModel.setList(listMap);
 
-        getCombos(imobilModel, model);
+        getCombos(model, imobilModel);
 
         model.addAttribute("imobil", imobilModel);
-        return "imobil";
+        return "imobil.form";
     }
 
 
-    @PostMapping(value="/imobil")
+    @PostMapping(value="")
     public String save(ImobilModel imobilModel) {
         Imobil imobil = buildDomain(imobilModel);
         imobilService.save(imobil);
-        return "redirect:/imobil";
+        return "redirect:/imobil/list";
     }
 
 
-    private void getCombos(ImobilModel imobilModel, Model model) {
+    private void getCombos(Model model, ImobilModel imobilModel) {
         imobilModel.setConstructieList(constructieService.listCombo());
         imobilModel.setMediuList(mediuService.listCombo());
         imobilModel.setStructuraTypeList(structuraTypeService.listCombo());

@@ -3,6 +3,7 @@ package ro.x13.asig.db.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import ro.x13.asig.db.dao.PolitaRepository;
 import ro.x13.asig.db.dao.domain.Polita;
@@ -51,6 +52,6 @@ public class PolitaService {
         ExampleMatcher matcher = ExampleMatcher.matchingAll()   //custom filtering
                 .withMatcher("id", exact());
         Example<Polita> filter = Example.of(polita, matcher);
-        return politaRepository.findAll(filter);
+        return politaRepository.findAll(filter, Sort.by(Sort.Direction.ASC, "id"));
     }
 }

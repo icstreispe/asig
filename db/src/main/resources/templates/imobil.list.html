@@ -1,0 +1,87 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout.html}">
+
+<section layout:fragment="navigation">
+    <input type="button" th:onclick="window.location.href='/'" th:value="#{action.back}" />
+    <input type="button" th:onclick="window.location.href='/imobil'" th:value="#{action.add}" />
+</section>
+
+<section layout:fragment="content">
+
+    <form  action="#" th:action="@{/imobil/list}" th:object="${imobil}" method="post" >
+
+        <input type="hidden" th:field="*{id}">
+
+        <table class="blueTable">
+            <thead>
+            <tr>
+                <th colspan="2" th:text="#{imobil.filter.title}"></th>
+            </tr>
+            </thead>
+
+            <tr><td th:text="#{imobil.constructie}"></td><td><select  th:field="*{constructie}">
+                <option th:each="s : ${imobil.constructieList}" th:value="${s.value}" th:text="${s.text}"></option>
+            </select></td></tr>
+            <tr><td th:text="#{imobil.mediu}"></td><td><select  th:field="*{mediu}">
+                <option th:each="s : ${imobil.mediuList}" th:value="${s.value}" th:text="${s.text}"></option>
+            </select></td></tr>
+            <tr><td th:text="#{imobil.structuraType}"></td><td><select  th:field="*{structuraType}">
+                <option th:each="s : ${imobil.structuraTypeList}" th:value="${s.value}" th:text="${s.text}"></option>
+            </select></td></tr>
+            <tr><td th:text="#{imobil.nrCamere}"></td><td><input type="text" th:field="*{nrCamere}"></td></tr>
+            <tr><td th:text="#{imobil.suprafata}"></td><td><input type="text" th:field="*{suprafata}"></td></tr>
+            <tr><td th:text="#{imobil.anConstructie}"></td><td><input type="text" th:field="*{anConstructie}"></td></tr>
+            <tr><td th:text="#{imobil.nrEtaje}"></td><td><input type="text" th:field="*{nrEtaje}"></td></tr>
+            <tr><td th:text="#{imobil.nrCladiri}"></td><td><input type="text" th:field="*{nrCladiri}"></td></tr>
+            <tr><td th:text="#{imobil.vecinatate}"></td><td><input type="text" th:field="*{vecinatate}"></td></tr>
+            <tr><td th:text="#{imobil.mentiuni}"></td><td><input type="text" th:field="*{mentiuni}"></td></tr>
+
+            <tr>
+                <td><input type="submit" value="Vizualizare"/></td>
+                <td></td>
+            </tr>
+        </table>
+
+    </form>
+
+
+
+    <table class="blueTable">
+        <thead>
+            <tr><th th:text="#{imobil.list.title}" colspan="11"></th></tr>
+        </thead>
+
+        <tr>
+            <th>.</th>
+            <th th:text="#{imobil.constructie}"></th>
+            <th th:text="#{imobil.mediu}"></th>
+            <th th:text="#{imobil.structuraType}"></th>
+            <th th:text="#{imobil.nrCamere}"></th>
+            <th th:text="#{imobil.suprafata}"></th>
+            <th th:text="#{imobil.anConstructie}"></th>
+            <th th:text="#{imobil.nrEtaje}"></th>
+            <th th:text="#{imobil.nrCladiri}"></th>
+            <th th:text="#{imobil.vecinatate}"></th>
+            <th th:text="#{imobil.mentiuni}"></th>
+        </tr>
+        <tr th:each="row : ${imobil.list}">
+            <td ><a th:href="@{|/imobil/${row.id}|}" th:text="#{action.edit}" ></a></td>
+            <td th:text="${row.constructie}" ></td>
+            <td th:text="${row.mediu}" ></td>
+            <td th:text="${row.structuraType}" ></td>
+            <td th:text="${row.nrCamere}" ></td>
+            <td th:text="${row.suprafata}" ></td>
+            <td th:text="${row.anConstructie}" ></td>
+            <td th:text="${row.nrEtaje}" ></td>
+            <td th:text="${row.nrCladiri}" ></td>
+            <td th:text="${row.vecinatate}" ></td>
+            <td th:text="${row.mentiuni}" ></td>
+        </tr>
+
+    </table>
+
+</section>
+
+</html>

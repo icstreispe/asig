@@ -1,8 +1,15 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout.html}">
+
+<section layout:fragment="navigation">
+    <input type="button" th:onclick="window.location.href='/polita/list'" th:value="#{action.back}" >
+</section>
 
 
-<div th:fragment="form(imobil)" >
+<section layout:fragment="content">
+
     <form  action="#" th:action="@{/imobil}" th:object="${imobil}" method="post" >
 
         <input type="hidden" th:field="*{id}">
@@ -10,7 +17,7 @@
         <table class="blueTable">
             <thead>
             <tr>
-                <th colspan="2" th:text="#{imobilForm}"></th>
+                <th colspan="2" th:text="#{imobil.form.title}"></th>
             </tr>
             </thead>
 
@@ -38,6 +45,8 @@
         </table>
 
     </form>
-</div>
+
+
+</section>
 
 </html>

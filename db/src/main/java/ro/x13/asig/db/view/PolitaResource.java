@@ -9,8 +9,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import ro.x13.asig.db.dao.domain.Domain;
+import ro.x13.asig.db.dao.domain.Moneda;
 import ro.x13.asig.db.dao.domain.Polita;
 import ro.x13.asig.db.dao.domain.Societate;
+import ro.x13.asig.db.service.MonedaService;
 import ro.x13.asig.db.service.PolitaService;
 import ro.x13.asig.db.service.ServiceUtil;
 import ro.x13.asig.db.service.SocietateService;
@@ -29,6 +31,7 @@ public class PolitaResource {
 
     private final PolitaService politaService;
     private final SocietateService asigService;
+    private final MonedaService monedaService;
 
 
     @GetMapping(value = "/polita/{serie}/{nr}")
@@ -99,8 +102,9 @@ public class PolitaResource {
 
     private void getCombos(Model model, PolitaModel politaModel) {
         politaModel.setSocietateList(asigService.listComboSocAsig());
-
         model.addAttribute("societateList", politaModel.getSocietateList());
+        politaModel.setMonedaList(monedaService.listCombo());
+        model.addAttribute("monedaList", politaModel.getMonedaList());
     }
 
     private List<Map> getList() {
@@ -110,11 +114,13 @@ public class PolitaResource {
 
     private Polita buildDomain(PolitaModel politaModel) {
         Societate societate = asigService.get(politaModel.getSocietate());
+        Moneda moneda = monedaService.get(politaModel.getMoneda());
         return Polita.builder()
                 .id(politaModel.getId())
-                .societate(societate)
                 .serie(politaModel.getSerie())
                 .nr(politaModel.getNr())
+                .societate(societate)
+                .moneda(moneda)
                 .sumaAsig(politaModel.getSumaAsig())
                 .emisLa(politaModel.getEmisLa())
                 .startValid(politaModel.getStartValid())
@@ -127,11 +133,12 @@ public class PolitaResource {
         Polita polita = (Polita) domain;
         Map m = new HashMap();
         m.put("id", polita.getId());
-        m.put("societate", polita.getSocietate() == null ? null : polita.getSocietate().getName());
-        m.put("tipPlata", polita.getTipPlata());
-        m.put("sumaAsig", polita.getSumaAsig());
         m.put("serie", polita.getSerie());
         m.put("nr", polita.getNr());
+        m.put("societate", polita.getSocietate() == null ? null : polita.getSocietate().getName());
+        m.put("sumaAsig", polita.getSumaAsig());
+        m.put("moneda", polita.getMoneda() == null ? null : polita.getMoneda().getName());
+        m.put("tipPlata", polita.getTipPlata());
         m.put("emisLa", format(polita.getEmisLa()));
         m.put("endValid", format(polita.getEndValid()));
         m.put("startValid", format(polita.getStartValid()));
@@ -142,14 +149,15 @@ public class PolitaResource {
     private PolitaModel toModel(Polita polita) {
         return PolitaModel.builder()
                 .id(polita.getId())
+                .serie(polita.getSerie())
+                .nr(polita.getNr())
                 .societate(polita.getSocietate() == null ? null : polita.getSocietate().getId())
                 .sumaAsig(polita.getSumaAsig())
+                .moneda(polita.getMoneda() == null ? null : polita.getMoneda().getId())
+                .tipPlata(polita.getTipPlata())
                 .emisLa(polita.getEmisLa())
                 .endValid(polita.getEndValid())
                 .startValid(polita.getStartValid())
-                .serie(polita.getSerie())
-                .nr(polita.getNr())
-                .tipPlata(polita.getTipPlata())
                 .build();
     }
 }
