@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Service;
-import ro.x13.asig.db.dao.catalog.AsigRepository;
+import ro.x13.asig.db.dao.catalog.SocietateRepository;
 import ro.x13.asig.db.dao.catalog.CatalogRepository;
 import ro.x13.asig.db.dao.domain.Societate;
 import ro.x13.asig.db.dao.domain.Juridic;
@@ -19,7 +19,7 @@ import static org.springframework.data.domain.ExampleMatcher.GenericPropertyMatc
 public class SocietateService extends CatalogService<Societate> {
 
     @Autowired
-    private AsigRepository repository;
+    private SocietateRepository repository;
 
     @Override
     public CatalogRepository<Societate> getRepo() {

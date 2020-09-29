@@ -43,7 +43,7 @@ public class UnitateResource {
     @PostMapping(value = "/list")
     public String filter(Model model, UnitateModel unitateModel) {
         Unitate unitate = buildDomain(unitateModel);
-        List<Unitate> unitateList = unitateService.findAll(unitate);
+        List<Unitate> unitateList = unitateService.list(unitate);
         List<Map> unitateListMap = ServiceUtil.getList(unitateList, this::toView);
         unitateModel.setList(unitateListMap);
         getCombos(model, unitateModel);

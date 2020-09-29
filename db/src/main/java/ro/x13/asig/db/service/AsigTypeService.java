@@ -2,19 +2,18 @@ package ro.x13.asig.db.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ro.x13.asig.db.dao.MonedaRepository;
+import ro.x13.asig.db.dao.catalog.AsigTypeRepository;
 import ro.x13.asig.db.dao.catalog.CatalogRepository;
-import ro.x13.asig.db.dao.domain.Moneda;
+import ro.x13.asig.db.dao.domain.AsigType;
 
 @Service
-public class MonedaService extends CatalogService<Moneda> {
+public class AsigTypeService extends CatalogService <AsigType>{
 
     @Autowired
-    private MonedaRepository repository;
+    private AsigTypeRepository repository;
 
     @Override
-    public CatalogRepository<Moneda> getRepo() {
+    public CatalogRepository<AsigType> getRepo() {
         return repository;
     }
-
 }

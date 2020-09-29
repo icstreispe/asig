@@ -1,0 +1,65 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout.html}">
+
+<section layout:fragment="navigation">
+    <input type="button" th:onclick="window.location.href='/'" th:value="#{action.back}" />
+    <input type="button" th:onclick="window.location.href='/produs'" th:value="#{action.add}" />
+</section>
+
+<section layout:fragment="content">
+
+    <form  action="#" th:action="@{/produs/list}" th:object="${produs}" method="post" >
+
+        <input type="hidden" th:field="*{id}">
+
+        <table class="blueTable">
+            <thead>
+            <tr>
+                <th colspan="2" th:text="#{produs.form.title}"></th>
+            </tr>
+            </thead>
+
+            <tr><td th:text="#{produs.name}"></td><td><input type="text" th:field="*{name}"></td></tr>
+            <tr><td th:text="#{produs.asigType}"></td><td><select  th:field="*{asigType}">
+                <option th:each="s : ${produs.asigTypeList}" th:value="${s.value}" th:text="${s.text}"></option>
+            </select></td></tr>
+            <tr><td th:text="#{produs.societate}"></td><td><select  th:field="*{societate}">
+                <option th:each="s : ${produs.societateList}" th:value="${s.value}" th:text="${s.text}"></option>
+            </select></td></tr>
+
+
+            <tr>
+                <td><input type="submit" th:value="#{action.view}"/></td>
+                <td></td>
+            </tr>
+        </table>
+
+    </form>
+
+
+<table class="blueTable">
+    <thead>
+        <tr><th th:text="#{produs.list.title}" colspan="4"></th></tr>
+    </thead>
+
+    <tr>
+        <th>.</th>
+        <th th:text="#{produs.name}"></th>
+        <th th:text="#{produs.asigType}"></th>
+        <th th:text="#{produs.societate}"></th>
+    </tr>
+    <tr th:each="row : ${produs.list}">
+        <td><a th:href="@{|/produs/${row.id}|}" th:text="#{action.edit}"></a></td>
+
+        <td th:text="${row.name}" ></td>
+        <td th:text="${row.asigType}" ></td>
+        <td th:text="${row.societate}" ></td>
+    </tr>
+
+</table>
+
+</section>
+
+</html>

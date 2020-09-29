@@ -10,11 +10,9 @@ import ro.x13.asig.db.dao.domain.SocietateType;
 import java.util.List;
 
 
-public interface AsigRepository extends CatalogRepository<Societate> {
+public interface SocietateRepository extends CatalogRepository<Societate> {
 
     List<Societate> findAllByJuridic(Juridic j);
-
-    List<Societate> findAll(Example<Societate> a);
 
     @Query(value = "select u from user u where cast(userNo as char) like :userNo%", nativeQuery = true)
     List<Societate> find(@Param("userNo") String userNo);

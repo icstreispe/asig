@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout.html}">
+
+<section layout:fragment="navigation">
+    <input type="button" th:onclick="window.location.href='/produs/list'" th:value="#{action.back}" >
+</section>
+
+
+<section layout:fragment="content">
+
+    <form  action="#" th:action="@{/produs}" th:object="${produs}" method="post" >
+
+        <input type="hidden" th:field="*{id}">
+
+        <table class="blueTable">
+            <thead>
+            <tr>
+                <th colspan="2" th:text="#{produs.form.title}"></th>
+            </tr>
+            </thead>
+
+            <tr><td th:text="#{produs.name}"></td><td><input type="text" th:field="*{name}"></td></tr>
+
+            <tr><td th:text="#{produs.asigType}"></td><td><select  th:field="*{asigType}">
+                <option th:each="s : ${produs.asigTypeList}" th:value="${s.value}" th:text="${s.text}"></option>
+            </select></td></tr>
+            <tr><td th:text="#{produs.societate}"></td><td><select  th:field="*{societate}">
+                <option th:each="s : ${produs.societateList}" th:value="${s.value}" th:text="${s.text}"></option>
+            </select></td></tr>
+
+            <tr>
+                <td><input type="submit" th:value="#{action.save}"/></td>
+                <td><input type="reset" th:value="#{action.reset}"></td>
+            </tr>
+        </table>
+
+    </form>
+
+
+</section>
+
+</html>

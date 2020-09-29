@@ -24,7 +24,7 @@ public class UnitateService extends CatalogService<Unitate> {
     }
 
 
-    public List<Unitate> findAll(Unitate u) {
+    public List<Unitate> list(Unitate u) {
 
         ExampleMatcher matcher = ExampleMatcher.matchingAll()   //custom filtering for 2 properties
                 .withMatcher("name", startsWith());

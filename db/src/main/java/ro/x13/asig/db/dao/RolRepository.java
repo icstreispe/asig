@@ -11,6 +11,5 @@ import java.util.List;
 
 public interface RolRepository extends CatalogRepository<Rol> {
 
-    List<Rol> findAllByOrderByNameAsc();
 }
 
