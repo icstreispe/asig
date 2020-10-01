@@ -7,8 +7,10 @@ create table p_polita (
     serie       varchar(255),
     start_valid date,
     suma_asig   double precision,
+    moneda      integer
     tip_plata   integer,
     idsoc       integer,
-    moneda      integer
+    idprodus       integer,
+
 );
 

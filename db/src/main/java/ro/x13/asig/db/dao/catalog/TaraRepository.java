@@ -10,6 +10,6 @@ public interface TaraRepository extends CatalogRepository<Tara> {
 
 
     //@Query("select new" + cName + " (u.name, u.id) from Tara u where u.endDate is null order by u.name")
-    List<Tara> findAll();
+    //List<Tara> findAll();
 }
 
