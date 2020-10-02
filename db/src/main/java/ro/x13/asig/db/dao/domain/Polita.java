@@ -29,6 +29,10 @@ public class Polita implements Domain {
         @JoinColumn(name = "idsoc", nullable = true)
         private Societate societate;
 
+        @ManyToOne
+        @JoinColumn(name = "idprodus", nullable = true)
+        private Produs produs;
+
         private BigDecimal sumaAsig;
 
         @ManyToOne

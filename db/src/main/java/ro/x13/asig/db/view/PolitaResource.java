@@ -4,24 +4,17 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import ro.x13.asig.db.dao.domain.Domain;
-import ro.x13.asig.db.dao.domain.Moneda;
-import ro.x13.asig.db.dao.domain.Polita;
-import ro.x13.asig.db.dao.domain.Societate;
-import ro.x13.asig.db.service.MonedaService;
-import ro.x13.asig.db.service.PolitaService;
-import ro.x13.asig.db.service.ServiceUtil;
-import ro.x13.asig.db.service.SocietateService;
+import org.springframework.web.bind.annotation.*;
+import ro.x13.asig.db.dao.domain.*;
+import ro.x13.asig.db.service.*;
 import ro.x13.asig.db.view.model.PolitaModel;
+import ro.x13.asig.db.view.model.TextValueModel;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 import static ro.x13.asig.db.service.DateUtil.format;
 
 @Controller
@@ -30,8 +23,9 @@ import static ro.x13.asig.db.service.DateUtil.format;
 public class PolitaResource {
 
     private final PolitaService politaService;
-    private final SocietateService asigService;
+    private final SocietateService societateService;
     private final MonedaService monedaService;
+    private final ProdusService produsService;
 
 
     @GetMapping(value = "/polita/{serie}/{nr}")
@@ -92,6 +86,20 @@ public class PolitaResource {
         return "admin/polita.form";
     }
 
+    @PostMapping(value = "/ajax", produces = APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public PolitaModel ajx(Long id) {
+
+        Societate societate = societateService.get(id);
+        Produs p = new Produs();
+        p.setSocietate(societate);
+        List<TextValueModel> produsList = produsService.listCombo(p);
+
+        PolitaModel model = new PolitaModel();
+        model.setProdusList(produsList);
+        return model;
+    }
+
 
     @PostMapping(value="")
     public String save(PolitaModel politaModel) {
@@ -101,10 +109,9 @@ public class PolitaResource {
     }
 
     private void getCombos(Model model, PolitaModel politaModel) {
-        politaModel.setSocietateList(asigService.listComboSocAsig());
-        model.addAttribute("societateList", politaModel.getSocietateList());
+        politaModel.setSocietateList(societateService.listComboSocAsig());
         politaModel.setMonedaList(monedaService.listCombo());
-        model.addAttribute("monedaList", politaModel.getMonedaList());
+        politaModel.setProdusList(produsService.listCombo());
     }
 
     private List<Map> getList() {
@@ -113,14 +120,16 @@ public class PolitaResource {
     }
 
     private Polita buildDomain(PolitaModel politaModel) {
-        Societate societate = asigService.get(politaModel.getSocietate());
+        Societate societate = societateService.get(politaModel.getSocietate());
         Moneda moneda = monedaService.get(politaModel.getMoneda());
+        Produs produs = produsService.get(politaModel.getProdus());
         return Polita.builder()
                 .id(politaModel.getId())
                 .serie(politaModel.getSerie())
                 .nr(politaModel.getNr())
                 .societate(societate)
                 .moneda(moneda)
+                .produs(produs)
                 .sumaAsig(politaModel.getSumaAsig())
                 .emisLa(politaModel.getEmisLa())
                 .startValid(politaModel.getStartValid())
@@ -136,6 +145,7 @@ public class PolitaResource {
         m.put("serie", polita.getSerie());
         m.put("nr", polita.getNr());
         m.put("societate", polita.getSocietate() == null ? null : polita.getSocietate().getName());
+        m.put("produs", polita.getProdus() == null ? null : polita.getProdus().getName());
         m.put("sumaAsig", polita.getSumaAsig());
         m.put("moneda", polita.getMoneda() == null ? null : polita.getMoneda().getName());
         m.put("tipPlata", polita.getTipPlata());
@@ -152,6 +162,7 @@ public class PolitaResource {
                 .serie(polita.getSerie())
                 .nr(polita.getNr())
                 .societate(polita.getSocietate() == null ? null : polita.getSocietate().getId())
+                .produs(polita.getProdus() == null ? null : polita.getProdus().getId())
                 .sumaAsig(polita.getSumaAsig())
                 .moneda(polita.getMoneda() == null ? null : polita.getMoneda().getId())
                 .tipPlata(polita.getTipPlata())

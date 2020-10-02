@@ -24,12 +24,15 @@
             <tr><td th:text="#{polita.serie}"></td><td><input type="text" th:field="*{serie}"></td></tr>
             <tr><td th:text="#{polita.nr}"></td><td><input type="text" th:field="*{nr}"></td></tr>
 
-            <tr><td th:text="#{polita.societate}"></td><td><select  th:field="*{societate}">
+            <tr><td th:text="#{polita.societate}"></td><td><select  th:field="*{societate}" class="ajax">
                 <option th:each="s : ${polita.societateList}" th:value="${s.value}" th:text="${s.text}"></option>
+            </select></td></tr>
+            <tr><td th:text="#{polita.produs}"></td><td><select  th:field="*{produs}">
+                <option th:each="s : ${polita.produsList}" th:value="${s.value}" th:text="${s.text}"></option>
             </select></td></tr>
 
             <tr><td th:text="#{polita.sumaAsig}"></td><td><input type="text" th:field="*{sumaAsig}"></td></tr>
-            <tr><td th:text="#{polita.moneda}"></td><td><select  th:field="*{moneda}">
+            <tr><td th:text="#{polita.moneda}"></td><td><select  th:field="*{moneda}" >
                 <option th:each="s : ${polita.monedaList}" th:value="${s.value}" th:text="${s.text}"></option>
             </select></td></tr>
             <tr><td th:text="#{polita.startValid}"></td><td><input type="text" class="date" th:field="*{startValid}"></td></tr>

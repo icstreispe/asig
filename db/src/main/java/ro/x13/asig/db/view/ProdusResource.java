@@ -3,10 +3,7 @@ package ro.x13.asig.db.view;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import ro.x13.asig.db.dao.domain.AsigType;
 import ro.x13.asig.db.dao.domain.Domain;
 import ro.x13.asig.db.dao.domain.Societate;
@@ -16,10 +13,13 @@ import ro.x13.asig.db.service.ServiceUtil;
 import ro.x13.asig.db.service.SocietateService;
 import ro.x13.asig.db.service.ProdusService;
 import ro.x13.asig.db.view.model.ProdusModel;
+import ro.x13.asig.db.view.model.TextValueModel;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @Controller
 @RequestMapping(value = "/produs")
@@ -84,6 +84,15 @@ public class ProdusResource {
         Produs produs = buildDomain(produsModel);
         produsService.save(produs);
         return "redirect:/produs/list";
+    }
+
+    @PostMapping(value = "/ajax", produces = APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public ProdusModel ajx(Long id) {
+        ProdusModel model = new ProdusModel();
+        model.setName("");
+        model.setSocietateList(societateService.listCombo());
+        return model;
     }
 
     private void getCombos(Model model, ProdusModel produsModel) {

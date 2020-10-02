@@ -38,7 +38,7 @@ public class PolitaService {
 
 
     public List<Polita> list() {
-        return politaRepository.findAll();
+        return politaRepository.findAllByOrderById();
     }
 
 

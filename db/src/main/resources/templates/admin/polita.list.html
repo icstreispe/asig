@@ -25,6 +25,9 @@
             <tr><td th:text="#{polita.societate}"></td><td><select  th:field="*{societate}">
                 <option th:each="s : ${polita.societateList}" th:value="${s.value}" th:text="${s.text}"></option>
             </select></td></tr>
+            <tr><td th:text="#{polita.produs}"></td><td><select  th:field="*{produs}">
+                <option th:each="s : ${polita.produsList}" th:value="${s.value}" th:text="${s.text}"></option>
+            </select></td></tr>
 
             <tr><td th:text="#{polita.sumaAsig}"></td><td><input type="text" th:field="*{sumaAsig}"></td></tr>
             <tr><td th:text="#{polita.moneda}"></td><td><select  th:field="*{moneda}">
@@ -45,7 +48,7 @@
 
 <table class="blueTable">
     <thead>
-        <tr><th th:text="#{polita.list.title}" colspan="9"></th></tr>
+        <tr><th th:text="#{polita.list.title}" colspan="10"></th></tr>
     </thead>
 
     <tr>
@@ -53,6 +56,7 @@
         <th th:text="#{polita.serie}"></th>
         <th th:text="#{polita.nr}"></th>
         <th th:text="#{polita.societate}"></th>
+        <th th:text="#{polita.produs}"></th>
         <th th:text="#{polita.sumaAsig}"></th>
         <th th:text="#{polita.moneda}"></th>
         <th th:text="#{polita.startValid}"></th>
@@ -64,6 +68,7 @@
         <td th:text="${row.serie}" ></td>
         <td th:text="${row.nr}" ></td>
         <td th:text="${row.societate}" ></td>
+        <td th:text="${row.produs}" ></td>
         <td th:text="${row.sumaAsig}" ></td>
         <td th:text="${row.moneda}" ></td>
         <td th:text="${row.startValid}" ></td>
