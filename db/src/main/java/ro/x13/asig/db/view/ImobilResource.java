@@ -93,9 +93,7 @@ public class ImobilResource {
         imobilModel.setConstructieList(constructieService.listCombo());
         imobilModel.setMediuList(mediuService.listCombo());
         imobilModel.setStructuraTypeList(structuraTypeService.listCombo());
-        model.addAttribute("tipStructuraList", imobilModel.getStructuraTypeList());
-        model.addAttribute("mediuList", imobilModel.getMediuList());
-        model.addAttribute("constructieList", imobilModel.getConstructieList());
+        imobilModel.setStructuraTypeList(structuraTypeService.listCombo());
     }
 
 

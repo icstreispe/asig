@@ -1,0 +1,80 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout.html}">
+
+<section layout:fragment="navigation">
+    <input type="button" th:onclick="window.location.href='/'" th:value="#{action.back}" />
+    <input type="button" th:onclick="window.location.href='/localitate'" th:value="#{action.add}" />
+</section>
+
+<section layout:fragment="content">
+
+    <form  action="#" th:action="@{/localitate/list}" th:object="${localitate}" method="post" >
+
+        <input type="hidden" th:field="*{id}">
+
+        <table class="blueTable">
+            <thead>
+            <tr>
+                <th colspan="2" th:text="#{localitate.form.title}"></th>
+            </tr>
+            </thead>
+            <tr><td th:text="#{localitate.judet}"></td><td><select  th:field="*{judet}">
+                <option th:each="s : ${localitate.judetList}" th:value="${s.value}" th:text="${s.text}"></option>
+            </select></td></tr>
+            <tr><td th:text="#{localitate.apartenenta}"></td><td><input type="text" th:field="*{apartenenta}"></td></tr>
+            <tr><td th:text="#{localitate.name}"></td><td><input type="text" th:field="*{name}"></td></tr>
+
+            <tr><td th:text="#{localitate.population}"></td><td><input type="text" th:field="*{population}"></td></tr>
+            <tr><td th:text="#{localitate.firms}"></td><td><input type="text" th:field="*{firms}"></td></tr>
+            <tr><td th:text="#{localitate.longitude}"></td><td><input type="text" th:field="*{longitude}"></td></tr>
+            <tr><td th:text="#{localitate.latitude}"></td><td><input type="text" th:field="*{latitude}"></td></tr>
+
+
+            <tr>
+                <td><input type="submit" value="Vizualizare"/></td>
+                <td></td>
+            </tr>
+        </table>
+
+    </form>
+
+
+
+<table class="blueTable">
+    <thead>
+        <tr><th th:text="#{localitate.list.title}" colspan="10"></th></tr>
+    </thead>
+
+    <tr>
+        <th>.</th>
+        <th th:text="#{localitate.judet}"></th>
+        <th th:text="#{localitate.apartenenta}"></th>
+        <th th:text="#{localitate.name}"></th>
+        <th th:text="#{localitate.population}"></th>
+        <th th:text="#{localitate.firms}"></th>
+        <th th:text="#{localitate.longitude}"></th>
+        <th th:text="#{localitate.latitude}"></th>
+
+    </tr>
+    <tr th:each="row : ${localitate.list}">
+        <td><a th:href="@{|/localitate/${row.id}|}" th:text="#{action.edit}"></a></td>
+        <td th:text="${row.judet}" ></td>
+        <td th:text="${row.apartenenta}" ></td>
+        <td th:text="${row.name}" ></td>
+        <td th:text="${row.population}" ></td>
+        <td th:text="${row.firms}" ></td>
+        <td th:text="${row.longitude}" ></td>
+        <td th:text="${row.latitude}" ></td>
+
+    </tr>
+
+</table>
+
+
+
+
+</section>
+
+</html>

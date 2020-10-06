@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout.html}">
+
+<section layout:fragment="navigation">
+    <input type="button" th:onclick="window.location.href='/localitate/list'" th:value="#{action.back}" >
+</section>
+
+
+<section layout:fragment="content">
+
+    <form  action="#" th:action="@{/localitate}" th:object="${localitate}" method="post" >
+
+        <input type="hidden" th:field="*{id}">
+
+        <table class="blueTable">
+            <thead>
+            <tr>
+                <th colspan="2" th:text="#{localitate.form.title}"></th>
+            </tr>
+            </thead>
+
+            <tr><td th:text="#{localitate.judet}"></td><td><select  th:field="*{judet}" >
+                <option th:each="s : ${localitate.judetList}" th:value="${s.value}" th:text="${s.text}"></option>
+            </select></td></tr>
+            <tr><td th:text="#{localitate.apartenenta}"></td><td><input type="text" th:field="*{apartenenta}"></td></tr>
+            <tr><td th:text="#{localitate.name}"></td><td><input type="text" th:field="*{name}"></td></tr>
+            <tr><td th:text="#{localitate.population}"></td><td><input type="text" th:field="*{population}"></td></tr>
+            <tr><td th:text="#{localitate.firms}"></td><td><input type="text" th:field="*{firms}"></td></tr>
+            <tr><td th:text="#{localitate.longitude}"></td><td><input type="text" th:field="*{longitude}"></td></tr>
+            <tr><td th:text="#{localitate.latitude}"></td><td><input type="text" th:field="*{latitude}"></td></tr>
+
+            <tr>
+                <td><input type="submit" th:value="#{action.save}" /></td>
+                <td><input type="reset" th:value="#{action.reset}"></td>
+            </tr>
+        </table>
+
+    </form>
+
+
+</section>
+
+</html>

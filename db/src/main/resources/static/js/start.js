@@ -61,6 +61,7 @@ function replaceOptions (nameList, newOptions){
     field.empty(); // remove old options
     $.each(newOptions, function(index, value) {
         field.append($("<option></option>")
-            .attr("value", value.id).text(value.text));
+            .attr("value", value.value)
+            .text(value.text));
     });
 }
