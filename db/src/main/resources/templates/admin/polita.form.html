@@ -35,6 +35,9 @@
             <tr><td th:text="#{polita.moneda}"></td><td><select  th:field="*{moneda}" >
                 <option th:each="s : ${polita.monedaList}" th:value="${s.value}" th:text="${s.text}"></option>
             </select></td></tr>
+            <tr><td th:text="#{polita.perioada}"></td><td><select  th:field="*{perioada}" >
+                <option th:each="s : ${polita.perioadaList}" th:value="${s.value}" th:text="${s.text}"></option>
+            </select></td></tr>
             <tr><td th:text="#{polita.startValid}"></td><td><input type="text" class="date" th:field="*{startValid}"></td></tr>
             <tr><td th:text="#{polita.endValid}"></td><td><input type="text" class="date" th:field="*{endValid}"></td></tr>
             <tr><td th:text="#{polita.emisLa}"></td><td><input type="text" class="date" th:field="*{emisLa}"></td></tr>

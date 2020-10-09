@@ -39,6 +39,11 @@ public class Polita implements Domain {
         @JoinColumn(name = "moneda", nullable = true)
         private Moneda moneda;
 
+        @ManyToOne
+        @JoinColumn(name = "perioada", nullable = true)
+        private Perioada perioada;
+
+
         private Date startValid;
         private Date endValid;
         private Date emisLa;

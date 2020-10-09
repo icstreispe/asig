@@ -1,16 +1,13 @@
-create table produs (
+create table n_perioada (
     id integer primary key,
 
     name national character varying (100),
-    idsoc integer,
-    tip_asig integer,
-
+    luni integer,
+    
     start_date date default now(),
     update_date date default now(),
     end_date date
 );
-
-
 
 
 

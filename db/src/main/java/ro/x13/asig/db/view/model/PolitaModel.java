@@ -23,11 +23,13 @@ public class PolitaModel {
     private Long moneda;
     private Long tipPlata;
     private Long produs;
+    private Long perioada;
 
     private Date startValid;
     private Date endValid;
     private Date emisLa;
 
+    private List perioadaList;
     private List produsList;
     private List societateList;
     private List monedaList;

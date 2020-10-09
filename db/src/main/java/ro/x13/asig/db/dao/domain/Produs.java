@@ -15,7 +15,7 @@ import javax.persistence.SequenceGenerator;
 @SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity (name="produs")
+@Entity (name="b_produs")
 //@SequenceGenerator(name = "generic", sequenceName = "produs_seq", allocationSize = 1)   //TODO mai merge cand sunt mai multe entities fiec cu seq ei?
 public class Produs extends CatalogDomain{
 
