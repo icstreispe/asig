@@ -52,6 +52,7 @@ public class PolitaService {
         ExampleMatcher matcher = ExampleMatcher.matchingAll()   //custom filtering
                 .withMatcher("id", exact());
         Example<Polita> filter = Example.of(polita, matcher);
-        return politaRepository.findAll(filter, Sort.by(Sort.Direction.ASC, "id"));
+        Sort sort = Sort.by(Sort.Direction.ASC, "id");
+        return politaRepository.findAll(filter, sort);
     }
 }
