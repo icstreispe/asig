@@ -89,7 +89,7 @@ public class PolitaResource {
 
     @PostMapping(value = "/ajax", produces = APPLICATION_JSON_VALUE)
     @ResponseBody
-    public PolitaModel ajx(Long id) {
+    public PolitaModel ajax(Long id) {
 
         Societate societate = societateService.get(id);
         Produs p = new Produs();
@@ -111,6 +111,7 @@ public class PolitaResource {
 
     private void getCombos(Model model, PolitaModel politaModel) {
         politaModel.setSocietateList(societateService.listComboSocAsig());
+
         politaModel.setMonedaList(monedaService.listCombo());
         politaModel.setProdusList(produsService.listCombo());
         politaModel.setPerioadaList(perioadaService.listCombo());

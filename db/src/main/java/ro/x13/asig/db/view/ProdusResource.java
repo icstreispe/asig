@@ -88,7 +88,7 @@ public class ProdusResource {
 
     @PostMapping(value = "/ajax", produces = APPLICATION_JSON_VALUE)
     @ResponseBody
-    public ProdusModel ajx(Long id) {
+    public ProdusModel ajax(Long id) {
         ProdusModel model = new ProdusModel();
         model.setName("");
         model.setSocietateList(societateService.listCombo());

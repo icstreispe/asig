@@ -3,19 +3,19 @@ package ro.x13.asig.db.view;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import ro.x13.asig.db.dao.biz.*;
 import ro.x13.asig.db.dao.domain.Auto;
 import ro.x13.asig.db.dao.domain.Domain;
 import ro.x13.asig.db.service.*;
 import ro.x13.asig.db.view.model.AutoModel;
+import ro.x13.asig.db.view.model.TextValueModel;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @Controller
 @RequiredArgsConstructor
@@ -29,7 +29,6 @@ public class AutoResource {
     private final CombustibilService combustibilService;
     private final UtilizareTypeService utilizareTypeService;
     private final StareMatricService stareMatricService;
-
 
 
     @GetMapping(value = "/list")
@@ -88,21 +87,18 @@ public class AutoResource {
         autoService.save(auto);
         return "redirect:/auto/list";
     }
-/*
-     @PostMapping(value = "/ajax", produces = APPLICATION_JSON_VALUE)
-    @ResponseBody
-    public AutoModel ajx(Long id) {
 
-        Societate societate = societateService.get(id);
-        Produs p = new Produs();
-        p.setSocietate(societate);
-        List<TextValueModel> produsList = produsService.listCombo(p);
+
+    @PostMapping(value = "/ajax", produces = APPLICATION_JSON_VALUE)
+    @ResponseBody
+    public AutoModel ajax(Long categAutoId) {
+        List<TextValueModel> tipAutoList = tipAutoService.listCombo(categAutoId);
 
         AutoModel model = new AutoModel();
-        model.setProdusList(produsList);
+        model.setTipAutoList(tipAutoList);
         return model;
     }
-*/
+
 
     private void getCombos(Model model, AutoModel autoModel) {
         autoModel.setCategorieAutoList(categorieAutoService.listCombo());
