@@ -14,10 +14,10 @@ spring:
           filters:
             - RewritePath=/ui/(?<segment>.*), /$\{segment}
         - id: db
-            uri: http://localhost:8882/
-            predicates:
-              - Path=/db/**
-            filters:
-              - RewritePath=/db/(?<segment>.*), /$\{segment}
+          uri: http://localhost:8882/
+          predicates:
+            - Path=/db/**
+          filters:
+            - RewritePath=/db/(?<segment>.*), /$\{segment}
 
 
