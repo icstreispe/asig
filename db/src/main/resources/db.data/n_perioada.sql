@@ -1,0 +1,13 @@
+insert into n_perioada (id, name, luni) values (1,'1 luna',1);
+insert into n_perioada (id, name, luni) values (2,'2 luni',2);
+insert into n_perioada (id, name, luni) values (3,'3 luni',3);
+insert into n_perioada (id, name, luni) values (4,'4 luni',4);
+insert into n_perioada (id, name, luni) values (5,'5 luni',5);
+insert into n_perioada (id, name, luni) values (6,'6 luni',6);
+insert into n_perioada (id, name, luni) values (7,'7 luni',7);
+insert into n_perioada (id, name, luni) values (8,'8 luni',8);
+insert into n_perioada (id, name, luni) values (9,'9 luni',9);
+insert into n_perioada (id, name, luni) values (10,'10 luni',10);
+insert into n_perioada (id, name, luni) values (11,'11 luni',11);
+insert into n_perioada (id, name, luni) values (12,'1 an',12);
+commit;

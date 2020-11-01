@@ -1,0 +1,10 @@
+insert into nt_juridic (id, name) values (1,'SA');
+insert into nt_juridic (id, name) values (2,'SRL');
+insert into nt_juridic (id, name) values (3,'SNC');
+insert into nt_juridic (id, name) values (4,'SCS');
+insert into nt_juridic (id, name) values (5,'SCA');
+insert into nt_juridic (id, name) values (6,'SE');
+insert into nt_juridic (id, name) values (7,'PFA');
+insert into nt_juridic (id, name) values (8,'II');
+insert into nt_juridic (id, name) values (9,'IF');
+commit;
