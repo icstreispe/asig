@@ -1,9 +1,10 @@
-package ro.x13.asig.db.dao.domain;
+package ro.x13.asig.db.dao.domain.org;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
+import ro.x13.asig.db.dao.domain.CatalogDomain;
 
 import javax.persistence.*;
 

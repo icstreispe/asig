@@ -6,7 +6,7 @@ import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Service;
 import ro.x13.asig.db.dao.UnitateRepository;
 import ro.x13.asig.db.dao.catalog.CatalogRepository;
-import ro.x13.asig.db.dao.domain.Unitate;
+import ro.x13.asig.db.dao.domain.org.Unitate;
 
 import java.util.List;
 

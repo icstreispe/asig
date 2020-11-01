@@ -7,10 +7,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import ro.x13.asig.db.dao.catalog.CatalogRepository;
 import ro.x13.asig.db.dao.catalog.ProdusRepository;
-import ro.x13.asig.db.dao.catalog.SocietateTypeRepository;
 import ro.x13.asig.db.dao.domain.Produs;
-import ro.x13.asig.db.dao.domain.SocietateType;
-import ro.x13.asig.db.dao.domain.Unitate;
 import ro.x13.asig.db.view.model.TextValueModel;
 
 import java.util.List;

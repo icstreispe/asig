@@ -6,9 +6,9 @@ import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.stereotype.Service;
 import ro.x13.asig.db.dao.catalog.SocietateRepository;
 import ro.x13.asig.db.dao.catalog.CatalogRepository;
-import ro.x13.asig.db.dao.domain.Societate;
+import ro.x13.asig.db.dao.domain.org.Societate;
 import ro.x13.asig.db.dao.domain.Juridic;
-import ro.x13.asig.db.dao.domain.SocietateType;
+import ro.x13.asig.db.dao.domain.org.SocietateType;
 import ro.x13.asig.db.view.model.TextValueModel;
 
 import java.util.List;

@@ -3,10 +3,8 @@ package ro.x13.asig.db.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ro.x13.asig.db.dao.catalog.CatalogRepository;
-import ro.x13.asig.db.dao.catalog.JuridicRepository;
 import ro.x13.asig.db.dao.catalog.SocietateTypeRepository;
-import ro.x13.asig.db.dao.domain.Juridic;
-import ro.x13.asig.db.dao.domain.SocietateType;
+import ro.x13.asig.db.dao.domain.org.SocietateType;
 
 @Service
 public class SocietateTypeService extends CatalogService <SocietateType>{

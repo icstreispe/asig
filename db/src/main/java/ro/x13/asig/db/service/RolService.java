@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ro.x13.asig.db.dao.RolRepository;
 import ro.x13.asig.db.dao.catalog.CatalogRepository;
-import ro.x13.asig.db.dao.domain.Rol;
+import ro.x13.asig.db.dao.domain.org.Rol;
 
 @Service
 @RequiredArgsConstructor

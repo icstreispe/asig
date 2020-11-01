@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ro.x13.asig.db.dao.domain.*;
+import ro.x13.asig.db.dao.domain.org.Societate;
 import ro.x13.asig.db.service.*;
 import ro.x13.asig.db.view.model.PolitaModel;
 import ro.x13.asig.db.view.model.TextValueModel;

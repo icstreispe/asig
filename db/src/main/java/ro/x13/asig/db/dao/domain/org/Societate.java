@@ -1,13 +1,13 @@
-package ro.x13.asig.db.dao.domain;
+package ro.x13.asig.db.dao.domain.org;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
+import ro.x13.asig.db.dao.domain.CatalogDomain;
+import ro.x13.asig.db.dao.domain.Juridic;
 
 import javax.persistence.*;
-import java.util.Date;
 
 
 @Data
@@ -16,7 +16,7 @@ import java.util.Date;
 @AllArgsConstructor
 @Entity (name="o_societate")
 @SequenceGenerator(name = "generic", sequenceName = "o_societate_seq", allocationSize = 1)   //TODO mai merge cand sunt mai multe entities fiec cu seq ei?
-public class Societate extends CatalogDomain{
+public class Societate extends CatalogDomain {
 
 //        @Id
         //@GeneratedValue(strategy = GenerationType.AUTO, generator = "n_asig_gen")

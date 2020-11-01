@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import ro.x13.asig.db.dao.domain.Angajat;
 import ro.x13.asig.db.dao.domain.Domain;
-import ro.x13.asig.db.dao.domain.Societate;
+import ro.x13.asig.db.dao.domain.org.Societate;
 import ro.x13.asig.db.filter.Loggable;
 import ro.x13.asig.db.service.AngajatService;
 import ro.x13.asig.db.service.ServiceUtil;

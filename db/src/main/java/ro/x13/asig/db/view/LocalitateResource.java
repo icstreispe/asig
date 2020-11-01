@@ -78,7 +78,7 @@ public class LocalitateResource {
 
     @PostMapping(value = "/ajax", produces = APPLICATION_JSON_VALUE)
     @ResponseBody
-    public LocalitateModel ajx(Long id) {
+    public LocalitateModel ajax(Long id) {
 /*  TODO
         Societate societate = societateService.get(id);
         Judet p = new Judet();

@@ -6,14 +6,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ro.x13.asig.db.dao.domain.AsigType;
 import ro.x13.asig.db.dao.domain.Domain;
-import ro.x13.asig.db.dao.domain.Societate;
+import ro.x13.asig.db.dao.domain.org.Societate;
 import ro.x13.asig.db.dao.domain.Produs;
 import ro.x13.asig.db.service.AsigTypeService;
 import ro.x13.asig.db.service.ServiceUtil;
 import ro.x13.asig.db.service.SocietateService;
 import ro.x13.asig.db.service.ProdusService;
 import ro.x13.asig.db.view.model.ProdusModel;
-import ro.x13.asig.db.view.model.TextValueModel;
 
 import java.util.HashMap;
 import java.util.List;

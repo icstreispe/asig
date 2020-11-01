@@ -1,8 +1,7 @@
 package ro.x13.asig.db.dao;
 
 import org.springframework.data.repository.CrudRepository;
-import ro.x13.asig.db.dao.domain.Adresa;
-import ro.x13.asig.db.dao.domain.User;
+import ro.x13.asig.db.dao.domain.org.User;
 
 import java.util.List;
 

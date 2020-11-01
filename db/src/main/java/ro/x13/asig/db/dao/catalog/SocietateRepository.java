@@ -1,11 +1,10 @@
 package ro.x13.asig.db.dao.catalog;
 
-import org.springframework.data.domain.Example;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-import ro.x13.asig.db.dao.domain.Societate;
+import ro.x13.asig.db.dao.domain.org.Societate;
 import ro.x13.asig.db.dao.domain.Juridic;
-import ro.x13.asig.db.dao.domain.SocietateType;
+import ro.x13.asig.db.dao.domain.org.SocietateType;
 
 import java.util.List;
 

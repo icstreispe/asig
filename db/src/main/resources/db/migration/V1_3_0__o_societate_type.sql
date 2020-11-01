@@ -1,4 +1,4 @@
-create table nt_societate (
+create table o_societate_type (
     id integer primary key,
 
     name national character varying (100),
