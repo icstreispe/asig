@@ -23,8 +23,8 @@ public class Adresa extends BaseDomain {
 
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "auto_gen")
-    @SequenceGenerator(name = "auto_gen", sequenceName = "p_adresa_seq", allocationSize = 1)    //TODO automatic generator
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "p_adresa_gen")
+    @SequenceGenerator(name = "p_adresa_gen", sequenceName = "p_adresa_seq", allocationSize = 1)    //TODO automatic generator
     private Long id;
 
     private String localitate;

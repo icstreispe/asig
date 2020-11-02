@@ -24,8 +24,8 @@ public class Imobil extends BaseDomain {
 
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "auto_gen")
-    @SequenceGenerator(name = "auto_gen", sequenceName = "p_imobil_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.AUTO, generator = "p_imobil_gen")
+    @SequenceGenerator(name = "p_imobil_gen", sequenceName = "p_imobil_seq", allocationSize = 1)
     //TODO automatic generator
     private Long id;
 

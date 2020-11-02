@@ -36,6 +36,9 @@
             <tr><td th:text="#{polita.perioada}"></td><td><select  th:field="*{perioada}">
                 <option th:each="s : ${polita.perioadaList}" th:value="${s.value}" th:text="${s.text}"></option>
             </select></td></tr>
+            <tr><td th:text="#{polita.clasaBm}"></td><td><select  th:field="*{clasaBm}">
+                <option th:each="s : ${polita.clasaBmList}" th:value="${s.value}" th:text="${s.text}"></option>
+            </select></td></tr>
 
             <tr><td th:text="#{polita.startValid}"></td><td><input type="text" class="date" th:field="*{startValid}"></td></tr>
             <tr><td th:text="#{polita.endValid}"></td><td><input type="text" class="date" th:field="*{endValid}"></td></tr>
@@ -51,7 +54,7 @@
 
 <table class="blueTable">
     <thead>
-        <tr><th th:text="#{polita.list.title}" colspan="11"></th></tr>
+        <tr><th th:text="#{polita.list.title}" colspan="12"></th></tr>
     </thead>
 
     <tr>
@@ -63,6 +66,7 @@
         <th th:text="#{polita.sumaAsig}"></th>
         <th th:text="#{polita.moneda}"></th>
         <th th:text="#{polita.perioada}"></th>
+        <th th:text="#{polita.clasaBm}"></th>
         <th th:text="#{polita.startValid}"></th>
         <th th:text="#{polita.endValid}"></th>
         <th th:text="#{polita.emisLa}"></th>
@@ -76,6 +80,7 @@
         <td th:text="${row.sumaAsig}" ></td>
         <td th:text="${row.moneda}" ></td>
         <td th:text="${row.perioada}" ></td>
+        <td th:text="${row.clasaBm}" ></td>
         <td th:text="${row.startValid}" ></td>
         <td th:text="${row.endValid}" ></td>
         <td th:text="${row.emisLa}" ></td>

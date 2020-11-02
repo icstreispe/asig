@@ -17,8 +17,8 @@ import javax.persistence.*;
 public class Angajat extends BaseDomain{
 
         @Id
-        @GeneratedValue(strategy = GenerationType.AUTO, generator = "auto_gen")
-        @SequenceGenerator(name = "auto_gen", sequenceName = "o_angajat_seq", allocationSize = 1)    //TODO automatic generator
+        @GeneratedValue(strategy = GenerationType.AUTO, generator = "o_angajat_gen")
+        @SequenceGenerator(name = "o_angajat_gen", sequenceName = "o_angajat_seq", allocationSize = 1)    //TODO automatic generator
         private Long id;
 
         private String cnp;                  //TODO spart si salvat in adresa?

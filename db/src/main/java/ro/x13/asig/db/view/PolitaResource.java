@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ro.x13.asig.db.dao.domain.*;
+import ro.x13.asig.db.dao.domain.biz.ClasaBm;
 import ro.x13.asig.db.dao.domain.org.Societate;
 import ro.x13.asig.db.service.*;
 import ro.x13.asig.db.view.model.PolitaModel;
@@ -28,6 +29,7 @@ public class PolitaResource {
     private final MonedaService monedaService;
     private final ProdusService produsService;
     private final PerioadaService perioadaService;
+    private final ClasaBmService clasaBmService;
 
 
     @GetMapping(value = "/polita/{serie}/{nr}")
@@ -116,6 +118,7 @@ public class PolitaResource {
         politaModel.setMonedaList(monedaService.listCombo());
         politaModel.setProdusList(produsService.listCombo());
         politaModel.setPerioadaList(perioadaService.listCombo());
+        politaModel.setClasaBmList(clasaBmService.listCombo());
     }
 
     private List<Map> getList() {
@@ -128,6 +131,7 @@ public class PolitaResource {
         Moneda moneda = monedaService.get(politaModel.getMoneda());
         Produs produs = produsService.get(politaModel.getProdus());
         Perioada perioada = perioadaService.get(politaModel.getPerioada());
+        ClasaBm clasaBm = clasaBmService.get(politaModel.getClasaBm());
         return Polita.builder()
                 .id(politaModel.getId())
                 .serie(politaModel.getSerie())
@@ -136,6 +140,7 @@ public class PolitaResource {
                 .moneda(moneda)
                 .produs(produs)
                 .perioada(perioada)
+                .clasaBm(clasaBm)
                 .sumaAsig(politaModel.getSumaAsig())
                 .emisLa(politaModel.getEmisLa())
                 .startValid(politaModel.getStartValid())
@@ -155,6 +160,7 @@ public class PolitaResource {
         m.put("sumaAsig", polita.getSumaAsig());
         m.put("moneda", polita.getMoneda() == null ? null : polita.getMoneda().getName());
         m.put("perioada", polita.getPerioada() == null ? null : polita.getPerioada().getName());
+        m.put("clasaBm", polita.getClasaBm() == null ? null : polita.getClasaBm().getName());
         m.put("tipPlata", polita.getTipPlata());
         m.put("emisLa", format(polita.getEmisLa()));
         m.put("endValid", format(polita.getEndValid()));
@@ -174,6 +180,7 @@ public class PolitaResource {
                 .moneda(polita.getMoneda() == null ? null : polita.getMoneda().getId())
                 .tipPlata(polita.getTipPlata())
                 .perioada(polita.getPerioada() == null ? null : polita.getPerioada().getId())
+                .clasaBm(polita.getClasaBm() == null ? null : polita.getClasaBm().getId())
                 .emisLa(polita.getEmisLa())
                 .endValid(polita.getEndValid())
                 .startValid(polita.getStartValid())

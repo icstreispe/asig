@@ -1,4 +1,4 @@
-create table bn_asig (
+create table bn_asig_type (
     id integer primary key,
 
     name national character varying (100),

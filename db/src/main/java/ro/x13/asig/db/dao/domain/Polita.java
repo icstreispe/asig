@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
+import ro.x13.asig.db.dao.domain.biz.ClasaBm;
 import ro.x13.asig.db.dao.domain.org.Societate;
 
 import javax.persistence.*;
@@ -43,6 +44,10 @@ public class Polita implements Domain {
         @ManyToOne
         @JoinColumn(name = "perioada", nullable = true)
         private Perioada perioada;
+
+        @ManyToOne
+        @JoinColumn(name = "clasa_bm", nullable = true)
+        private ClasaBm clasaBm;
 
 
         private Date startValid;

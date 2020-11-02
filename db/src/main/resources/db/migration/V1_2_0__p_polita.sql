@@ -11,7 +11,7 @@ create table p_polita (
     tip_plata   integer,
     idsoc       integer,
     idprodus       integer,
-    perioada integer
-
+    perioada integer,
+    blasa_bm integer
 );
 
