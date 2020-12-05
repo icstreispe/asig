@@ -9,14 +9,13 @@ public class IndexResource {
 
 
 
-    @GetMapping(value = "/")
+    @GetMapping(value = "/index")
     public String index(Model model) {
         return "index";
     }
 
     @GetMapping(value = "/angular")
     public String angular(Model model) {
-
         return "/angular";
     }
 

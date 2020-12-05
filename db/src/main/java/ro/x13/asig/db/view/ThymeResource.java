@@ -23,7 +23,7 @@ public class ThymeResource {
     @Autowired
     private JudetService judetService;
 
-    @GetMapping(value = "/index")
+    @GetMapping(value = "/thyme")
     public String index(Model model) {
         List fields = new ArrayList();
         fields.add(FieldView.builder().type(LIST).name("structuraType").list(structuraTypeService.listCombo()).build());
