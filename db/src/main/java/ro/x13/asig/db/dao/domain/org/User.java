@@ -16,7 +16,6 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity(name = "o_user")
-@SequenceGenerator(name = "generic", sequenceName = "o_user_seq", allocationSize = 1)
 public class User extends BaseDomain {
 
     @Id

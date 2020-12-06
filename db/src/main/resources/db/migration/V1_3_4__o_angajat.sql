@@ -5,6 +5,7 @@ create table o_angajat (
     cod national character varying (15),
     --tip integer,
     idsoc integer,
+    idpass integer,
 
     nume national character varying (100),
     prenume national character varying (100),

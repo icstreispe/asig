@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
+import ro.x13.asig.db.dao.domain.org.Password;
 import ro.x13.asig.db.dao.domain.org.Societate;
 
 import javax.persistence.*;
@@ -38,6 +39,10 @@ public class Angajat extends BaseDomain{
 
         private String telefon;
         private String email;
+
+        @OneToOne
+        @JoinColumn(name = "idpass", nullable = true)
+        private Password password;
 
 
         /**
