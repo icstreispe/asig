@@ -6,10 +6,9 @@ import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 import ro.x13.asig.db.dao.AngajatRepository;
-import ro.x13.asig.db.dao.domain.Angajat;
+import ro.x13.asig.db.dao.domain.org.Angajat;
 import ro.x13.asig.db.view.model.TextValueModel;
 
-import javax.transaction.Transactional;
 import java.util.List;
 
 import static org.springframework.data.domain.ExampleMatcher.GenericPropertyMatchers.startsWith;
@@ -42,6 +41,10 @@ public class AngajatService extends CrudService<Angajat> {
                 .withMatcher("nume", startsWith());
         Example<Angajat> filter = Example.of(a, matcher);
         return repository.findAll(filter);
+    }
+
+    public Angajat findByUsername (String username){
+        return repository.findByUsername(username);
     }
 
     public List<TextValueModel> listCombo() {

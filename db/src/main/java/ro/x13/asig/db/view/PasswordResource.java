@@ -8,21 +8,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import ro.x13.asig.db.dao.domain.Angajat;
-import ro.x13.asig.db.dao.domain.Domain;
+import ro.x13.asig.db.dao.domain.org.Angajat;
 import ro.x13.asig.db.dao.domain.org.Password;
-import ro.x13.asig.db.dao.domain.org.Societate;
 import ro.x13.asig.db.filter.Loggable;
 import ro.x13.asig.db.service.AngajatService;
-import ro.x13.asig.db.service.ServiceUtil;
 import ro.x13.asig.db.service.SocietateService;
 import ro.x13.asig.db.service.org.PasswordService;
-import ro.x13.asig.db.view.model.AngajatModel;
 import ro.x13.asig.db.view.model.PasswordModel;
-
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 @Controller
 @Slf4j

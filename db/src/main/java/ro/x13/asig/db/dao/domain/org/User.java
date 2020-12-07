@@ -4,10 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
-import ro.x13.asig.db.dao.domain.Angajat;
 import ro.x13.asig.db.dao.domain.BaseDomain;
-import ro.x13.asig.db.dao.domain.org.Rol;
-import ro.x13.asig.db.dao.domain.org.Unitate;
 
 import javax.persistence.*;
 

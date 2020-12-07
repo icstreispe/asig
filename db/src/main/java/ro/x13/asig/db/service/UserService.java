@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 import ro.x13.asig.db.dao.UserRepository;
+import ro.x13.asig.db.dao.domain.org.Angajat;
 import ro.x13.asig.db.dao.domain.org.User;
 
 import java.util.List;
@@ -29,6 +30,10 @@ public class UserService extends CrudService<User> {
 
     public List<User> findAll(User user) {
         return repository.findAllByOrderByIdAsc();
+    }
+
+    public List<User> find(Angajat a ) {
+        return repository.findByAngajat(a);
     }
 
 

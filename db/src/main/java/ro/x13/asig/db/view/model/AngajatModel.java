@@ -18,6 +18,7 @@ public class AngajatModel {
     private String cnp;
     private String cod;
     private Long societate;
+    private String username;
     private String nume;
     private String prenume;
     private String ciSerie;

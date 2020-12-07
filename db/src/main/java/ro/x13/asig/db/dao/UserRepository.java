@@ -1,6 +1,7 @@
 package ro.x13.asig.db.dao;
 
 import org.springframework.data.repository.CrudRepository;
+import ro.x13.asig.db.dao.domain.org.Angajat;
 import ro.x13.asig.db.dao.domain.org.User;
 
 import java.util.List;
@@ -9,5 +10,8 @@ import java.util.List;
 public interface UserRepository extends CrudRepository<User, Long> {
 
     List<User> findAllByOrderByIdAsc();
+
+    List<User> findByAngajat(Angajat a);
+
 }
 

@@ -46,14 +46,15 @@
 
 <table class="blueTable">
     <thead>
-        <tr><th th:text="#{angajat.list.title}" colspan="11"></th></tr>
+        <tr><th th:text="#{angajat.list.title}" colspan="12"></th></tr>
     </thead>
 
     <tr>
         <th>.</th>
         <th>.</th>
-        <th th:text="#{angajat.cod}"></th>
         <th th:text="#{angajat.cnp}"></th>
+        <th th:text="#{angajat.cod}"></th>
+        <th th:text="#{angajat.username}"></th>
         <th th:text="#{angajat.nume}"></th>
         <th th:text="#{angajat.prenume}"></th>
         <th th:text="#{angajat.ciSerie}"></th>
@@ -65,8 +66,9 @@
     <tr th:each="row : ${angajat.list}">
         <td><a th:href="@{|/angajat/${row.id}|}" th:text="#{action.edit}"></a></td>
         <td><a th:href="@{|/password/${row.id}|}" th:text="#{action.pass}"></a></td>
-        <td th:text="${row.cod}" ></td>
         <td th:text="${row.cnp}" ></td>
+        <td th:text="${row.cod}" ></td>
+        <td th:text="${row.username}" ></td>
         <td th:text="${row.nume}" ></td>
         <td th:text="${row.prenume}" ></td>
         <td th:text="${row.ciSerie}" ></td>

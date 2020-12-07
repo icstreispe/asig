@@ -1,9 +1,10 @@
-package ro.x13.asig.db.dao.domain;
+package ro.x13.asig.db.dao.domain.org;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
+import ro.x13.asig.db.dao.domain.BaseDomain;
 import ro.x13.asig.db.dao.domain.org.Password;
 import ro.x13.asig.db.dao.domain.org.Societate;
 
@@ -15,7 +16,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Entity (name="o_angajat")
 @SequenceGenerator(name = "generic", sequenceName = "o_angajat_seq", allocationSize = 1)
-public class Angajat extends BaseDomain{
+public class Angajat extends BaseDomain {
 
         @Id
         @GeneratedValue(strategy = GenerationType.AUTO, generator = "o_angajat_gen")
@@ -24,6 +25,7 @@ public class Angajat extends BaseDomain{
 
         private String cnp;                  //TODO spart si salvat in adresa?
 
+        private String username;             //username in system
         private String cod;             //cod asig
         private String nume;
         private String prenume;

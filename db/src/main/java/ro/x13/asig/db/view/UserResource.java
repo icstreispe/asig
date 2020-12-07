@@ -6,7 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
-import ro.x13.asig.db.dao.domain.Angajat;
+import ro.x13.asig.db.dao.domain.org.Angajat;
 import ro.x13.asig.db.dao.domain.org.Rol;
 import ro.x13.asig.db.dao.domain.org.Unitate;
 import ro.x13.asig.db.dao.domain.org.User;

@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import ro.x13.asig.db.dao.domain.Angajat;
+import ro.x13.asig.db.dao.domain.org.Angajat;
 import ro.x13.asig.db.dao.domain.Domain;
 import ro.x13.asig.db.dao.domain.org.Societate;
 import ro.x13.asig.db.filter.Loggable;
@@ -97,6 +97,7 @@ public class AngajatResource {
                 .id(angajatModel.getId())
                 .ciNumar(angajatModel.getCiNumar())
                 .ciSerie(angajatModel.getCiSerie())
+                .username(angajatModel.getUsername())
                 .societate(societate)
                 .cnp(angajatModel.getCnp())
                 .cod(angajatModel.getCod())
@@ -114,6 +115,7 @@ public class AngajatResource {
         m.put("id", angajat.getId());
         m.put("cnp", angajat.getCnp());
         m.put("cod", angajat.getCod());
+        m.put("username", angajat.getUsername());
         m.put("telefon", angajat.getTelefon());
         m.put("email", angajat.getEmail());
         m.put("nume", angajat.getNume());

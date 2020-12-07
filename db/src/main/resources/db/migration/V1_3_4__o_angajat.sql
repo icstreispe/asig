@@ -3,6 +3,7 @@ create table o_angajat (
 
     cnp national character varying (15),
     cod national character varying (15),
+    username national character varying (100),
     --tip integer,
     idsoc integer,
     idpass integer,
