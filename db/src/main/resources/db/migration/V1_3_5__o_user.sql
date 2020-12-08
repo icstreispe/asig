@@ -4,6 +4,7 @@ create table o_user (
     idang integer,
     idunitate integer,
     idrol integer,
+    b_default boolean,
 
     start_date date default now(),
     update_date date default now(),

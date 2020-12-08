@@ -18,6 +18,11 @@ public class PasswordService extends CrudService<Password> {
         return repository;
     }
 
+    @Override
+    public Class<Password> getType() {
+        return Password.class;
+    }
+
     public Password load(Long id) {
         if (id == null){
             return new Password();

@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout.html}">
+
+
+
+<section layout:fragment="content">
+
+    <form  action="#" th:action="@{/role/save}" th:object="${login}" method="post" >
+
+        <input type="hidden" th:field="*{id}">
+
+        <table class="blueTable">
+            <thead>
+            <tr>
+                <th colspan="2" th:text="#{login.form.title}"></th>
+            </tr>
+            </thead>
+
+            <tr><td th:text="#{login.username}"></td><td><input type="text" th:field="*{username}"></td></tr>
+
+            <tr><td th:text="#{login.unitate}"></td><td><select  th:field="*{unitate}" class="ajax">
+                <option th:each="s : ${login.unitateList}" th:value="${s.value}" th:text="${s.text}"></option>
+            </select></td></tr>
+            <tr><td th:text="#{login.rol}"></td><td><select  th:field="*{rol}">
+                <option th:each="s : ${login.rolList}" th:value="${s.value}" th:text="${s.text}"></option>
+            </select></td></tr>
+
+            <tr>
+                <td><input type="submit" value="Salveaza"/></td>
+                <td><input type="reset" value="Reset"></td>
+            </tr>
+        </table>
+
+    </form>
+
+
+</section>
+
+</html>

@@ -2,6 +2,7 @@ package ro.x13.asig.db.service;
 
 import org.springframework.data.repository.CrudRepository;
 import ro.x13.asig.db.dao.domain.BaseDomain;
+import ro.x13.asig.db.dao.domain.org.Angajat;
 
 import javax.transaction.Transactional;
 import java.util.Optional;
@@ -9,6 +10,8 @@ import java.util.Optional;
 public abstract class CrudService<T extends BaseDomain> {
 
     public abstract CrudRepository<T, Long> getRepo ();
+
+    public abstract Class<T> getType ();
 
     @Transactional
     public void save(T domain) {
@@ -22,6 +25,18 @@ public abstract class CrudService<T extends BaseDomain> {
         }
         return null;
     }
+
+    public T load(Long id) {
+        if (id == null) {
+            try {
+                return getType().newInstance();
+            } catch (InstantiationException | IllegalAccessException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        return get(id);
+    }
+
 
 
 }

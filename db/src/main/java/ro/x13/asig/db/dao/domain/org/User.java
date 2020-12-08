@@ -32,5 +32,8 @@ public class User extends BaseDomain {
     @JoinColumn(name = "idrol", nullable = true)
     private Rol rol;
 
+    @Column(name = "b_default")
+    private Boolean isDefault;
+
 
 }

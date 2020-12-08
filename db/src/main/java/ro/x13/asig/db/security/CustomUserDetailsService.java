@@ -29,18 +29,18 @@ public class CustomUserDetailsService implements UserDetailsService {
     private UserService userService;
 
     @Override
-    public CustomUserDetails loadUserByUsername(final String username) throws UsernameNotFoundException {
+    public UserLogged loadUserByUsername(final String username) throws UsernameNotFoundException {
 
-        Angajat angajat = angajatService.findByUsername(username);
+        Angajat angajat = angajatService.get(username);
         List<User> roles = userService.find(angajat);
         List<SimpleGrantedAuthority> auths = roles.stream()
                 .map(rol -> new SimpleGrantedAuthority(rol.getRol().getName()))
-                .collect(Collectors.toList());;
+                .collect(Collectors.toList());
 
-        CustomUserDetails customUserDetails =  new CustomUserDetails(username, passwordEncoder.encode(angajat.getPassword().getPassword()),
+        UserLogged userLogged =  new UserLogged(username, passwordEncoder.encode(angajat.getPassword().getPassword()),
                 auths);
-        customUserDetails.setNume(angajat.getNume());
-        customUserDetails.setPrenume(angajat.getPrenume());
-        return customUserDetails;
+        userLogged.setNume(angajat.getNume());
+        userLogged.setPrenume(angajat.getPrenume());
+        return userLogged;
     }
 }

@@ -2,6 +2,7 @@ package ro.x13.asig.db.view;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -42,7 +43,7 @@ public class AngajatResource {
 
     @Loggable
     @GetMapping(value="/{id}")
-    public String edit(Model model, @PathVariable("id") Long id) {
+    public String edit(Model model, @PathVariable("id") Long id, Authentication authentication) {
         Angajat angajat = angajatService.load(id);
         AngajatModel angajatModel = toModel(angajat);
         getCombos(model, angajatModel);
@@ -92,20 +93,20 @@ public class AngajatResource {
 
     @Loggable
     private Angajat buildDomain(AngajatModel angajatModel) {
+        Angajat angajat = angajatService.load(angajatModel.getId());
         Societate societate = societateService.get(angajatModel.getSocietate());
-        return Angajat.builder()
-                .id(angajatModel.getId())
-                .ciNumar(angajatModel.getCiNumar())
-                .ciSerie(angajatModel.getCiSerie())
-                .username(angajatModel.getUsername())
-                .societate(societate)
-                .cnp(angajatModel.getCnp())
-                .cod(angajatModel.getCod())
-                .nume(angajatModel.getNume())
-                .prenume(angajatModel.getPrenume())
-                .telefon(angajatModel.getTelefon())
-                .email(angajatModel.getEmail())
-                .build();
+        angajat.setId(angajatModel.getId());
+        angajat.setCiNumar(angajatModel.getCiNumar());
+        angajat.setCiSerie(angajatModel.getCiSerie());
+        angajat.setUsername(angajatModel.getUsername());
+        angajat.setSocietate(societate);
+        angajat.setCnp(angajatModel.getCnp());
+        angajat.setCod(angajatModel.getCod());
+        angajat.setNume(angajatModel.getNume());
+        angajat.setPrenume(angajatModel.getPrenume());
+        angajat.setTelefon(angajatModel.getTelefon());
+        angajat.setEmail(angajatModel.getEmail());
+        return angajat;
     }
 
     @Loggable
@@ -139,6 +140,7 @@ public class AngajatResource {
                 .societate(angajat.getSocietate() == null ? null : angajat.getSocietate().getId())
                 .nume(angajat.getNume())
                 .prenume(angajat.getPrenume())
+                .username(angajat.getUsername())
                 .build();
     }
 

@@ -20,6 +20,11 @@ public class UserService extends CrudService<User> {
         return repository;
     }
 
+    @Override
+    public Class<User> getType() {
+        return User.class;
+    }
+
     public List<User> list() {
         return repository.findAllByOrderByIdAsc();
     }
@@ -32,7 +37,7 @@ public class UserService extends CrudService<User> {
         return repository.findAllByOrderByIdAsc();
     }
 
-    public List<User> find(Angajat a ) {
+    public List<User> find(Angajat a) {
         return repository.findByAngajat(a);
     }
 

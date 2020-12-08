@@ -24,16 +24,15 @@ public class AngajatService extends CrudService<Angajat> {
         return repository;
     }
 
+    @Override
+    public Class<Angajat> getType() {
+        return Angajat.class;
+    }
+
     public List<Angajat> list() {
         return repository.findAllByOrderByCnpAsc();
     }
 
-    public Angajat load(Long id) {
-        if (id == null){
-            return new Angajat();
-        }
-        return repository.findById(id).get();
-    }
 
     public List<Angajat> findAll (Angajat a){
         ExampleMatcher matcher = ExampleMatcher.matchingAll()   //custom filtering for 2 properties
@@ -43,7 +42,7 @@ public class AngajatService extends CrudService<Angajat> {
         return repository.findAll(filter);
     }
 
-    public Angajat findByUsername (String username){
+    public Angajat get(String username){
         return repository.findByUsername(username);
     }
 
