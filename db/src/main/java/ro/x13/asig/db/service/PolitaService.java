@@ -7,7 +7,6 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import ro.x13.asig.db.dao.PolitaRepository;
 import ro.x13.asig.db.dao.domain.Polita;
-import ro.x13.asig.db.view.model.PolitaModel;
 
 import javax.transaction.Transactional;
 import java.util.List;
@@ -21,9 +20,9 @@ public class PolitaService {
 
     private final PolitaRepository politaRepository;
 
-    public Optional<PolitaModel> findBySerieAndNr(String serie, Integer nr) {
+    public Optional<Polita> findBySerieAndNr(String serie, Integer nr) {
         return politaRepository.findBySerieAndNr(serie, nr)
-                .map(polita -> PolitaModel.builder()
+                .map(polita -> Polita.builder()
                         .endValid(polita.getEndValid())
                         .nr(polita.getNr())
                         .serie(polita.getSerie())
