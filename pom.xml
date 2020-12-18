@@ -19,6 +19,9 @@
 
     <properties>
         <!-- -->
+        <db.url>jdbc:postgresql://localhost:5432/postgres</db.url>
+        <db.user>postgres</db.user>
+        <db.pass>quark13</db.pass>
     </properties>
 
     <modules>

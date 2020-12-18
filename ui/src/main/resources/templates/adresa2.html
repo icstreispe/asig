@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+
+
+<!-- ===================================================================================== -->
+<span th:fragment="tbl(adresa)">
+
+        <input type="hidden" th:field="*{id}">
+
+        <table>
+            <tr th:fragment="title">
+                <th colspan="2" th:text="#{adresa}"></th>
+            </tr>
+            <tr><td>Tip strada: </td><td><select  th:field="*{tipStrada}">
+                <option th:each="s : ${adresa.tipStradaList}" th:value="${s.value}" th:text="${s.text}"></option>
+            </select>
+            </td></tr>
+            <tr><td>Strada: </td><td><input type="text" th:field="*{strada}"></td></tr>
+
+            <tr><td>Numar: </td><td><input type="text" th:field="*{numar}"></td></tr>
+            <tr><td>Bloc: </td><td><input type="text" th:field="*{bloc}"></td></tr>
+            <tr><td>Scara: </td><td><input type="text" th:field="*{scara}"></td></tr>
+            <tr><td>Etaj: </td><td><input type="text" th:field="*{etaj}"></td></tr>
+            <tr><td>Apartament: </td><td><input type="text" th:field="*{apartament}"></td></tr>
+            <tr><td>Localitate: </td><td><input type="text" th:field="*{localitate}"></td></tr>
+            <tr><td>Sublocalitate: </td><td><input type="text" th:field="*{sublocalitate}"></td></tr>
+
+            <tr><td>Judet: </td><td><select  th:field="*{judet}">
+                <option th:each="s : ${adresa.judetList}" th:value="${s.value}" th:text="${s.text}"></option>
+            </select>
+            </td></tr>
+
+            <tr><td>Cod postal: </td><td><input type="text" th:field="*{codPostal}"></td></tr>
+            <tr><td>Tara: </td><td><div th:replace="~{form::combo(field='tara',list=${adresa.taraList})}"></div></td></tr>
+
+        </table>
+</span>
+
+</html>
+

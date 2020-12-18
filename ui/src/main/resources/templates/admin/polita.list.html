@@ -1,0 +1,93 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout.html}">
+
+<section layout:fragment="navigation">
+    <input type="button" th:onclick="window.location.href='/'" th:value="#{action.back}" />
+    <input type="button" th:onclick="window.location.href='/polita'" th:value="#{action.add}" />
+</section>
+
+<section layout:fragment="content">
+
+    <form  action="#" th:action="@{/polita/list}" th:object="${polita}" method="post" >
+
+        <input type="hidden" th:field="*{id}">
+
+        <table class="blueTable">
+            <thead>
+            <tr>
+                <th colspan="2" th:text="#{polita.form.title}"></th>
+            </tr>
+            </thead>
+            <tr><td th:text="#{polita.serie}"></td><td><input type="text" th:field="*{serie}"></td></tr>
+            <tr><td th:text="#{polita.nr}"></td><td><input type="text" th:field="*{nr}"></td></tr>
+            <tr><td th:text="#{polita.societate}"></td><td><select  th:field="*{societate}" class="ajax">
+                <option th:each="s : ${polita.societateList}" th:value="${s.value}" th:text="${s.text}"></option>
+            </select></td></tr>
+            <tr><td th:text="#{polita.produs}"></td><td><select  th:field="*{produs}">
+                <option th:each="s : ${polita.produsList}" th:value="${s.value}" th:text="${s.text}"></option>
+            </select></td></tr>
+
+            <tr><td th:text="#{polita.sumaAsig}"></td><td><input type="text" th:field="*{sumaAsig}"></td></tr>
+            <tr><td th:text="#{polita.moneda}"></td><td><select  th:field="*{moneda}">
+                <option th:each="s : ${polita.monedaList}" th:value="${s.value}" th:text="${s.text}"></option>
+            </select></td></tr>
+            <tr><td th:text="#{polita.perioada}"></td><td><select  th:field="*{perioada}">
+                <option th:each="s : ${polita.perioadaList}" th:value="${s.value}" th:text="${s.text}"></option>
+            </select></td></tr>
+            <tr><td th:text="#{polita.clasaBm}"></td><td><select  th:field="*{clasaBm}">
+                <option th:each="s : ${polita.clasaBmList}" th:value="${s.value}" th:text="${s.text}"></option>
+            </select></td></tr>
+
+            <tr><td th:text="#{polita.startValid}"></td><td><input type="text" class="date" th:field="*{startValid}"></td></tr>
+            <tr><td th:text="#{polita.endValid}"></td><td><input type="text" class="date" th:field="*{endValid}"></td></tr>
+            <tr><td th:text="#{polita.emisLa}"></td><td><input type="text" class="date"th:field="*{emisLa}"></td></tr>
+            <tr>
+                <td><input type="submit" value="Vizualizare"/></td>
+                <td></td>
+            </tr>
+        </table>
+
+    </form>
+
+
+<table class="blueTable">
+    <thead>
+        <tr><th th:text="#{polita.list.title}" colspan="12"></th></tr>
+    </thead>
+
+    <tr>
+        <th>.</th>
+        <th th:text="#{polita.serie}"></th>
+        <th th:text="#{polita.nr}"></th>
+        <th th:text="#{polita.societate}"></th>
+        <th th:text="#{polita.produs}"></th>
+        <th th:text="#{polita.sumaAsig}"></th>
+        <th th:text="#{polita.moneda}"></th>
+        <th th:text="#{polita.perioada}"></th>
+        <th th:text="#{polita.clasaBm}"></th>
+        <th th:text="#{polita.startValid}"></th>
+        <th th:text="#{polita.endValid}"></th>
+        <th th:text="#{polita.emisLa}"></th>
+    </tr>
+    <tr th:each="row : ${polita.list}">
+        <td><a th:href="@{|/polita/${row.id}|}" th:text="#{action.edit}"></a></td>
+        <td th:text="${row.serie}" ></td>
+        <td th:text="${row.nr}" ></td>
+        <td th:text="${row.societate}" ></td>
+        <td th:text="${row.produs}" ></td>
+        <td th:text="${row.sumaAsig}" ></td>
+        <td th:text="${row.moneda}" ></td>
+        <td th:text="${row.perioada}" ></td>
+        <td th:text="${row.clasaBm}" ></td>
+        <td th:text="${row.startValid}" ></td>
+        <td th:text="${row.endValid}" ></td>
+        <td th:text="${row.emisLa}" ></td>
+    </tr>
+
+</table>
+
+</section>
+
+</html>

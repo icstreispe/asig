@@ -1,0 +1,90 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<tr th:fragment="title">
+    <th colspan="2" th:text="#{adresa}"></th>
+</tr>
+
+
+<!-- ===================================================================================== -->
+<span th:fragment="comboField(key,field,list)">
+    <td th:text="#{${key}}"></td>
+    <td>
+        <select  th:id="${field}">
+            <option th:each="s : ${list}" th:value="${s.value}" th:text="${s.text}"></option>
+        </select>
+    </td>
+</span>
+<span th:fragment="comboFieldDynamic(field)">
+    <td th:text="#{${field.key}}"></td>
+    <td>
+        <select  th:id="${field.id}">
+            <option th:each="s : ${field.list}" th:value="${s.value}" th:text="${s.text}"></option>
+        </select>
+    </td>
+</span>
+
+
+<tr th:fragment="inputDynamic(field)">
+    <td th:text="#{${field.name}}"></td>
+
+    <td th:switch="${field.type}">
+        <select th:case="${T(ro.x13.asig.db.view.model.FieldType).LIST}" th:id="${field.name}">
+            <option th:each="s : ${field.list}" th:value="${s.value}" th:text="${s.text}"></option>
+        </select>
+        <input th:case="${T(ro.x13.asig.db.view.model.FieldType).TEXT}"
+                type="text" th:id="${field.name}" th:name="${field.name}" th:value="${field.value}" th:size="${field.size}" />
+    </td>
+</tr>
+
+
+
+
+<tr th:fragment="inputFieldDynamic(f)">
+    <td th:text="#{${f.key}}"></td>
+    <td>
+        <input type="text" th:id="${f.id}" th:name="${f.id}" th:value="${f.value}" th:size="${f.size}" />
+    </td>
+</tr>
+
+<tr th:fragment="inputField(field,value,size)">
+    <td th:text="#{${field}}"></td>
+    <td>
+        <input type="text" th:id="${field}" th:name="${field}" th:value="${value}" th:size="${size}" />
+    </td>
+</tr>
+
+
+<span th:fragment="combo(field,list)">
+        <select  th:field="*{__${field}__}">
+            <option th:each="s : ${list}" th:value="${s.value}" th:text="${s.text}"></option>
+        </select>
+</span>
+
+<!-- pas 2 dinamizare adresa list -->
+<table th:fragment="table(list)" border="1">
+    <tr>
+        <th>.</th>
+        <th>Tip strada</th>
+        <th>Strada</th>
+        <th>Numar</th>
+        <th>Bloc</th>
+        <th>Scara</th>
+        <th>Etaj</th>
+        <th>Apartament</th>
+        <th>Localitate</th>
+        <th>Sublocalitate</th>
+        <th>Judet</th>
+        <th>Cod postal</th>
+        <th>Tara</th>
+    </tr>
+    <tr th:each="row : ${list}">
+        <td><a th:href="@{|/adresa/${row.id}|}">Edit</a></td>
+        <td th:each="a : ${row.data}" th:text="${a}" ></td>
+
+    </tr>
+</table>
+
+
+</html>
+

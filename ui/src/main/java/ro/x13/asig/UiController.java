@@ -1,4 +1,4 @@
-package ro.x13.asig.ui;
+package ro.x13.asig;
 
 
 import org.springframework.http.ResponseEntity;
@@ -13,7 +13,7 @@ import java.util.Enumeration;
 //@Slf4j
 public class UiController {
 
-    @GetMapping(value = "/hello")
+    @GetMapping(value = "/ui")
     public ResponseEntity<String> hello(HttpServletRequest request) {
         StringBuilder sb = new StringBuilder();
         Enumeration<String> e = request.getHeaderNames();

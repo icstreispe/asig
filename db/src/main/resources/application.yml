@@ -1,14 +1,4 @@
-server:
-  port: 8888
 
-spring:
-  cloud:
-    gateway:
-      enabled: false      #needed to run correctly in idea
-  datasource:
-    type: com.zaxxer.hikari.HikariDataSource
-    hikari:
-      maximum-pool-size: 10
-    url: @db.url@
-    username: @db.user@
-    password: @db.pass@
+
+
+    # thymeleaf templating engine config
