@@ -12,7 +12,7 @@ import org.springframework.web.context.ServletContextAware;
 
 @SpringBootApplication
 @EnableAspectJAutoProxy	//proxy logging & caching
-public class JsfApplication implements ServletContextAware {
+public class JsfApplication implements ServletContextAware {  //extends SpringBootServletInitializer {	//
 
 	public static void main(String[] args) {
 		SpringApplication.run(JsfApplication.class, args);

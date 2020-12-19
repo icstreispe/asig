@@ -13,78 +13,79 @@
 
     <ui:define name="content">
         <h:form>
-            <!--h:inputHidden id="id" value="#{auto.model.id}" /-->
+            <h:inputHidden id="id" value="#{auto.id}" />
 
             <h:panelGrid id="theGrid" columns="3" styleClass="blueTable">
 
                 <h:outputText value="#{msg['auto.marca']}"/>
-                <h:selectOneMenu id="marca" value="#{auto.model.marca}" >
+                <h:selectOneMenu id="marca" value="#{auto.marca}" >
                     <f:selectItems value="#{auto.marcaList}" var="i" itemValue="#{i.value}" itemLabel="#{i.text}"/>
                 </h:selectOneMenu>
                 <h:message for="marca" style="color:#ff0000;"/>
 
                 <h:outputText value="#{msg['auto.model']}"/>
-                <h:inputText id="societate" value="#{auto.model.model}" requiredMessage="#{msg['input.required']}" />
-                <h:message for="societate" style="color:#ff0000;"/>
+                <h:inputText id="model" value="#{auto.model}" requiredMessage="#{msg['input.required']}" />
+                <h:message for="model" style="color:#ff0000;"/>
 
                 <h:outputText value="#{msg['auto.categorieAuto']}"/>
-                <h:selectOneMenu id="categorieAuto" value="#{auto.model.categorieAuto}" >
+                <h:selectOneMenu id="categorieAuto" value="#{auto.categorieAuto}" >
                     <f:selectItems value="#{auto.categorieAutoList}" var="i" itemValue="#{i.value}" itemLabel="#{i.text}"/>
+                    <f:ajax event="change" execute="categorieAuto" render="tipAuto" />
                 </h:selectOneMenu>
                 <h:message for="categorieAuto" style="color:#ff0000;"/>
 
                 <h:outputText value="#{msg['auto.tipAuto']}"/>
-                <h:selectOneMenu id="tipAuto" value="#{auto.model.tipAuto}" >
+                <h:selectOneMenu id="tipAuto" value="#{auto.tipAuto}" >
                     <f:selectItems value="#{auto.tipAutoList}" var="i" itemValue="#{i.value}" itemLabel="#{i.text}"/>
                 </h:selectOneMenu>
                 <h:message for="tipAuto" style="color:#ff0000;"/>
 
                 <h:outputText value="#{msg['auto.stareMatric']}"/>
-                <h:selectOneMenu id="stareMatric" value="#{auto.model.stareMatric}" >
+                <h:selectOneMenu id="stareMatric" value="#{auto.stareMatric}" >
                     <f:selectItems value="#{auto.stareMatricList}" var="i" itemValue="#{i.value}" itemLabel="#{i.text}"/>
                 </h:selectOneMenu>
                 <h:message for="stareMatric" style="color:#ff0000;"/>
 
                 <h:outputText value="#{msg['auto.nrMatric']}"/>
-                <h:inputText id="nrMatric" value="#{auto.model.nrMatric}" requiredMessage="#{msg['input.required']}" />
+                <h:inputText id="nrMatric" value="#{auto.nrMatric}" requiredMessage="#{msg['input.required']}" />
                 <h:message for="nrMatric" style="color:red;"/>
 
                 <h:outputText value="#{msg['auto.serieCiv']}"/>
-                <h:inputText id="serieCiv" value="#{auto.model.serieCiv}" requiredMessage="#{msg['input.required']}" />
+                <h:inputText id="serieCiv" value="#{auto.serieCiv}" requiredMessage="#{msg['input.required']}" />
                 <h:message for="serieCiv" style="color:red;"/>
 
                 <h:outputText value="#{msg['auto.serieSasiu']}"/>
-                <h:inputText id="serieSasiu" value="#{auto.model.serieSasiu}" requiredMessage="#{msg['input.required']}" />
+                <h:inputText id="serieSasiu" value="#{auto.serieSasiu}" requiredMessage="#{msg['input.required']}" />
                 <h:message for="serieSasiu" style="color:red;"/>
 
                 <h:outputText value="#{msg['auto.putere']}"/>
-                <h:inputText id="putere" value="#{auto.model.putere}" requiredMessage="#{msg['input.required']}" />
+                <h:inputText id="putere" value="#{auto.putere}" requiredMessage="#{msg['input.required']}" />
                 <h:message for="putere" style="color:red;"/>
 
                 <h:outputText value="#{msg['auto.cilindree']}"/>
-                <h:inputText id="cilindree" value="#{auto.model.cilindree}" requiredMessage="#{msg['input.required']}" />
+                <h:inputText id="cilindree" value="#{auto.cilindree}" requiredMessage="#{msg['input.required']}" />
                 <h:message for="cilindree" style="color:red;"/>
 
                 <h:outputText value="#{msg['auto.masaMax']}"/>
-                <h:inputText id="masaMax" value="#{auto.model.masaMax}" requiredMessage="#{msg['input.required']}" />
+                <h:inputText id="masaMax" value="#{auto.masaMax}" requiredMessage="#{msg['input.required']}" />
                 <h:message for="masaMax" style="color:red;"/>
 
                 <h:outputText value="#{msg['auto.nrLocuri']}"/>
-                <h:inputText id="nrLocuri" value="#{auto.model.nrLocuri}" requiredMessage="#{msg['input.required']}" />
+                <h:inputText id="nrLocuri" value="#{auto.nrLocuri}" requiredMessage="#{msg['input.required']}" />
                 <h:message for="nrLocuri" style="color:red;"/>
 
                 <h:outputText value="#{msg['auto.anFabricatie']}"/>
-                <h:inputText id="anFabricatie" value="#{auto.model.anFabricatie}" requiredMessage="#{msg['input.required']}" />
+                <h:inputText id="anFabricatie" value="#{auto.anFabricatie}" requiredMessage="#{msg['input.required']}" />
                 <h:message for="anFabricatie" style="color:red;"/>
 
                 <h:outputText value="#{msg['auto.combustibil']}"/>
-                <h:selectOneMenu id="combustibil" value="#{auto.model.combustibil}" >
+                <h:selectOneMenu id="combustibil" value="#{auto.combustibil}" >
                     <f:selectItems value="#{auto.combustibilList}" var="i" itemValue="#{i.value}" itemLabel="#{i.text}"/>
                 </h:selectOneMenu>
                 <h:message for="combustibil" style="color:red;"/>
 
                 <h:outputText value="#{msg['auto.utilizare']}"/>
-                <h:selectOneMenu id="utilizare" value="#{auto.model.utilizare}">
+                <h:selectOneMenu id="utilizare" value="#{auto.utilizare}">
                     <f:selectItems value="#{auto.utilizareList}" var="i" itemValue="#{i.value}" itemLabel="#{i.text}"/>
                 </h:selectOneMenu>
                 <h:message for="utilizare" style="color:red;"/>

@@ -30,6 +30,13 @@ public class AutoService {
     }
 
 
+    //TODO hard for now
+    @Transactional
+    public void del(Long id) {
+        Auto a = load(id);
+        repository.delete(a);
+    }
+
     public Auto load(Long id) {
         return repository.findById(id).get();
     }

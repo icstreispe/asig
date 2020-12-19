@@ -1,12 +1,12 @@
 server:
-  port: 8888
+  port: 9999
   error:
     whitelabel:
       enabled: true
 
 spring:
   thymeleaf:
-    enabled: true
+    enabled: false
   cloud:
     gateway:
       enabled: false      #needed to run correctly in idea
