@@ -7,6 +7,9 @@
                  >
 
 
+    <h:commandButton value="&lt;" action="#{bean.pagePrevious}" />
+    <h:inputText id="page" value="#{bean.page}" size="2" maxlength="2" />
+    <h:commandButton value="&gt;" action="#{bean.pageNext}" />
 
     <h:dataTable value="#{bean.list}" var="d" styleClass="blueTable" headerClass="" >
         <!--ui:repeat value="#{asig.headers}" var="o" varStatus="status"-->

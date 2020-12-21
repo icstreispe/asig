@@ -1,6 +1,7 @@
 package ro.x13.asig.view;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -34,7 +35,7 @@ public class AutoResource {
     @GetMapping(value = "/list")
     public String list(Model model) {
         AutoModel autoModel = new AutoModel();
-        List<Auto> autoList = autoService.list();
+        Iterable<Auto> autoList = autoService.list();
         List<Map> list = ServiceUtil.getList(autoList, this::toView);
         autoModel.setList(list);
 
@@ -47,7 +48,7 @@ public class AutoResource {
     @PostMapping(value = "/list")
     public String filter(Model model, AutoModel autoModel) {
         Auto auto = buildDomain(autoModel);
-        List<Auto> autoList = autoService.findAll(auto);
+        Page<Auto> autoList = autoService.listAll(auto, 0, 10);
         List<Map> list = ServiceUtil.getList(autoList, this::toView);
         autoModel.setList(list);
 
@@ -110,7 +111,7 @@ public class AutoResource {
     }
 
     private List<Map> getList() {
-        List<Auto> list = autoService.list();
+        Iterable<Auto> list = autoService.list();
         return ServiceUtil.getList(list, this::toView);
     }
 

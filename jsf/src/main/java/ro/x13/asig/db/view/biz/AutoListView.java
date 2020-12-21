@@ -1,14 +1,13 @@
-package ro.x13.asig.db.view;
+package ro.x13.asig.db.view.biz;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
-import ro.x13.asig.db.dao.biz.*;
 import ro.x13.asig.db.dao.domain.Auto;
 import ro.x13.asig.db.dao.domain.Domain;
-import ro.x13.asig.db.filter.Cacheable;
 import ro.x13.asig.db.filter.RequestScopedController;
 import ro.x13.asig.db.service.*;
+import ro.x13.asig.db.view.ListView;
 import ro.x13.asig.db.view.jsf.HeaderView;
 
 import java.util.HashMap;
@@ -21,8 +20,11 @@ import static ro.x13.asig.db.ViewUtil.redirect;
 @RequiredArgsConstructor
 @Getter
 @Setter
-public class AutoListView {
+public class AutoListView implements ListView {
 
+    private int page;
+    //private int totalPage;
+    private int rowPerPage = 5;
 
     private final AutoService autoService;
     private final CategorieAutoService categorieAutoService;
@@ -56,16 +58,27 @@ public class AutoListView {
     }
 */
 
+    public void pagePrevious (){
+            page--;
+    }
+
+    public void pageNext (){
+        page++;
+    }
+
+    @Override
     public String getName(){
         return "auto.";
     }
 
+    @Override
     public List getList() {
-        List<Auto> autoList = autoService.list();
+        Iterable<Auto> autoList = autoService.listAll(new Auto(), page, rowPerPage);
         List<Map> list = ServiceUtil.getList(autoList, this::toView);
         return  list;
     }
 
+    @Override
     public List getHeaders() {
         return HeaderView.builder()
                 .add("marca", "auto.marca")
@@ -87,6 +100,7 @@ public class AutoListView {
     }
 
 
+    @Override
     public String del(Long id) {
         autoService.del(id);
         return redirect("list");

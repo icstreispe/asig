@@ -15,7 +15,7 @@ import java.util.Date;
 @SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Auto implements Domain {
+public class Auto extends BaseDomain {
 
         @Id
         @GeneratedValue(strategy=GenerationType.AUTO)

@@ -9,6 +9,7 @@ import ro.x13.asig.db.dao.domain.*;
 import ro.x13.asig.db.dao.domain.biz.ClasaBm;
 import ro.x13.asig.db.dao.domain.org.Societate;
 import ro.x13.asig.db.service.*;
+import ro.x13.asig.db.util.DateUtil;
 import ro.x13.asig.db.view.model.TextValueModel;
 import ro.x13.asig.view.model.PolitaModel;
 
@@ -18,7 +19,6 @@ import java.util.Map;
 import java.util.Optional;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
-import static ro.x13.asig.db.service.DateUtil.format;
 
 @Controller
 @RequiredArgsConstructor

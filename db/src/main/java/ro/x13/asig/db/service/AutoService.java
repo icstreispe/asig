@@ -1,9 +1,8 @@
 package ro.x13.asig.db.service;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Example;
-import org.springframework.data.domain.ExampleMatcher;
-import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.*;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 import ro.x13.asig.db.dao.AutoRepository;
 import ro.x13.asig.db.dao.domain.Auto;
@@ -15,39 +14,27 @@ import static org.springframework.data.domain.ExampleMatcher.GenericPropertyMatc
 
 @Service
 @RequiredArgsConstructor
-public class AutoService {
+public class AutoService extends CrudService<Auto> {
 
     private final AutoRepository repository;
 
-    @Transactional
-    public void save(Auto auto) {
-        repository.save(auto);
+    @Override
+    public CrudRepository getRepo() {
+        return repository;
+    }
+
+    @Override
+    public Class getType() {
+        return Auto.class;
     }
 
 
-    public List<Auto> list() {
-        return repository.findAllByOrderById();
-    }
-
-
-    //TODO hard for now
-    @Transactional
-    public void del(Long id) {
-        Auto a = load(id);
-        repository.delete(a);
-    }
-
-    public Auto load(Long id) {
-        return repository.findById(id).get();
-    }
-
-
-    public List<Auto> findAll(Auto auto) {
-
+    public Page<Auto> listAll(Auto auto, int currentPage, int pageSize) {
         ExampleMatcher matcher = ExampleMatcher.matchingAll()   //custom filtering
                 .withMatcher("id", exact());
         Example<Auto> filter = Example.of(auto, matcher);
         Sort sort = Sort.by(Sort.Direction.ASC, "id");
-        return repository.findAll(filter, sort);        //jpa repo
+        Pageable pageable = PageRequest.of(currentPage, pageSize, sort);
+        return repository.findAll(filter, pageable);        //jpa repo
     }
 }

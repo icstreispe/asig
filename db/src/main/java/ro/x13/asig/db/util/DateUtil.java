@@ -1,4 +1,4 @@
-package ro.x13.asig.db.service;
+package ro.x13.asig.db.util;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
