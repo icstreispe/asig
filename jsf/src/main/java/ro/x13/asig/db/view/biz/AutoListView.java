@@ -10,6 +10,7 @@ import ro.x13.asig.db.service.*;
 import ro.x13.asig.db.view.ListView;
 import ro.x13.asig.db.view.jsf.HeaderView;
 
+import javax.annotation.PostConstruct;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,10 +22,28 @@ import static ro.x13.asig.db.ViewUtil.redirect;
 @Getter
 @Setter
 public class AutoListView implements ListView {
+    private static final List headers = HeaderView.builder()
+            .add("marca", "auto.marca")
+                .add("model", "auto.model")
+                .add("categorieAuto", "-")
+                .add("tipAuto", "-")
+                .add("stareMatric", "Cilindree")
+                .add("nrMatric", "Cilindree")
+                .add("serieCiv", "Cilindree")
+                .add("serieSasiu", "Cilindree")
+                .add("putere", "Cilindree")
+                .add("cilindree", "Cilindree")
+                .add("masaMax", "Cilindree")
+                .add("nrLocuri", "Cilindree")
+                .add("anFabricatie", "auto.anFabricatie")
+                .add("combustibil", "Cilindree")
+                .add("utilizare", "Cilindree")
+                .build();
 
     private int page;
     //private int totalPage;
     private int rowPerPage = 5;
+    private List list;
 
     private final AutoService autoService;
     private final CategorieAutoService categorieAutoService;
@@ -57,13 +76,24 @@ public class AutoListView implements ListView {
         return "admin/auto.list";
     }
 */
+    @PostConstruct
+    public void init(){
+        load();
+    }
+
+    private void load(){
+        Iterable<Auto> autoList = autoService.listAll(new Auto(), page, rowPerPage);
+        list = ServiceUtil.getList(autoList, this::toView);
+    }
 
     public void pagePrevious (){
-            page--;
+        page--;
+        load();
     }
 
     public void pageNext (){
         page++;
+        load();
     }
 
     @Override
@@ -73,30 +103,12 @@ public class AutoListView implements ListView {
 
     @Override
     public List getList() {
-        Iterable<Auto> autoList = autoService.listAll(new Auto(), page, rowPerPage);
-        List<Map> list = ServiceUtil.getList(autoList, this::toView);
         return  list;
     }
 
     @Override
     public List getHeaders() {
-        return HeaderView.builder()
-                .add("marca", "auto.marca")
-                .add("model", "auto.model")
-                .add("categorieAuto", "-")
-                .add("tipAuto", "-")
-                .add("stareMatric", "Cilindree")
-                .add("nrMatric", "Cilindree")
-                .add("serieCiv", "Cilindree")
-                .add("serieSasiu", "Cilindree")
-                .add("putere", "Cilindree")
-                .add("cilindree", "Cilindree")
-                .add("masaMax", "Cilindree")
-                .add("nrLocuri", "Cilindree")
-                .add("anFabricatie", "auto.anFabricatie")
-                .add("combustibil", "Cilindree")
-                .add("utilizare", "Cilindree")
-                .build();
+        return headers;
     }
 
 

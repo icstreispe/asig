@@ -20,22 +20,26 @@
 <ui:param name="copyright" value="&copy; X13 2020"/>
 
 <h:body>
-    <div id="top">
-        <ui:insert name="top"><h1>Default top</h1></ui:insert>
-    </div>
-    <div id="left">
-        <ui:insert name="left"><p>Global navigation</p></ui:insert>
-    </div>
-    <div id="local_navigation">
+
+    <header  style="background-image: url('/img/bg.jpg');">
+            <ui:insert name="top"><h1>Asigurari</h1></ui:insert>
+    </header>
+
+    <nav style="display: inline;">
+        <!--ui:insert name="left"><p>Global navigation</p></ui:insert-->
+        <ui:include src="/layout/menu.xhtml">
+            <ui:param name="bean" value="#{autoList}"/>
+        </ui:include>
+    </nav>
+    <section>
         <ui:insert name="local_navigation"><p>Local navigation</p></ui:insert>
-    </div>
-    <div id="content" class="left_content">
         <h1>#{pageTitle}</h1>
         <ui:insert name="content">Content</ui:insert>
-    </div>
-    <div id="bottom">
-        <ui:insert name="bottom">Template - #{copyright}</ui:insert>
-    </div>
+    </section>
+    <footer>
+        <ui:insert name="bottom">#{copyright}</ui:insert>
+    </footer>
+
 </h:body>
 
 </html>

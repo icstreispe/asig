@@ -6,17 +6,9 @@
                 xmlns:t="http://java.sun.com/jsf/composite/tags"
                 template="/layout/layout.xhtml" >
 
-<ui:define name="local_navigation">
-    <h:form>
-        <h:commandButton value="Back" action="back" ></h:commandButton>
-        <h:commandButton value="Add" action="edit" ></h:commandButton>
-    </h:form>
-</ui:define>
 
     <ui:define name="content">
-            <ui:include src="/layout/table.xhtml">
-                <ui:param name="bean" value="#{autoList}" />
-            </ui:include>
+        No content
     </ui:define>
 
 </ui:composition>

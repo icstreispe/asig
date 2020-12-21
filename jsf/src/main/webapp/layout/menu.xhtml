@@ -1,0 +1,19 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:c="http://java.sun.com/jsp/jstl/core"
+                xmlns:t="http://java.sun.com/jsf/composite/tags"
+                 >
+
+
+    <h:dataTable value="#{menu.list}" var="d" styleClass="blueTable" >
+
+            <h:column>
+                <f:facet name="header">Menu</f:facet>
+                <h:link value="#{d.label}" outcome="#{d.key}" />
+            </h:column>
+
+    </h:dataTable>
+
+</ui:composition>

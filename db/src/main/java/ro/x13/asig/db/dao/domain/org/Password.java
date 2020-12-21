@@ -5,7 +5,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 import org.hibernate.annotations.ColumnTransformer;
-import ro.x13.asig.db.dao.domain.Angajat;
 import ro.x13.asig.db.dao.domain.BaseDomain;
 
 import javax.persistence.*;
