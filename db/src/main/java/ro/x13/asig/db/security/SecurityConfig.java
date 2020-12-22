@@ -18,6 +18,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private UserDetailsService userDetailsService;
+    @Autowired
+    private UrlConfig urlConfig;
 
     @Override
     protected void configure(final AuthenticationManagerBuilder auth) throws Exception {
@@ -53,7 +55,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .formLogin()
                 //.loginPage("/login.html")
                 //.loginProcessingUrl("/login")
-                .defaultSuccessUrl("/role", true)
+                .defaultSuccessUrl(urlConfig.getStartUrl(), true)
                 .failureUrl("/login.html?error=true")
                 //.failureHandler(authenticationFailureHandler())
                 .and()
