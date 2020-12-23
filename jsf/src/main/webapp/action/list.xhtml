@@ -1,0 +1,22 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:c="http://java.sun.com/jsp/jstl/core"
+                xmlns:t="http://java.sun.com/jsf/composite/tags"
+                template="/layout/layout.xhtml" >
+
+<ui:define name="local_navigation">
+    <h:form>
+        <h:commandButton value="Back" action="back" ></h:commandButton>
+        <h:commandButton value="Add" action="edit" ></h:commandButton>
+    </h:form>
+</ui:define>
+
+    <ui:define name="content">
+            <ui:include src="/layout/table.xhtml">
+                <ui:param name="bean" value="#{actionList}" />
+            </ui:include>
+    </ui:define>
+
+</ui:composition>

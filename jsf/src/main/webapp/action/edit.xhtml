@@ -1,0 +1,39 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                template="/layout/layout.xhtml">
+
+    <f:metadata>
+        <f:viewParam name="id" value="#{actionForm.id}" />
+    </f:metadata>
+
+
+    <ui:define name="content">
+        <h:form>
+            <h:inputHidden id="id" value="#{actionForm.id}" />
+
+            <h:panelGrid id="theGrid" columns="3" styleClass="blueTable">
+
+                <h:outputText value="#{msg['actionForm.startAction']}"/>
+                <h:selectOneMenu id="startAction" value="#{actionForm.startAction}" >
+                    <f:selectItems value="#{actionForm.actionList}" var="i" itemValue="#{i.value}" itemLabel="#{i.text}"/>
+                </h:selectOneMenu>
+                <h:message for="startAction" style="color:#ff0000;"/>
+
+                <h:outputText value="#{msg['actionForm.endAction']}"/>
+                <h:selectOneMenu id="endAction" value="#{actionForm.endAction}" >
+                    <f:selectItems value="#{actionForm.actionList}" var="i" itemValue="#{i.value}" itemLabel="#{i.text}"/>
+                </h:selectOneMenu>
+                <h:message for="endAction" style="color:#ff0000;"/>
+
+                <h:commandButton value="#{msg['action.save']}" action="#{actionForm.save}" />
+                <!--h:outputText value="# {asig.operationMessage}" style="color:green;"/-->
+
+            </h:panelGrid>
+        </h:form>
+
+    </ui:define>
+
+</ui:composition>
+

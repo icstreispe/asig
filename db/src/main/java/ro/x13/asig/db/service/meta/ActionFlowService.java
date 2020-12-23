@@ -30,6 +30,10 @@ public class ActionFlowService extends CrudService<ActionFlow> {
     }
 
     public List<ActionFlow> list(Action startAction){
+        if (startAction ==null){
+            startAction = new Action();
+            startAction.setId(0l);       //TODO ugly fox for inexistent actions for now
+        }
 
         ActionFlow af = new ActionFlow();
         af.setStartAction(startAction);
@@ -39,6 +43,16 @@ public class ActionFlowService extends CrudService<ActionFlow> {
         Example<ActionFlow> filter = Example.of(af, matcher);
         Sort sort = Sort.by(Sort.Direction.ASC, "endAction.name");
         return repository.findAll(filter, sort);
+    }
+
+    public Page<ActionFlow> listAll(ActionFlow actionFlow, int currentPage, int pageSize) {
+        ExampleMatcher matcher = ExampleMatcher.matchingAll()   //custom filtering
+                .withMatcher("id", exact());
+        Example<ActionFlow> filter = Example.of(actionFlow, matcher);
+        Sort sort = Sort.by(Sort.Order.asc("startAction.name"))
+                .and(Sort.by(Sort.Order.asc("endAction.name")));
+        Pageable pageable = PageRequest.of(currentPage, pageSize, sort);
+        return repository.findAll(filter, pageable);        //jpa repo
     }
 
 }

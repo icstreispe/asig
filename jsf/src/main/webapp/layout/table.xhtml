@@ -3,8 +3,7 @@
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:f="http://xmlns.jcp.org/jsf/core"
                 xmlns:c="http://java.sun.com/jsp/jstl/core"
-                xmlns:t="http://java.sun.com/jsf/composite/tags"
-                 >
+>
 
 <h:form id="tableForm">
     <h:commandButton value="&lt;" action="#{bean.pagePrevious}" >
@@ -16,7 +15,7 @@
     </h:commandButton>
 
 
-    <h:dataTable id="tableId" value="#{bean.list}" var="d" styleClass="blueTable" headerClass="" >
+    <h:dataTable id="tableId" value="#{bean.list}" var="d" styleClass="blueTable full" headerClass="" >
         <c:forEach items="#{bean.headers}" var="h" >
 
             <h:column>

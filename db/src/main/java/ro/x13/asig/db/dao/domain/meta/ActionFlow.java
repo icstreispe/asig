@@ -18,7 +18,8 @@ import javax.persistence.*;
 public class ActionFlow extends BaseDomain {
 
     @Id
-    private Long id;
+    @GeneratedValue(strategy= GenerationType.AUTO)      //TODO automatic generator for now
+   private Long id;
 
     @ManyToOne
     @JoinColumn(name = "start_action")
