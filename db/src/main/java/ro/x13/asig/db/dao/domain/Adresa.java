@@ -31,15 +31,15 @@ public class Adresa extends BaseDomain {
     private String sublocalitate;
 
     @ManyToOne
-    @JoinColumn(name = "tara_id", nullable = true)
+    @JoinColumn(name = "tara_id")
     private Tara tara;
 
     @ManyToOne
-    @JoinColumn(name = "judet_id", nullable = true)
+    @JoinColumn(name = "judet_id")
     private Judet judet;
 
     @ManyToOne
-    @JoinColumn(name = "tip_strada_id", nullable = true)
+    @JoinColumn(name = "tip_strada_id")
     private TipStrada tipStrada;
 
     private String strada;

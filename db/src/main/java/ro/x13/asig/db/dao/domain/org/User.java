@@ -21,15 +21,15 @@ public class User extends BaseDomain {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "idang", nullable = true)
+    @JoinColumn(name = "idang")
     private Angajat angajat;
 
     @ManyToOne
-    @JoinColumn(name = "idunitate", nullable = true)
+    @JoinColumn(name = "idunitate")
     private Unitate unitate;                  //TODO spart si salvat in adresa?
 
     @ManyToOne
-    @JoinColumn(name = "idrol", nullable = true)
+    @JoinColumn(name = "idrol")
     private Rol rol;
 
     @Column(name = "b_default")

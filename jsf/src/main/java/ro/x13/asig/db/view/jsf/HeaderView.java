@@ -30,7 +30,7 @@ public class HeaderView {
         return list;
     }
 
-    private Map getMap(String k, String l) {
+    public static Map getMap(String k, String l) {
         Map m = new HashMap();
         m.put ("key", k);
         m.put ("label", l);

@@ -25,10 +25,10 @@ public class Produs extends CatalogDomain{
 
 
         @ManyToOne
-        @JoinColumn(name = "tip_asig", nullable = true)
+        @JoinColumn(name = "tip_asig")
         private AsigType asigType;
 
         @ManyToOne
-        @JoinColumn(name = "idsoc", nullable = true)
+        @JoinColumn(name = "idsoc")
         private Societate societate;
 }

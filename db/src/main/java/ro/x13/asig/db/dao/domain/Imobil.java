@@ -31,15 +31,15 @@ public class Imobil extends BaseDomain {
 
 
     @ManyToOne
-    @JoinColumn(name = "tip_mediu_id", nullable = true)
+    @JoinColumn(name = "tip_mediu_id")
     private MediuType mediu;
 
     @ManyToOne
-    @JoinColumn(name = "constructie_id", nullable = true)
+    @JoinColumn(name = "constructie_id")
     private ConstructieType constructie;
 
     @ManyToOne
-    @JoinColumn(name = "tip_structura_id", nullable = true)
+    @JoinColumn(name = "tip_structura_id")
     private StructuraType structuraType;
 
 

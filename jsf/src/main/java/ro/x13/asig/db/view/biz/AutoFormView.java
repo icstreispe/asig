@@ -5,15 +5,11 @@ import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import ro.x13.asig.db.dao.biz.*;
 import ro.x13.asig.db.dao.domain.Auto;
-import ro.x13.asig.db.dao.domain.Domain;
 import ro.x13.asig.db.filter.Cacheable;
 import ro.x13.asig.db.filter.RequestScopedController;
 import ro.x13.asig.db.service.*;
-import ro.x13.asig.db.view.jsf.HeaderView;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import static ro.x13.asig.db.ViewUtil.redirect;
 

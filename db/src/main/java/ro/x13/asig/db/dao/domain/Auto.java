@@ -23,25 +23,25 @@ public class Auto extends BaseDomain {
 
 
         @ManyToOne
-        @JoinColumn(name = "idpolita", nullable = true)
+        @JoinColumn(name = "idpolita")
         private Polita polita;                  //TODO probabil invers lista/polita ?
 
         @ManyToOne
-        @JoinColumn(name = "marca", nullable = true)
+        @JoinColumn(name = "marca")
         private Marca marca;
 
         private String model;
 
         @ManyToOne
-        @JoinColumn(name = "categorie", nullable = true)
+        @JoinColumn(name = "categorie")
         private CategorieAuto categorieAuto;
 
         @ManyToOne
-        @JoinColumn(name = "tip", nullable = true)
+        @JoinColumn(name = "tip")
         private TipAuto tipAuto;
 
         @ManyToOne
-        @JoinColumn(name = "stare_matric", nullable = true)
+        @JoinColumn(name = "stare_matric")
         private StareMatric stareMatric;
 
         private String nrMatric;
@@ -55,11 +55,11 @@ public class Auto extends BaseDomain {
         private Integer anFabricatie;
 
         @ManyToOne
-        @JoinColumn(name = "combustibil", nullable = true)
+        @JoinColumn(name = "combustibil")
         private Combustibil combustibil;
 
         @ManyToOne
-        @JoinColumn(name = "utilizare", nullable = true)
+        @JoinColumn(name = "utilizare")
         private UtilizareType utilizare;
 
 

@@ -20,7 +20,7 @@ public class TipAuto extends CatalogDomain {
 
 
     @ManyToOne
-    @JoinColumn(name = "categ_auto", nullable = true)
+    @JoinColumn(name = "categ_auto")
     private CategorieAuto categorieAuto;
 
 }

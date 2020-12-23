@@ -30,10 +30,10 @@ public class Societate extends CatalogDomain {
         private String fax;
 
         @ManyToOne
-        @JoinColumn(name = "juridic", nullable = true)
+        @JoinColumn(name = "juridic")
         private Juridic juridic;
 
         @ManyToOne
-        @JoinColumn(name = "tip", nullable = true)
+        @JoinColumn(name = "tip")
         private SocietateType tip;
 }

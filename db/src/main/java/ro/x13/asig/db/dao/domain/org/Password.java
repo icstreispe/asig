@@ -37,7 +37,7 @@ public class Password extends BaseDomain {
 
 
     @ManyToOne
-    @JoinColumn(name = "idang", nullable = true)
+    @JoinColumn(name = "idang")
     private Angajat angajat;
 
 

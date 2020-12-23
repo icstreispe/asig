@@ -34,7 +34,7 @@ public class Angajat extends BaseDomain {
         private String ciNumar; //TODO straini?
 
         @ManyToOne
-        @JoinColumn(name = "idsoc", nullable = true)
+        @JoinColumn(name = "idsoc")
         private Societate societate;
 
             //tip integer,
@@ -43,7 +43,7 @@ public class Angajat extends BaseDomain {
         private String email;
 
         @OneToOne
-        @JoinColumn(name = "idpass", nullable = true)
+        @JoinColumn(name = "idpass")
         private Password password;
 
 

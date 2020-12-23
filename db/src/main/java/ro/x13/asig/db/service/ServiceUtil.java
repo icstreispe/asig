@@ -30,7 +30,7 @@ public class ServiceUtil {
         return list;
     }
 
-    public  static List<Map> getList(Iterable<? extends Domain> list, Function<Domain, Map> mapper) {
+    public  static <T> List<T> getList(Iterable<? extends Domain> list, Function<Domain, T> mapper) {
         return StreamSupport.stream(list.spliterator(), false)
                 .map(mapper)       // pt list(lista()): Asig::toMap
                 .collect(Collectors.toList());

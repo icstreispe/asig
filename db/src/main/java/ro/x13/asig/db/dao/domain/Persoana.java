@@ -31,15 +31,15 @@ public class Persoana {
         private Integer nrCopii;
 
         @ManyToOne
-        @JoinColumn(name = "adresa_id", nullable = true)
+        @JoinColumn(name = "adresa_id")
         private Adresa adresa;
 
         @ManyToOne
-        @JoinColumn(name = "cetatenie_id", nullable = true)
+        @JoinColumn(name = "cetatenie_id")
         private Tara cetatenie;
 
         @ManyToOne
-        @JoinColumn(name = "nationalitate_id", nullable = true)
+        @JoinColumn(name = "nationalitate_id")
         private Tara nationalitate;
 
         private String telefon;

@@ -28,7 +28,7 @@ public class Localitate extends CatalogDomain {
         private String apartenenta;
 
         @ManyToOne
-        @JoinColumn(name = "judet", nullable = true)
+        @JoinColumn(name = "judet")
         private Judet judet;
 
 }

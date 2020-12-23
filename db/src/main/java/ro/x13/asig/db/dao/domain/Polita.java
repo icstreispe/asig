@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 import ro.x13.asig.db.dao.domain.biz.ClasaBm;
 import ro.x13.asig.db.dao.domain.org.Societate;
+import ro.x13.asig.db.dao.domain.org.User;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -28,26 +29,30 @@ public class Polita implements Domain {
         private Long tipPlata;  //TODO
 
         @ManyToOne
-        @JoinColumn(name = "idsoc", nullable = true)
+        @JoinColumn(name = "idsoc")
         private Societate societate;
 
         @ManyToOne
-        @JoinColumn(name = "idprodus", nullable = true)
+        @JoinColumn(name = "idprodus")
         private Produs produs;
 
         private BigDecimal sumaAsig;
 
         @ManyToOne
-        @JoinColumn(name = "moneda", nullable = true)
+        @JoinColumn(name = "moneda")
         private Moneda moneda;
 
         @ManyToOne
-        @JoinColumn(name = "perioada", nullable = true)
+        @JoinColumn(name = "perioada")
         private Perioada perioada;
 
         @ManyToOne
-        @JoinColumn(name = "clasa_bm", nullable = true)
+        @JoinColumn(name = "clasa_bm")
         private ClasaBm clasaBm;
+
+        @ManyToOne
+        @JoinColumn(name = "start_user")
+        private User startUser;
 
 
         private Date startValid;
