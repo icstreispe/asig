@@ -1,7 +1,7 @@
 table.blueTable {
     border: 1px solid #1C6EA4;
     background-color: #EEEEEE;
-    /* width: 100%; */
+    width: 100%;
     text-align: left;
     border-collapse: collapse;
     font-family: Arial;
@@ -67,4 +67,21 @@ table.blueTable tfoot .links a{
     color: #FFFFFF;
     padding: 2px 8px;
     border-radius: 5px;
+}
+
+/* ---------------------------------------------------------*/
+header {
+    background-image: url('/img/bg.jpg');
+}
+nav {
+    width:13%;
+    margin-right:2%;
+    float: left;
+}
+section{
+    width:85%;
+    float: left;
+}
+footer {
+    clear:both;
 }

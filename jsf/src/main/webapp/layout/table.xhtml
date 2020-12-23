@@ -8,7 +8,6 @@
 
 <h:form id="tableForm">
     <h:commandButton value="&lt;" action="#{bean.pagePrevious}" >
-        <!--f:ajax render=":content" /-->
         <f:ajax execute="@form" render="@form" />
     </h:commandButton>
     <h:inputText id="page" value="#{bean.page}" size="2" maxlength="2" />

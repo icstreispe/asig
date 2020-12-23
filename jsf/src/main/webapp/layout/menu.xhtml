@@ -7,13 +7,11 @@
                  >
 
 
-    <h:dataTable value="#{menu.list}" var="d" styleClass="blueTable" >
-
+    <h:dataTable value="#{menu.list}" var="d" styleClass="blueTable">
             <h:column>
                 <f:facet name="header">Menu</f:facet>
                 <h:link value="#{d.label}" outcome="#{d.key}" />
             </h:column>
-
     </h:dataTable>
 
 </ui:composition>

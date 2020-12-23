@@ -21,11 +21,11 @@
 
 <h:body>
 
-    <header  style="background-image: url('/img/bg.jpg');">
+    <header>
             <ui:insert name="top"><h1>Asigurari</h1></ui:insert>
     </header>
 
-    <nav style="display: inline;">
+    <nav>
         <!--ui:insert name="left"><p>Global navigation</p></ui:insert-->
         <ui:include src="/layout/menu.xhtml">
             <ui:param name="bean" value="#{autoList}"/>
@@ -33,10 +33,9 @@
     </nav>
     <section>
         <ui:insert name="local_navigation"><p>Local navigation</p></ui:insert>
-        <h1>#{pageTitle}</h1>
         <ui:insert name="content">Content</ui:insert>
     </section>
-    <footer>
+    <footer >
         <ui:insert name="bottom">#{copyright}</ui:insert>
     </footer>
 
