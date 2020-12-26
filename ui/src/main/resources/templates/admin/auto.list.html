@@ -26,23 +26,10 @@
                 <td></td>
             </tr>
         </table>
-
     </form>
 
 
-<table class="blueTable">
-    <thead>
-        <tr><th th:text="#{${auto.titleKey}}" th:colspan="${1+auto.headers.length}"></th></tr>
-    </thead>
-    <tr>
-        <th>.</th>
-        <th th:each="h: ${auto.headers}" th:text="#{${auto.baseKey + '.' + h}}"></th>
-    </tr>
-    <tr th:each="row : ${auto.list}">
-        <td><a th:href="@{|/auto/${row.id}|}" th:text="#{action.edit}"></a></td>
-        <td th:each="h: ${auto.headers}" th:text="${row.__${h}__}" ></td>
-    </tr>
-</table>
+    <div th:replace="table.html :: tableList(bean=${auto})"></div>
 
 </section>
 

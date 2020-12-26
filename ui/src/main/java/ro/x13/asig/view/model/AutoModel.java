@@ -56,4 +56,8 @@ public class AutoModel {
     public String getBaseKey (){
         return "auto";
     }
+
+    public String getEditAction (){
+        return "/auto";
+    }
 }
