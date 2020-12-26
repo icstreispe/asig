@@ -9,7 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="bn_categorie_auto")        //TODO business?
+@Table(name="bn_categorie_auto")
 @Data
 @SuperBuilder
 @NoArgsConstructor

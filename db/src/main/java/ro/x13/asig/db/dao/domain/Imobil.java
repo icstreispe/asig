@@ -2,7 +2,6 @@ package ro.x13.asig.db.dao.domain;
 
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
@@ -26,7 +25,6 @@ public class Imobil extends BaseDomain {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "p_imobil_gen")
     @SequenceGenerator(name = "p_imobil_gen", sequenceName = "p_imobil_seq", allocationSize = 1)
-    //TODO automatic generator
     private Long id;
 
 

@@ -9,7 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="bn_marca")        //TODO business?
+@Table(name="bn_marca")
 @Data
 @SuperBuilder
 @NoArgsConstructor

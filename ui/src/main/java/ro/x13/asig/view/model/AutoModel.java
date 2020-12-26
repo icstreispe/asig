@@ -15,8 +15,6 @@ public class AutoModel {
 
     private Long id;
 
-
-
     private Long marca;
     private Long categorieAuto;
     private Long tipAuto;
@@ -44,4 +42,18 @@ public class AutoModel {
     private List utilizareList;
 
     private List list;
+
+    public String[] getHeaders (){
+        return new String[] {"marca", "model", "categorieAuto", "tipAuto", "stareMatric",
+                "nrMatric", "serieCiv", "serieSasiu", "putere", "cilindree", "masaMax", 
+                "nrLocuri", "anFabricatie", "combustibil", "utilizare"};
+    }
+    
+    public String getTitleKey (){
+        return "auto.list.title";
+    }
+
+    public String getBaseKey (){
+        return "auto";
+    }
 }

@@ -32,46 +32,16 @@
 
 <table class="blueTable">
     <thead>
-        <tr><th th:text="#{auto.list.title}" colspan="16"></th></tr>
+        <tr><th th:text="#{${auto.titleKey}}" th:colspan="${1+auto.headers.length}"></th></tr>
     </thead>
-
     <tr>
         <th>.</th>
-        <th th:text="#{auto.marca}"></th>
-        <th th:text="#{auto.model}"></th>
-        <th th:text="#{auto.categorieAuto}"></th>
-        <th th:text="#{auto.tipAuto}"></th>
-        <th th:text="#{auto.stareMatric}"></th>
-        <th th:text="#{auto.nrMatric}"></th>
-        <th th:text="#{auto.serieCiv}"></th>
-        <th th:text="#{auto.serieSasiu}"></th>
-        <th th:text="#{auto.putere}"></th>
-        <th th:text="#{auto.cilindree}"></th>
-        <th th:text="#{auto.masaMax}"></th>
-        <th th:text="#{auto.nrLocuri}"></th>
-        <th th:text="#{auto.anFabricatie}"></th>
-        <th th:text="#{auto.combustibil}"></th>
-        <th th:text="#{auto.utilizare}"></th>
+        <th th:each="h: ${auto.headers}" th:text="#{${auto.baseKey + '.' + h}}"></th>
     </tr>
     <tr th:each="row : ${auto.list}">
         <td><a th:href="@{|/auto/${row.id}|}" th:text="#{action.edit}"></a></td>
-        <td th:text="${row.marca}" ></td>
-        <td th:text="${row.model}" ></td>
-        <td th:text="${row.categorieAuto}" ></td>
-        <td th:text="${row.tipAuto}" ></td>
-        <td th:text="${row.stareMatric}" ></td>
-        <td th:text="${row.nrMatric}" ></td>
-        <td th:text="${row.serieCiv}" ></td>
-        <td th:text="${row.serieSasiu}" ></td>
-        <td th:text="${row.putere}" ></td>
-        <td th:text="${row.cilindree}" ></td>
-        <td th:text="${row.masaMax}" ></td>
-        <td th:text="${row.nrLocuri}" ></td>
-        <td th:text="${row.anFabricatie}" ></td>
-        <td th:text="${row.combustibil}" ></td>
-        <td th:text="${row.utilizare}" ></td>
+        <td th:each="h: ${auto.headers}" th:text="${row.__${h}__}" ></td>
     </tr>
-
 </table>
 
 </section>

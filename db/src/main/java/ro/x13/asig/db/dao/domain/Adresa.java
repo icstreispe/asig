@@ -2,7 +2,6 @@ package ro.x13.asig.db.dao.domain;
 
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
@@ -24,7 +23,7 @@ public class Adresa extends BaseDomain {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "p_adresa_gen")
-    @SequenceGenerator(name = "p_adresa_gen", sequenceName = "p_adresa_seq", allocationSize = 1)    //TODO automatic generator
+    @SequenceGenerator(name = "p_adresa_gen", sequenceName = "p_adresa_seq", allocationSize = 1)
     private Long id;
 
     private String localitate;
