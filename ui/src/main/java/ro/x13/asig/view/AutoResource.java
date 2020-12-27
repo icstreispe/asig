@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.Map;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
+import static ro.x13.asig.view.model.AutoModel.MODEL_NAME;
 
 @Controller
 @RequiredArgsConstructor
@@ -41,7 +42,7 @@ public class AutoResource {
 
         getCombos(model, autoModel);
 
-        model.addAttribute("auto", autoModel);
+        model.addAttribute(MODEL_NAME, autoModel);
         return "admin/auto.list";
     }
 
@@ -54,7 +55,7 @@ public class AutoResource {
 
         getCombos(model, autoModel);
 
-        model.addAttribute("auto", autoModel);
+        model.addAttribute(MODEL_NAME, autoModel);
         return "admin/auto.list";
     }
 
@@ -65,7 +66,7 @@ public class AutoResource {
 
         getCombos(model, autoModel);
 
-        model.addAttribute("auto", autoModel);
+        model.addAttribute(MODEL_NAME, autoModel);
         return "admin/auto.form";
     }
 
@@ -77,7 +78,7 @@ public class AutoResource {
 
         getCombos(model, autoModel);
 
-        model.addAttribute("auto", autoModel);
+        model.addAttribute(MODEL_NAME, autoModel);
         return "admin/auto.form";
     }
 

@@ -1,10 +1,11 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 
+<!-- ===================================================================================== -->
+
 <tr th:fragment="title">
     <th colspan="2" th:text="#{adresa}"></th>
 </tr>
-
 
 <!-- ===================================================================================== -->
 <span th:fragment="comboField(key,field,list)">
@@ -15,6 +16,7 @@
         </select>
     </td>
 </span>
+
 <span th:fragment="comboFieldDynamic(field)">
     <td th:text="#{${field.key}}"></td>
     <td>
@@ -24,21 +26,35 @@
     </td>
 </span>
 
+<!-- ===================================================================================== -->
 
 <tr th:fragment="inputDynamic(field)">
-    <td th:text="#{${field.name}}"></td>
+    <td th:text="#{${field.nameKey}}"></td>
 
     <td th:switch="${field.type}">
-        <select th:case="${T(ro.x13.asig.db.view.model.FieldType).LIST}" th:id="${field.name}">
+        <select th:case="${T(ro.x13.asig.view.model.FieldType).LIST}" th:id="${field.name}">
             <option th:each="s : ${field.list}" th:value="${s.value}" th:text="${s.text}"></option>
         </select>
-        <input th:case="${T(ro.x13.asig.db.view.model.FieldType).TEXT}"
+        <input th:case="${T(ro.x13.asig.view.model.FieldType).TEXT}"
                 type="text" th:id="${field.name}" th:name="${field.name}" th:value="${field.value}" th:size="${field.size}" />
     </td>
 </tr>
 
+<span th:fragment="field(f)">
+    <td th:text="#{${f.nameKey}}"></td>
 
+    <td th:switch="${f.type}">
+        <select th:case="${T(ro.x13.asig.view.model.FieldType).LIST}" th:field="*{__${f.name}__}">
+            <option th:each="s : ${f.list}" th:value="${s.value}" th:text="${s.text}"></option>
+        </select>
+        <input th:case="${T(ro.x13.asig.view.model.FieldType).TEXT}"
+               type="text" th:field="*{__${f.name}__}" th:size="${f.size}" />
+        <input th:case="${T(ro.x13.asig.view.model.FieldType).HIDDEN}"
+               type="hidden" th:field="*{__${f.name}__}"  />
+    </td>
+</span>
 
+<!-- ===================================================================================== -->
 
 <tr th:fragment="inputFieldDynamic(f)">
     <td th:text="#{${f.key}}"></td>
@@ -54,36 +70,47 @@
     </td>
 </tr>
 
-
+<!-- ===================================================================================== -->
 <span th:fragment="combo(field,list)">
         <select  th:field="*{__${field}__}">
             <option th:each="s : ${list}" th:value="${s.value}" th:text="${s.text}"></option>
         </select>
 </span>
 
-<!-- pas 2 dinamizare adresa list -->
-<table th:fragment="table(list)" border="1">
+
+<!-- ===================================================================================== -->
+<table th:fragment="listTable(bean)" class="blueTable">
+    <thead>
+    <tr><th th:text="#{${bean.listTitleKey}}" th:colspan="${1 + bean.headers.length}"></th></tr>
+    </thead>
     <tr>
         <th>.</th>
-        <th>Tip strada</th>
-        <th>Strada</th>
-        <th>Numar</th>
-        <th>Bloc</th>
-        <th>Scara</th>
-        <th>Etaj</th>
-        <th>Apartament</th>
-        <th>Localitate</th>
-        <th>Sublocalitate</th>
-        <th>Judet</th>
-        <th>Cod postal</th>
-        <th>Tara</th>
+        <th th:each="h: ${bean.headers}" th:text="#{${bean.baseKey + '.' + h}}"></th>
     </tr>
-    <tr th:each="row : ${list}">
-        <td><a th:href="@{|/adresa/${row.id}|}">Edit</a></td>
-        <td th:each="a : ${row.data}" th:text="${a}" ></td>
-
+    <tr th:each="row : ${bean.list}">
+        <td><a th:href="@{|${bean.editAction}/${row.id}|}" th:text="#{action.edit}"></a></td>
+        <td th:each="h: ${bean.headers}" th:text="${row.__${h}__}" ></td>
     </tr>
 </table>
+
+
+<form  th:fragment="formTable(bean)" action="#" th:action="@{${bean.editAction}}" th:object="${__${bean.modelName}__}" method="post" >
+    <input type="hidden" th:field="*{id}">
+    <table class="blueTable">
+        <thead>
+        <tr>
+            <th colspan="2" th:text="#{${bean.formTitleKey}}"></th>
+        </tr>
+        </thead>
+        <tr th:each="f: ${bean.fields}">
+            <div th:replace="form.html :: field(f=${f})"></div>
+        </tr>
+        <tr>
+            <td><input type="submit" th:value="#{action.save}"/></td>
+            <td><input type="reset" th:value="#{action.reset}"></td>
+        </tr>
+    </table>
+</form>
 
 
 </html>

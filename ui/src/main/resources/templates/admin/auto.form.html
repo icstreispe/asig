@@ -10,56 +10,7 @@
 
 <section layout:fragment="content">
 
-    <form  action="#" th:action="@{/auto}" th:object="${auto}" method="post" >
-
-        <input type="hidden" th:field="*{id}">
-
-        <table class="blueTable">
-            <thead>
-            <tr>
-                <th colspan="2" th:text="#{auto.form.title}"></th>
-            </tr>
-            </thead>
-
-            <tr><td th:text="#{auto.marca}"></td><td><select  th:field="*{marca}" >
-                <option th:each="s : ${auto.marcaList}" th:value="${s.value}" th:text="${s.text}"></option>
-            </select></td></tr>
-            <tr><td th:text="#{auto.model}"></td><td><input type="text" th:field="*{model}"></td></tr>
-
-            <tr><td th:text="#{auto.categorieAuto}"></td><td><select  th:field="*{categorieAuto}" class="ajax" >
-                <option th:each="s : ${auto.categorieAutoList}" th:value="${s.value}" th:text="${s.text}"></option>
-            </select></td></tr>
-            <tr><td th:text="#{auto.tipAuto}"></td><td><select  th:field="*{tipAuto}" >
-                <option th:each="s : ${auto.tipAutoList}" th:value="${s.value}" th:text="${s.text}"></option>
-            </select></td></tr>
-            <tr><td th:text="#{auto.stareMatric}"></td><td><select  th:field="*{stareMatric}" >
-                <option th:each="s : ${auto.stareMatricList}" th:value="${s.value}" th:text="${s.text}"></option>
-            </select></td></tr>
-            <tr><td th:text="#{auto.nrMatric}"></td><td><input type="text"  th:field="*{nrMatric}"></td></tr>
-
-            <tr><td th:text="#{auto.serieCiv}"></td><td><input type="text"  th:field="*{serieCiv}"></td></tr>
-            <tr><td th:text="#{auto.serieSasiu}"></td><td><input type="text"  th:field="*{serieSasiu}"></td></tr>
-            <tr><td th:text="#{auto.putere}"></td><td><input type="text"  th:field="*{putere}"></td></tr>
-            <tr><td th:text="#{auto.cilindree}"></td><td><input type="text"  th:field="*{cilindree}"></td></tr>
-            <tr><td th:text="#{auto.masaMax}"></td><td><input type="text"  th:field="*{masaMax}"></td></tr>
-            <tr><td th:text="#{auto.nrLocuri}"></td><td><input type="text"  th:field="*{nrLocuri}"></td></tr>
-            <tr><td th:text="#{auto.anFabricatie}"></td><td><input type="text"  th:field="*{anFabricatie}"></td></tr>
-            <tr><td th:text="#{auto.combustibil}"></td><td><select  th:field="*{combustibil}" class="ajax">
-                <option th:each="s : ${auto.combustibilList}" th:value="${s.value}" th:text="${s.text}"></option>
-            </select></td></tr>
-            <tr><td th:text="#{auto.utilizare}"></td><td><select  th:field="*{utilizare}" class="ajax">
-                <option th:each="s : ${auto.utilizareList}" th:value="${s.value}" th:text="${s.text}"></option>
-            </select></td></tr>
-
-
-            <tr>
-                <td><input type="submit" value="Salveaza"/></td>
-                <td><input type="reset" value="Reset"></td>
-            </tr>
-        </table>
-
-    </form>
-
+    <div th:replace="form.html :: formTable(bean=${auto})"></div>
 
 </section>
 
