@@ -9,17 +9,25 @@ $(function () {
     //.datepicker("setDate", $.datepicker.parseDate('dd.MM.yyyy', $(this).val()))
     ;
 
+    handleAjax();
+});
+
+//adauga handlere pentru fielduri ajax
+function handleAjax(){
     $(".ajax").change(function(){
 
         var val = $(this).val();
+        var id = $(this).attr('id');
+        var data = {};
+        data[id] = val;
 
-        $.post(getUrl(this), {id: val},
+        $.post(getUrl(this), data,
             function(result){
                 //$("#asigType").html(result);
                 replaceFields (result);
             });
     });
-});
+}
 
 
 function getUrl (field){

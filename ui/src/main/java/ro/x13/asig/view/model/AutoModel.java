@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import java.util.ArrayList;
 import java.util.List;
 
+import static ro.x13.asig.view.AutoResource.AUTO_URL;
 import static ro.x13.asig.view.model.FieldType.LIST;
 import static ro.x13.asig.view.model.FieldType.TEXT;
 
@@ -15,7 +16,7 @@ import static ro.x13.asig.view.model.FieldType.TEXT;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class AutoModel implements FormModel {
+public class AutoModel implements FormModel, Paging {
 
     public static final String MODEL_NAME = "auto";
     private Long id;
@@ -38,6 +39,8 @@ public class AutoModel implements FormModel {
     private Integer putere;
     private Integer anFabricatie;
 
+    private Integer page = 0;
+    private String action;
 
     private List categorieAutoList;
     private List marcaList;
@@ -83,7 +86,7 @@ public class AutoModel implements FormModel {
     }
 
     public String getEditAction (){
-        return "/auto";
+        return AUTO_URL;
     }
 
     public String getFormTitleKey (){
@@ -92,5 +95,14 @@ public class AutoModel implements FormModel {
 
     public String getModelName (){
         return MODEL_NAME;
+    }
+
+    @Override
+    public void computePage() {
+        if (">".equals(action)) {
+            page++;
+        } else if ("<".equals(action)) {
+            page--;
+        }
     }
 }

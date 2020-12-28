@@ -4,7 +4,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import ro.x13.asig.db.dao.biz.*;
 import ro.x13.asig.db.dao.domain.Auto;
 import ro.x13.asig.db.dao.domain.Domain;
@@ -17,13 +20,18 @@ import java.util.List;
 import java.util.Map;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
+import static org.springframework.web.bind.annotation.RequestMethod.GET;
+import static org.springframework.web.bind.annotation.RequestMethod.POST;
+import static ro.x13.asig.view.AutoResource.AUTO_URL;
+import static ro.x13.asig.view.ViewUtil.redirect;
 import static ro.x13.asig.view.model.AutoModel.MODEL_NAME;
 
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("/auto")
+@RequestMapping(AUTO_URL)
 public class AutoResource {
 
+    public static final String AUTO_URL = "/auto";
     private final AutoService autoService;
     private final CategorieAutoService categorieAutoService;
     private final TipAutoService tipAutoService;
@@ -33,50 +41,27 @@ public class AutoResource {
     private final StareMatricService stareMatricService;
 
 
-    @GetMapping(value = "/list")
-    public String list(Model model) {
-        AutoModel autoModel = new AutoModel();
-        Iterable<Auto> autoList = autoService.list();
-        List<Map> list = ServiceUtil.getList(autoList, this::toView);
-        autoModel.setList(list);
-
-        getCombos(model, autoModel);
-
-        model.addAttribute(MODEL_NAME, autoModel);
-        return "admin/auto.list";
-    }
-
-    @PostMapping(value = "/list")
-    public String filter(Model model, AutoModel autoModel) {
+    @RequestMapping(value = "/list", method = {GET, POST})
+    public String list(Model model, AutoModel autoModel) {
+        autoModel.computePage();
         Auto auto = buildDomain(autoModel);
-        Page<Auto> autoList = autoService.listAll(auto, 0, 10);
+        Page<Auto> autoList = autoService.listAll(auto, autoModel.getPage(), 7);
         List<Map> list = ServiceUtil.getList(autoList, this::toView);
         autoModel.setList(list);
 
-        getCombos(model, autoModel);
+        getCombos(autoModel);
 
         model.addAttribute(MODEL_NAME, autoModel);
         return "admin/auto.list";
     }
 
 
-    @GetMapping(value = "")
-    public String add(AutoModel autoModel, Model model) {
-        autoModel.setList(getList());
+    @GetMapping(value = {"", "/{id}"})
+    public String form(Model model, AutoModel autoModel) {
+        Auto auto = autoService.load(autoModel.getId());
+        toModel(autoModel, auto);
 
-        getCombos(model, autoModel);
-
-        model.addAttribute(MODEL_NAME, autoModel);
-        return "admin/auto.form";
-    }
-
-
-    @GetMapping(value = "/{id}")
-    public String edit(Model model, @PathVariable("id") Long id) {
-        Auto auto = autoService.load(id);
-        AutoModel autoModel = toModel(auto);
-
-        getCombos(model, autoModel);
+        getCombos(autoModel);
 
         model.addAttribute(MODEL_NAME, autoModel);
         return "admin/auto.form";
@@ -87,14 +72,14 @@ public class AutoResource {
     public String save(AutoModel autoModel) {
         Auto auto = buildDomain(autoModel);
         autoService.save(auto);
-        return "redirect:/auto/list";
+        return redirect(AUTO_URL + "/list");
     }
 
 
     @PostMapping(value = "/ajax", produces = APPLICATION_JSON_VALUE)
     @ResponseBody
-    public AutoModel ajax(Long categAutoId) {
-        List<TextValueModel> tipAutoList = tipAutoService.listCombo(categAutoId);
+    public AutoModel ajax(Long categorieAuto) {   //matches id/name of the field!!!
+        List<TextValueModel> tipAutoList = tipAutoService.listCombo(categorieAuto);
 
         AutoModel model = new AutoModel();
         model.setTipAutoList(tipAutoList);
@@ -102,7 +87,7 @@ public class AutoResource {
     }
 
 
-    private void getCombos(Model model, AutoModel autoModel) {
+    private void getCombos(AutoModel autoModel) {
         autoModel.setCategorieAutoList(categorieAutoService.listCombo());
         autoModel.setMarcaList(marcaService.listCombo());
         autoModel.setTipAutoList(tipAutoService.listCombo());
@@ -167,24 +152,22 @@ public class AutoResource {
         return m;
     }
 
-    private AutoModel toModel(Auto auto) {
-        return AutoModel.builder()
-                .id(auto.getId())
-                .anFabricatie(auto.getAnFabricatie())
-                .cilindree(auto.getCilindree())
-                .categorieAuto(auto.getCategorieAuto() == null ? null : auto.getCategorieAuto().getId())
-                .tipAuto(auto.getTipAuto() == null ? null : auto.getTipAuto().getId())
-                .marca(auto.getMarca() == null ? null : auto.getMarca().getId())
-                .stareMatric(auto.getStareMatric() == null ? null : auto.getStareMatric().getId())
-                .utilizare(auto.getUtilizare() == null ? null : auto.getUtilizare().getId())
-                .combustibil(auto.getCombustibil() == null ? null : auto.getCombustibil().getId())
-                .masaMax(auto.getMasaMax())
-                .model(auto.getModel())
-                .nrLocuri(auto.getNrLocuri())
-                .nrMatric(auto.getNrMatric())
-                .serieCiv(auto.getSerieCiv())
-                .serieSasiu(auto.getSerieSasiu())
-                .putere(auto.getPutere())
-                .build();
+    private void toModel(AutoModel model, Auto auto) {
+        model.setId(auto.getId());
+        model.setAnFabricatie(auto.getAnFabricatie());
+        model.setCilindree(auto.getCilindree());
+        model.setCategorieAuto(auto.getCategorieAuto() == null ? null : auto.getCategorieAuto().getId());
+        model.setTipAuto(auto.getTipAuto() == null ? null : auto.getTipAuto().getId());
+        model.setMarca(auto.getMarca() == null ? null : auto.getMarca().getId());
+        model.setStareMatric(auto.getStareMatric() == null ? null : auto.getStareMatric().getId());
+        model.setUtilizare(auto.getUtilizare() == null ? null : auto.getUtilizare().getId());
+        model.setCombustibil(auto.getCombustibil() == null ? null : auto.getCombustibil().getId());
+        model.setMasaMax(auto.getMasaMax());
+        model.setModel(auto.getModel());
+        model.setNrLocuri(auto.getNrLocuri());
+        model.setNrMatric(auto.getNrMatric());
+        model.setSerieCiv(auto.getSerieCiv());
+        model.setSerieSasiu(auto.getSerieSasiu());
+        model.setPutere(auto.getPutere());
     }
 }

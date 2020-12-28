@@ -44,7 +44,8 @@
     <td th:text="#{${f.nameKey}}"></td>
 
     <td th:switch="${f.type}">
-        <select th:case="${T(ro.x13.asig.view.model.FieldType).LIST}" th:field="*{__${f.name}__}">
+        <select th:case="${T(ro.x13.asig.view.model.FieldType).LIST}"
+                th:field="*{__${f.name}__}" th:class="${f.clasa}">
             <option th:each="s : ${f.list}" th:value="${s.value}" th:text="${s.text}"></option>
         </select>
         <input th:case="${T(ro.x13.asig.view.model.FieldType).TEXT}"
