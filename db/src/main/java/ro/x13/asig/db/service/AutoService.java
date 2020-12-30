@@ -7,10 +7,8 @@ import org.springframework.stereotype.Service;
 import ro.x13.asig.db.dao.AutoRepository;
 import ro.x13.asig.db.dao.domain.Auto;
 
-import javax.transaction.Transactional;
-import java.util.List;
-
 import static org.springframework.data.domain.ExampleMatcher.GenericPropertyMatchers.exact;
+import static org.springframework.data.domain.ExampleMatcher.GenericPropertyMatchers.startsWith;
 
 @Service
 @RequiredArgsConstructor
@@ -31,9 +29,10 @@ public class AutoService extends CrudService<Auto> {
 
     public Page<Auto> listAll(Auto auto, int currentPage, int pageSize) {
         ExampleMatcher matcher = ExampleMatcher.matchingAll()   //custom filtering
-                .withMatcher("id", exact());
+                .withMatcher("id", exact())
+                .withMatcher("serieCiv", startsWith());
         Example<Auto> filter = Example.of(auto, matcher);
-        Sort sort = Sort.by(Sort.Direction.ASC, "id");
+        Sort sort = Sort.by(Sort.Direction.DESC, "id");
         Pageable pageable = PageRequest.of(currentPage, pageSize, sort);
         return repository.findAll(filter, pageable);        //jpa repo
     }

@@ -3,6 +3,7 @@ create table m_action_flow (
 
     start_action integer,
     end_action integer,
+    type integer default 1,
 
     start_date date default now(),
     update_date date default now(),
