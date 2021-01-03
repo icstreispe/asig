@@ -1,4 +1,4 @@
-package ro.x13.asig.view;
+package ro.x13.asig.util;
 
 public class ViewUtil {
 

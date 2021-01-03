@@ -1,72 +1,73 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <link type="text/css" rel="stylesheet"  th:href="@{/css/all.css}" >
-</head>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout.html}">
+
+<section layout:fragment="content">
+
+    <table class="blueTable">
+        <thead>
+            <tr><th th:text="#{menuList.title}" colspan="13"></th></tr>
+        </thead>
+
+        <tr >
+            <td><a th:href="@{|/persoana/|}">Persoane</a></td>
+        </tr>
+        <tr >
+            <td><a th:href="@{|/adresa/list|}">Adrese</a></td>
+        </tr>
+        <tr >
+            <td><a th:href="@{|/imobil/list|}">Imobile</a></td>
+        </tr>
+        <tr >
+            <td><a th:href="@{|/auto/list|}">Auto</a></td>
+        </tr>
+        <tr >
+            <td><a th:href="@{|/polita/list|}">Polite</a></td>
+        </tr>
+    </table>
+
+    <table class="blueTable">
+        <thead>
+        <tr><th th:text="#{menuList.biz.title}" colspan="13"></th></tr>
+        </thead>
+
+        <tr >
+            <td><a th:href="@{|/produs/list|}">Produse</a></td>
+        </tr>
+
+    </table>
+
+    <table class="blueTable">
+        <thead>
+        <tr><th th:text="#{menuList.org.title}" colspan="13"></th></tr>
+        </thead>
+
+        <tr >
+            <td><a th:href="@{|/societate/list|}">Societati de asigurare</a></td>
+        </tr>
+        <tr >
+            <td><a th:href="@{|/unitate/list|}">Unitati</a></td>
+        </tr>
+        <tr >
+            <td><a th:href="@{|/angajat/list|}">Angajati</a></td>
+        </tr>
+
+        <tr >
+            <td><a th:href="@{|/user/list|}">Utilizatori</a></td>
+        </tr>
+    </table>
+
+    <table class="blueTable">
+        <thead>
+        <tr><th th:text="#{menuList.cat.title}" colspan="13"></th></tr>
+        </thead>
+        <tr >
+            <td><a th:href="@{|/localitate/list|}">Localitati</a></td>
+        </tr>
+    </table>
 
 
-<table class="blueTable">
-    <thead>
-        <tr><th th:text="#{menuList.title}" colspan="13"></th></tr>
-    </thead>
-
-    <tr >
-        <td><a th:href="@{|/persoana/|}">Persoane</a></td>
-    </tr>
-    <tr >
-        <td><a th:href="@{|/adresa/list|}">Adrese</a></td>
-    </tr>
-    <tr >
-        <td><a th:href="@{|/imobil/list|}">Imobile</a></td>
-    </tr>
-    <tr >
-        <td><a th:href="@{|/auto/list|}">Auto</a></td>
-    </tr>
-    <tr >
-        <td><a th:href="@{|/polita/list|}">Polite</a></td>
-    </tr>
-</table>
-
-<table class="blueTable">
-    <thead>
-    <tr><th th:text="#{menuList.biz.title}" colspan="13"></th></tr>
-    </thead>
-
-    <tr >
-        <td><a th:href="@{|/produs/list|}">Produse</a></td>
-    </tr>
-
-</table>
-
-<table class="blueTable">
-    <thead>
-    <tr><th th:text="#{menuList.org.title}" colspan="13"></th></tr>
-    </thead>
-
-    <tr >
-        <td><a th:href="@{|/societate/list|}">Societati de asigurare</a></td>
-    </tr>
-    <tr >
-        <td><a th:href="@{|/unitate/list|}">Unitati</a></td>
-    </tr>
-    <tr >
-        <td><a th:href="@{|/angajat/list|}">Angajati</a></td>
-    </tr>
-
-    <tr >
-        <td><a th:href="@{|/user/list|}">Utilizatori</a></td>
-    </tr>
-</table>
-
-<table class="blueTable">
-    <thead>
-    <tr><th th:text="#{menuList.cat.title}" colspan="13"></th></tr>
-    </thead>
-    <tr >
-        <td><a th:href="@{|/localitate/list|}">Localitati</a></td>
-    </tr>
-</table>
-
-
+</section>
 
 </html>

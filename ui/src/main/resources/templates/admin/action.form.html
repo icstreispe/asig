@@ -1,0 +1,15 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout.html}">
+
+
+<section layout:fragment="content">
+
+    <input type="button" th:onclick="window.location.href='/action/list'" th:value="#{action.back}" >
+
+    <div th:replace="form.html :: formTable(bean=${action})"></div>
+
+</section>
+
+</html>

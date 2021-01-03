@@ -9,7 +9,7 @@ public class IndexResource {
 
 
 
-    @GetMapping(value = "/index")
+    @GetMapping(value = {"/index", "/"})
     public String index(Model model) {
         return "index";
     }

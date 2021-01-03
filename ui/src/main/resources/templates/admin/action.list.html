@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout.html}">
+
+
+<section layout:fragment="content">
+
+    <input type="button" th:onclick="window.location.href='/'" th:value="#{action.back}" />
+    <input type="button" th:onclick="window.location.href='/action/form'" th:value="#{action.add}" />
+
+
+    <form  action="#" th:action="@{/action/list}" th:object="${action}" method="post" >
+
+        <input type="hidden" th:field="*{id}">
+
+        <table class="blueTable">
+            <thead>
+            <tr>
+                <th colspan="2" th:text="#{action.form.title}"></th>
+            </tr>
+            </thead>
+           <tr>
+                <td><input type="submit" value="Vizualizare"/></td>
+                <td></td>
+            </tr>
+            <tr><td><input type="submit" name="action" value="&lt;" />
+                <input type="text" th:field="*{page}" maxlength="3" size="3" />
+                <input type="submit" name="action" value="&gt;" /></td></tr>
+        </table>
+    </form>
+
+
+    <div th:replace="form.html :: listTable(bean=${action})"></div>
+
+</section>
+
+</html>

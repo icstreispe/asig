@@ -21,6 +21,8 @@ import ro.x13.asig.view.model.LoginModel;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static ro.x13.asig.util.ViewUtil.redirect;
+
 @Controller
 @RequiredArgsConstructor
 public class RoleResource {
@@ -65,7 +67,7 @@ public class RoleResource {
 
         userLogged.setRol(loginModel.getRol());
         userLogged.setUnitate(loginModel.getUnitate());
-        return "redirect:/index";
+        return redirect("/");
     }
 
 }
