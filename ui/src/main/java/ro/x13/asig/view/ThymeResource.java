@@ -7,13 +7,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import ro.x13.asig.db.service.JudetService;
 import ro.x13.asig.db.service.StructuraTypeService;
 import ro.x13.asig.db.service.TaraService;
-import ro.x13.asig.view.model.FieldView;
+import ro.x13.asig.view.model.ComboView;
+import ro.x13.asig.view.model.StringFieldView;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static ro.x13.asig.view.model.FieldType.LIST;
-import static ro.x13.asig.view.model.FieldType.TEXT;
 
 
 @Controller
@@ -29,23 +27,23 @@ public class ThymeResource {
     @GetMapping(value = "/adresaDynamic")
     public String index(Model model) {
         List fields = new ArrayList();
-        fields.add(FieldView.builder().type(LIST).nameKey("structuraType").list(structuraTypeService.listCombo()).build());
-        fields.add(FieldView.builder().type(LIST).nameKey("tara").list(taraService.listCombo()).build());
-        fields.add(FieldView.builder().type(LIST).nameKey("judet").list(judetService.listCombo()).build());
+        fields.add(ComboView.builder().nameKey("structuraType").list(structuraTypeService.listCombo()).build());
+        fields.add(ComboView.builder().nameKey("tara").list(taraService.listCombo()).build());
+        fields.add(ComboView.builder().nameKey("judet").list(judetService.listCombo()).build());
             //<tr th:insert="~{form::comboField(key='tipStrada',field='tipStrada',list=null)}"></tr>
 
 
-        fields.add(FieldView.builder().type(TEXT).nameKey("localitate").size(50).value("Pitesti").build());
-        fields.add(FieldView.builder().type(TEXT).nameKey("sublocalitate").size(50).value("Vedea").build());
+        fields.add(StringFieldView.builder().nameKey("localitate").size(50).value("Pitesti").build());
+        fields.add(StringFieldView.builder().nameKey("sublocalitate").size(50).value("Vedea").build());
 
-        fields.add(FieldView.builder().type(TEXT).nameKey("strada").size(10).value("Vedea").build());
-        fields.add(FieldView.builder().type(TEXT).nameKey("numar").size(10).value("26").build());
-        fields.add(FieldView.builder().type(TEXT).nameKey("bloc").size(10).value("P66").build());
-        fields.add(FieldView.builder().type(TEXT).nameKey("scara").size(10).value("2").build());
-        fields.add(FieldView.builder().type(TEXT).nameKey("etaj").size(10).value("7").build());
+        fields.add(StringFieldView.builder().nameKey("strada").size(10).value("Vedea").build());
+        fields.add(StringFieldView.builder().nameKey("numar").size(10).value("26").build());
+        fields.add(StringFieldView.builder().nameKey("bloc").size(10).value("P66").build());
+        fields.add(StringFieldView.builder().nameKey("scara").size(10).value("2").build());
+        fields.add(StringFieldView.builder().nameKey("etaj").size(10).value("7").build());
 
-        fields.add(FieldView.builder().type(TEXT).nameKey("apartament").size(10).value("13").build());
-        fields.add(FieldView.builder().type(TEXT).nameKey("codPostal").size(10).value("512342").build());
+        fields.add(StringFieldView.builder().nameKey("apartament").size(10).value("13").build());
+        fields.add(StringFieldView.builder().nameKey("codPostal").size(10).value("512342").build());
 
         model.addAttribute("fields", fields);
 

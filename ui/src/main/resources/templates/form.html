@@ -43,15 +43,17 @@
 <span th:fragment="field(f)">
     <td th:text="#{${f.nameKey}}"></td>
 
-    <td th:switch="${f.type}">
-        <select th:case="${T(ro.x13.asig.view.model.FieldType).LIST}"
-                th:field="*{__${f.name}__}" th:class="${f.clasa}">
+    <td th:switch="${f.class}">
+        <select th:case="${T(ro.x13.asig.view.model.ComboView)}"
+                th:field="*{__${f.name + '.value'}__}" th:class="${f.clasa}">
             <option th:each="s : ${f.list}" th:value="${s.value}" th:text="${s.text}"></option>
         </select>
-        <input th:case="${T(ro.x13.asig.view.model.FieldType).TEXT}"
-               type="text" th:field="*{__${f.name}__}" th:size="${f.size}" />
-        <input th:case="${T(ro.x13.asig.view.model.FieldType).HIDDEN}"
-               type="hidden" th:field="*{__${f.name}__}"  />
+        <input th:case="${T(ro.x13.asig.view.model.StringFieldView)}"
+               type="text" th:field="*{__${f.name + '.value'}__}" th:size="${f.size}" />
+        <input th:case="${T(ro.x13.asig.view.model.IntegerFieldView)}"
+               type="text" th:field="*{__${f.name + '.value'}__}" th:size="${f.size}" />
+        <!--input th:case="${T(ro.x13.asig.view.model.FieldType).HIDDEN}"
+               type="hidden" th:field="*{__${f.name}__}"  /-->
     </td>
 </span>
 
@@ -82,36 +84,53 @@
 <!-- ===================================================================================== -->
 <table th:fragment="listTable(bean)" class="blueTable">
     <thead>
-    <tr><th th:text="#{${bean.listTitleKey}}" th:colspan="${1 + bean.headers.length}"></th></tr>
+    <tr><th th:text="#{${bean.list.titleKey}}" th:colspan="${bean.list.colspan}"></th></tr>
     </thead>
     <tr>
-        <th>.</th>
-        <th th:each="h: ${bean.headers}" th:text="#{${bean.baseKey + '.' + h}}"></th>
+        <th th:each="h: ${bean.list.columns}" th:if="${h.header}" th:text="#{${h.header}}"></th>
     </tr>
-    <tr th:each="row : ${bean.list}">
-        <td><a th:href="@{|${bean.editAction}/${row.id}|}" th:text="#{action.edit}"></a></td>
-        <td th:each="h: ${bean.headers}" th:text="${row.__${h}__}" ></td>
+    <tr th:each="row : ${bean.dataList}">
+        <td th:each="h: ${bean.list.columns}" th:if="${h.link||h.data}" >
+            <a th:if="${h.link}" th:href="@{|${h.action}/${row.id}|}"  th:text="#{${h.key}}"></a>
+            <span th:if="${h.data}" >[[${row.__${h.key}__}]]</span>
+        </td>
     </tr>
 </table>
 
 
-<form  th:fragment="formTable(bean)" action="#" th:action="@{${bean.editAction}}" th:object="${__${bean.modelName}__}" method="post" >
-    <input type="hidden" th:field="*{id}">
+<form  th:fragment="formTable(bean)" action="#" th:action="@{${bean.form.action}}" th:object="${__${bean.modelName}__}" method="post" >
+    <input type="hidden" th:field="*{id}"><!-- /* ATENTIE */ -->
     <table class="blueTable">
         <thead>
         <tr>
-            <th colspan="2" th:text="#{${bean.formTitleKey}}"></th>
+            <th colspan="2" th:text="#{${bean.form.titleKey}}"></th>
         </tr>
         </thead>
-        <tr th:each="f: ${bean.fields}">
+        <tr th:each="f: ${bean.formFields}">
             <div th:replace="form.html :: field(f=${f})"></div>
         </tr>
+        <tr th:if="${bean.form.pagination}">
+            <td colspan="2">
+                <input type="button" value="&lt;" onclick="pagePrev();"/>
+                <input type="text" th:field="*{page}" maxlength="3" size="3" />
+                <input type="button" value="&gt;" onclick="pageNext();"/>
+            </td>
+        </tr>
         <tr>
-            <td><input type="submit" th:value="#{action.save}"/></td>
-            <td><input type="reset" th:value="#{action.reset}"></td>
+            <td colspan="2"><input type="submit" th:value="#{${bean.form.submitKey}}"/></td>
         </tr>
     </table>
 </form>
+
+<table th:fragment="menu(bean)" class="blueTable">
+    <thead>
+    <tr><th th:text="#{menuList.title}" colspan="13"></th></tr><!-- TODO si sta sa fie generat de menu -->
+    </thead>
+
+    <tr th:each="m : ${bean}">
+        <td><a th:href="@{${m.value}}" th:text="${m.text}" ></a></td>
+    </tr>
+</table>
 
 
 </html>

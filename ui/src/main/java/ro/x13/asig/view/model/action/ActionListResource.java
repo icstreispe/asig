@@ -37,7 +37,6 @@ public class ActionListResource {
 
     @RequestMapping(value = "", method = {GET, POST})
     public String load(Model model, ActionModel actionModel) {
-        actionModel.computePage();
 
         ActionFlow actionFlow = getDomain(actionModel);
         Page<ActionFlow> actionFlowList = autoFlowService.listAll(actionFlow, actionModel.getPage(), 7);

@@ -43,7 +43,7 @@ public class ReflectionUtil {
     /**
      * create inner fields of type FieldView for the object o
      */
-    public static void createFields(String base, Object o) {
+    public static void initFields(String base, Object o) {
         try {
             for (Field f : getFieldsMetaByType(o, FieldView.class)) {
                 FieldView field = (FieldView) f.getType().getDeclaredConstructor().newInstance();   //(FieldView) f.get(this);

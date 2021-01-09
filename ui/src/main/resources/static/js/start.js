@@ -73,3 +73,27 @@ function replaceOptions (nameList, newOptions){
             .text(value.text));
     });
 }
+
+
+
+//-----------paginare-----------------------------
+function doSubmit() {
+    $('input[type="submit"]:first').click();
+}
+
+function pagePrev() {
+    var page = $('[name="page"]');
+    if (parseInt(page.val()) > 0) {
+        page.val(parseInt(page.val()) - 1);
+    } else {
+        page.val(0);
+    }
+    doSubmit();
+}
+
+function pageNext() {
+    var page = $('[name="page"]');
+    page.val(parseInt(page.val()) + 1);
+    doSubmit();
+}
+//---------------------------------------------------
