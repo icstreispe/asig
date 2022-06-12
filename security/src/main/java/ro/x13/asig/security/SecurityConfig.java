@@ -1,4 +1,4 @@
-package ro.x13.asig.db.security;
+package ro.x13.asig.security;
 
 
 import org.springframework.beans.factory.annotation.Autowired;

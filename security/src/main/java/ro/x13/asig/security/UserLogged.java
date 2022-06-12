@@ -1,8 +1,6 @@
-package ro.x13.asig.db.security;
+package ro.x13.asig.security;
 
-import lombok.Builder;
 import lombok.Data;
-import lombok.Getter;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 

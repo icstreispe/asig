@@ -1,4 +1,4 @@
-package ro.x13.asig.db.security;
+package ro.x13.asig.security;
 
 public interface UrlConfig {
 
