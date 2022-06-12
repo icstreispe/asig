@@ -108,6 +108,11 @@
             <artifactId>db</artifactId>
             <version>${project.version}</version>
         </dependency>
+        <dependency>
+            <groupId>ro.x13.asig</groupId>
+            <artifactId>security</artifactId>
+            <version>${project.version}</version>
+        </dependency>
 
         <!-- needed when run as application not spring-boot one -->
         <dependency>
