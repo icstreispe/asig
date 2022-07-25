@@ -2,7 +2,7 @@ package ro.x13.asig.db;
 
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-//only when
+//when DbApplication missing
 @SpringBootApplication
 public class TestApp {
 }

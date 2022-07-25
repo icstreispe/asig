@@ -37,7 +37,8 @@ public class AdresaRepositoryTest {
 
     @Test
     void whenNotSavedThenNotFound (){
-        //TODO
+        List<Adresa> l = adresaRepository.findAllByOrderById();
+        assertEquals(l.size(), 0);
     }
 
 }
